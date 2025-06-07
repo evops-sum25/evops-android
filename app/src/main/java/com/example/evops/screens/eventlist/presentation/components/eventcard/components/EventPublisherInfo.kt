@@ -10,8 +10,6 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import coil3.compose.AsyncImage
 import coil3.request.ImageRequest
-import coil3.request.transformations
-import coil3.transform.RoundedCornersTransformation
 import com.example.evops.R
 import com.example.evops.screens.eventlist.domain.model.PublisherData
 import com.example.evops.screens.eventlist.presentation.components.PreviewData.publisherData
@@ -29,7 +27,6 @@ private fun AvatarPreview(avatarPreviewUrl: String, modifier: Modifier = Modifie
     AsyncImage(
         model = ImageRequest.Builder(LocalContext.current)
             .data(avatarPreviewUrl)
-            .transformations(RoundedCornersTransformation(16f))
             .build(),
         contentDescription = stringResource(R.string.description_publisher_avatar_preview),
         placeholder = painterResource(R.drawable.publisher_avatar_placeholder),

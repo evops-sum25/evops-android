@@ -15,7 +15,10 @@ import com.example.evops.screens.eventlist.domain.model.PublisherData
 import com.example.evops.screens.eventlist.presentation.components.PreviewData.publisherData
 
 @Composable
-fun EventPublisherInfo(publisherData: PublisherData, modifier: Modifier = Modifier) {
+fun EventPublisherInfo(
+    publisherData: PublisherData,
+    modifier: Modifier = Modifier
+) {
     Row(modifier = modifier) {
         AvatarPreview(avatarPreviewUrl = publisherData.avatarPreviewUrl)
         PublisherTitle(publisherName = publisherData.name)
@@ -23,7 +26,10 @@ fun EventPublisherInfo(publisherData: PublisherData, modifier: Modifier = Modifi
 }
 
 @Composable
-private fun AvatarPreview(avatarPreviewUrl: String, modifier: Modifier = Modifier) {
+private fun AvatarPreview(
+    avatarPreviewUrl: String,
+    modifier: Modifier = Modifier
+) {
     AsyncImage(
         model = ImageRequest.Builder(LocalContext.current)
             .data(avatarPreviewUrl)
@@ -37,7 +43,10 @@ private fun AvatarPreview(avatarPreviewUrl: String, modifier: Modifier = Modifie
 }
 
 @Composable
-private fun PublisherTitle(publisherName: String, modifier: Modifier = Modifier) {
+private fun PublisherTitle(
+    publisherName: String,
+    modifier: Modifier = Modifier
+) {
     Text(text = publisherName, modifier = modifier)
 }
 

@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">EvOps</string>
     <string name="description_publisher_avatar_preview">publisher avatar preview</string>
+    <string name="description_event_image_preview">event image preview</string>
 </resources>

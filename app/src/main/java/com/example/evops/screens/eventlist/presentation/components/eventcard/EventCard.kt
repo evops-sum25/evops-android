@@ -10,7 +10,8 @@ import com.example.evops.screens.eventlist.presentation.components.eventcard.com
 
 @Composable
 fun EventCard(
-    eventData: EventData, modifier: Modifier = Modifier
+    eventData: EventData,
+    modifier: Modifier = Modifier
 ) {
     Column(modifier = modifier) {
         EventPublisherInfo(

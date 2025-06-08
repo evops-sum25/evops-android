@@ -3,12 +3,14 @@ package com.example.evops.screens.eventlist.presentation.components.eventcard
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.evops.screens.eventlist.domain.model.EventData
 import com.example.evops.screens.eventlist.presentation.components.PreviewData.eventData
+import com.example.evops.screens.eventlist.presentation.components.eventcard.components.EventAttendees
 import com.example.evops.screens.eventlist.presentation.components.eventcard.components.EventImage
 import com.example.evops.screens.eventlist.presentation.components.eventcard.components.EventPlaceAndDate
 import com.example.evops.screens.eventlist.presentation.components.eventcard.components.EventPublisherInfo
@@ -22,16 +24,28 @@ fun EventCard(
     Column(
         verticalArrangement = Arrangement.Top,
         horizontalAlignment = Alignment.Start,
-        modifier = modifier
+        modifier = modifier.fillMaxWidth()
     ) {
-        EventPublisherInfo(publisherData = eventData.publisherData, modifier = Modifier)
+        EventPublisherInfo(
+            publisherData = eventData.publisherData,
+            modifier = Modifier.fillMaxWidth()
+        )
 
-        EventImage(imageUrl = eventData.eventImageUrl, modifier = Modifier)
+        EventImage(imageUrl = eventData.eventImageUrl, modifier = Modifier.fillMaxWidth())
 
-        EventTitle(title = eventData.title, modifier = Modifier)
+        EventTitle(title = eventData.title, modifier = Modifier.fillMaxWidth())
 
-        Row {
-            EventPlaceAndDate(place = eventData.place, date = eventData.date)
+        Row(
+            horizontalArrangement = Arrangement.Start,
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            EventAttendees(attendeesCount = eventData.attendeesCount)
+
+            EventPlaceAndDate(
+                place = eventData.place,
+                date = eventData.date,
+                modifier = Modifier.weight(1f)
+            )
         }
     }
 }

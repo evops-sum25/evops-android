@@ -10,6 +10,7 @@ import com.example.evops.screens.eventlist.domain.model.EventData
 import com.example.evops.screens.eventlist.presentation.components.PreviewData.eventData
 import com.example.evops.screens.eventlist.presentation.components.eventcard.components.EventImage
 import com.example.evops.screens.eventlist.presentation.components.eventcard.components.EventPublisherInfo
+import com.example.evops.screens.eventlist.presentation.components.eventcard.components.EventTitle
 
 @Composable
 fun EventCard(
@@ -21,9 +22,11 @@ fun EventCard(
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = modifier
     ) {
-        EventPublisherInfo(publisherData = eventData.publisherData, modifier = modifier)
+        EventPublisherInfo(publisherData = eventData.publisherData, modifier = Modifier)
 
-        EventImage(imageUrl = eventData.eventImageUrl, modifier = modifier)
+        EventImage(imageUrl = eventData.eventImageUrl, modifier = Modifier)
+
+        EventTitle(title = eventData.title, modifier = Modifier)
     }
 }
 

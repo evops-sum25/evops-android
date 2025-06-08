@@ -1,8 +1,10 @@
 package com.example.evops.screens.eventlist.presentation.components.eventcard.components
 
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
@@ -19,7 +21,11 @@ fun EventPublisherInfo(
     publisherData: PublisherData,
     modifier: Modifier = Modifier
 ) {
-    Row(modifier = modifier) {
+    Row(
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.Start,
+        modifier = modifier
+    ) {
         AvatarPreview(avatarPreviewUrl = publisherData.avatarPreviewUrl)
         PublisherTitle(publisherName = publisherData.name)
     }

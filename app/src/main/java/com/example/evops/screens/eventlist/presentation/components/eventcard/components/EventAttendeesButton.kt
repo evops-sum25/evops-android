@@ -1,11 +1,12 @@
 package com.example.evops.screens.eventlist.presentation.components.eventcard.components
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ThumbUp
 import androidx.compose.material.icons.outlined.ThumbUpOffAlt
 import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -16,32 +17,37 @@ import com.example.evops.R
 import com.example.evops.screens.eventlist.presentation.components.PreviewData
 
 @Composable
-fun EventAttendees(attendeesCount: UInt, modifier: Modifier = Modifier) {
+fun EventAttendeesButton(attendeesCount: UInt, modifier: Modifier = Modifier) {
     Row(
         horizontalArrangement = Arrangement.Start,
         verticalAlignment = Alignment.CenterVertically,
-        modifier = modifier
+        modifier = modifier.clickable(onClick = {}) // TODO("add on click")
     ) {
-        AttendButton(onClick = {}, modifier = Modifier) // TODO("implement on click")
+        AttendIcon(isAttending = false, modifier = Modifier) // TODO("add is attending")
 
         Text(text = attendeesCount.toString())
     }
 }
 
 @Composable
-private fun AttendButton(
-    onClick: () -> Unit, modifier: Modifier = Modifier
+private fun AttendIcon(
+    isAttending: Boolean, modifier: Modifier = Modifier
 ) {
-    IconButton(onClick = onClick, modifier = modifier) {
-        Icon(
-            Icons.Outlined.ThumbUpOffAlt,
-            contentDescription = stringResource(R.string.description_disabled_attend_icon)
-        )
+    val iconVector = if (isAttending) {
+        Icons.Filled.ThumbUp
+    } else {
+        Icons.Outlined.ThumbUpOffAlt
     }
+
+    Icon(
+        imageVector = iconVector,
+        contentDescription = stringResource(R.string.description_disabled_attend_icon),
+        modifier = modifier
+    )
 }
 
 @Preview
 @Composable
 private fun EventAttendeesPreview() {
-    EventAttendees(attendeesCount = PreviewData.eventData.attendeesCount)
+    EventAttendeesButton(attendeesCount = PreviewData.eventData.attendeesCount)
 }

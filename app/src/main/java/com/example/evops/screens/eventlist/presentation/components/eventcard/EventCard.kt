@@ -4,13 +4,15 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import com.example.evops.screens.eventlist.domain.model.EventData
 import com.example.evops.screens.eventlist.presentation.components.PreviewData.eventData
-import com.example.evops.screens.eventlist.presentation.components.eventcard.components.EventAttendees
+import com.example.evops.screens.eventlist.presentation.components.eventcard.components.EventAttendeesButton
 import com.example.evops.screens.eventlist.presentation.components.eventcard.components.EventImage
 import com.example.evops.screens.eventlist.presentation.components.eventcard.components.EventPlaceAndDate
 import com.example.evops.screens.eventlist.presentation.components.eventcard.components.EventPublisherInfo
@@ -28,18 +30,26 @@ fun EventCard(
     ) {
         EventPublisherInfo(
             publisherData = eventData.publisherData,
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier
+                .padding(horizontal = 18.dp, vertical = 12.dp)
+                .fillMaxWidth()
         )
 
         EventImage(imageUrl = eventData.eventImageUrl, modifier = Modifier.fillMaxWidth())
 
-        EventTitle(title = eventData.title, modifier = Modifier.fillMaxWidth())
+        EventTitle(
+            title = eventData.title,
+            modifier = Modifier
+                .padding(horizontal = 18.dp, vertical = 12.dp)
+                .fillMaxWidth()
+        )
 
         Row(
             horizontalArrangement = Arrangement.Start,
-            verticalAlignment = Alignment.CenterVertically
+            verticalAlignment = Alignment.CenterVertically,
+            modifier = Modifier.padding(horizontal = 18.dp)
         ) {
-            EventAttendees(attendeesCount = eventData.attendeesCount)
+            EventAttendeesButton(attendeesCount = eventData.attendeesCount)
 
             EventPlaceAndDate(
                 place = eventData.place,

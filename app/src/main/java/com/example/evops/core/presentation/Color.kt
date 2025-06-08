@@ -1,4 +1,4 @@
-package com.example.evops.ui.theme
+package com.example.evops.core.presentation
 
 import androidx.compose.ui.graphics.Color
 

@@ -4,7 +4,7 @@ import java.time.LocalDate
 
 data class EventData(
     val title: String,
-    val publisherData: PublisherData,
+    val eventPublisherData: EventPublisherData,
     val eventImageUrl: String,
     val attendeesCount: UInt,
     val commentsCount: UInt,

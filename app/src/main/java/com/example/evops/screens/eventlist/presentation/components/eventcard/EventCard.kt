@@ -29,7 +29,7 @@ fun EventCard(
         modifier = modifier.fillMaxWidth()
     ) {
         EventPublisherInfo(
-            publisherData = eventData.publisherData,
+            eventPublisherData = eventData.eventPublisherData,
             modifier = Modifier
                 .padding(horizontal = 18.dp, vertical = 12.dp)
                 .fillMaxWidth()

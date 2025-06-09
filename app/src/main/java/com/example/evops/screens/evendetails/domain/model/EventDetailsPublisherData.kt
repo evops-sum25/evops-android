@@ -1,4 +1,4 @@
-package com.example.evops.screens.evendetails.domain
+package com.example.evops.screens.evendetails.domain.model
 
 data class EventDetailsPublisherData(
     val name: String,

@@ -14,7 +14,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.evops.screens.PreviewData
-import com.example.evops.screens.evendetails.domain.TagData
+import com.example.evops.screens.evendetails.domain.model.TagData
 
 @Composable
 fun EventDetailsTags(tagsData: List<TagData>, modifier: Modifier = Modifier) {

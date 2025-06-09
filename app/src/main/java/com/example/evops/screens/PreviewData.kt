@@ -1,8 +1,8 @@
 package com.example.evops.screens
 
-import com.example.evops.screens.evendetails.domain.EventDetailsData
-import com.example.evops.screens.evendetails.domain.EventDetailsPublisherData
-import com.example.evops.screens.evendetails.domain.TagData
+import com.example.evops.screens.evendetails.domain.model.EventDetailsData
+import com.example.evops.screens.evendetails.domain.model.EventDetailsPublisherData
+import com.example.evops.screens.evendetails.domain.model.TagData
 import com.example.evops.screens.eventlist.domain.model.EventData
 import com.example.evops.screens.eventlist.domain.model.EventPublisherData
 import java.time.LocalDate

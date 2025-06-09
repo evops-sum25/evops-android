@@ -14,7 +14,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.evops.R
-import com.example.evops.screens.eventlist.presentation.components.PreviewData
+import com.example.evops.screens.PreviewData
 
 @Composable
 fun EventDetailsAttendeesButton(attendeesCount: UInt, modifier: Modifier = Modifier) {

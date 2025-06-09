@@ -19,7 +19,7 @@ import coil3.compose.AsyncImage
 import coil3.request.ImageRequest
 import com.example.evops.R
 import com.example.evops.screens.eventlist.domain.model.PublisherData
-import com.example.evops.screens.eventlist.presentation.components.PreviewData.publisherData
+import com.example.evops.screens.PreviewData.publisherData
 
 @Composable
 fun EventPublisherInfo(

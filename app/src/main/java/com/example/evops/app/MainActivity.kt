@@ -11,7 +11,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.example.evops.core.presentation.EvOpsTheme
-import com.example.evops.screens.eventlist.presentation.components.PreviewData
+import com.example.evops.screens.PreviewData
 import com.example.evops.screens.eventlist.presentation.components.eventcard.EventCard
 import com.example.evops.screens.eventlist.presentation.components.searchfield.SearchField
 

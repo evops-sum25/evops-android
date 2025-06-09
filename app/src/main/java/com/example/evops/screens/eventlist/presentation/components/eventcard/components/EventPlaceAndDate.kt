@@ -7,7 +7,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.example.evops.screens.eventlist.presentation.components.PreviewData
+import com.example.evops.screens.PreviewData
 import java.time.LocalDate
 
 @Composable

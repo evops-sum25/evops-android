@@ -1,4 +1,4 @@
-package com.example.evops.screens.eventlist.presentation.components
+package com.example.evops.screens
 
 import com.example.evops.screens.eventlist.domain.model.EventData
 import com.example.evops.screens.eventlist.domain.model.PublisherData

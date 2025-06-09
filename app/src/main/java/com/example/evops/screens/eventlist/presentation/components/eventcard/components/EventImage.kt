@@ -9,7 +9,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import coil3.compose.AsyncImage
 import coil3.request.ImageRequest
 import com.example.evops.R
-import com.example.evops.screens.eventlist.presentation.components.PreviewData
+import com.example.evops.screens.PreviewData
 
 @Composable
 fun EventImage(

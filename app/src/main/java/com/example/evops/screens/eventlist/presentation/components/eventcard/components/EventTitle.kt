@@ -4,7 +4,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.example.evops.screens.eventlist.presentation.components.PreviewData
+import com.example.evops.screens.PreviewData
 
 @Composable
 fun EventTitle(title: String, modifier: Modifier = Modifier) {

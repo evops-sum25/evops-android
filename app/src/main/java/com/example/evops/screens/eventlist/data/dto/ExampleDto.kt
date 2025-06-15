@@ -1,4 +1,4 @@
-package com.example.evops.core.data.dto
+package com.example.evops.screens.eventlist.data.dto
 
 import kotlinx.serialization.Serializable
 

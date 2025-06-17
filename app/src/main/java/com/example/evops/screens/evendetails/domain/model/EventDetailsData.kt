@@ -3,9 +3,10 @@ package com.example.evops.screens.evendetails.domain.model
 import java.time.LocalDate
 
 data class EventDetailsData(
-    val title: String,
     val eventDetailsPublisherData: EventDetailsPublisherData,
     val eventImageUrls: List<String>,
+    val title: String,
+    val description: String,
     val attendeesCount: UInt,
     val commentsCount: UInt,
     val place: String,

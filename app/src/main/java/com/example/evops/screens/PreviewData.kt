@@ -27,12 +27,17 @@ object PreviewData {
         avatarPreviewUrl = "https://meowle.fintech-qa.ru/photos/image-1745661496544.jpg"
     )
     val eventDetailsData = EventDetailsData(
-        title = "Probstat Final Preparation",
         eventDetailsPublisherData = eventDetailsPublisherData,
         eventImageUrls = listOf(
             "https://meowle.fintech-qa.ru/photos/image-1745661496544.jpg",
             "https://meowle.fintech-qa.ru/photos/image-1745661496544.jpg",
         ),
+        title = "Probstat Final Preparation",
+        description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec molestie eu " +
+                "sapien vel auctor. Vivamus non ante venenatis, vestibulum enim id, vestibulum " +
+                "augue. Donec lacus felis, efficitur non dolor ornare, fermentum malesuada est. " +
+                "Cras interdum lectus sed justo sollicitudin, id porta nisl consequat. Ut maximus " +
+                "viverra est nec rutrum.",
         attendeesCount = 16u,
         commentsCount = 4u,
         place = "IU 108",

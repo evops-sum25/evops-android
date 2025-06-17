@@ -1,4 +1,4 @@
-package com.example.evops.screens.eventlist.presentation.components.eventcard.components
+package com.example.evops.screens.evendetails.presentation.components
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -11,30 +11,33 @@ import com.example.evops.screens.PreviewData
 import java.time.LocalDate
 
 @Composable
-fun EventPlaceAndDate(place: String, date: LocalDate, modifier: Modifier = Modifier) {
+fun EventDetailsPlaceAndDate(place: String, date: LocalDate, modifier: Modifier = Modifier) {
     Column(
         horizontalAlignment = Alignment.End,
         verticalArrangement = Arrangement.Top,
         modifier = modifier
     ) {
-        EventPlace(place = place)
+        EventDetailsPlace(place = place)
 
-        EventDate(date = date)
+        EventDetailsDate(date = date)
     }
 }
 
 @Composable
-private fun EventPlace(place: String, modifier: Modifier = Modifier) {
+private fun EventDetailsPlace(place: String, modifier: Modifier = Modifier) {
     Text(text = place, modifier = modifier)
 }
 
 @Composable
-private fun EventDate(date: LocalDate, modifier: Modifier = Modifier) {
+private fun EventDetailsDate(date: LocalDate, modifier: Modifier = Modifier) {
     Text(text = date.toString(), modifier = modifier)
 }
 
 @Preview
 @Composable
-private fun EventPlaceAndDatePreview() {
-    EventPlaceAndDate(place = PreviewData.eventData.place, date = PreviewData.eventData.date)
+private fun EventDetailsPlaceAndDatePreview() {
+    EventDetailsPlaceAndDate(
+        place = PreviewData.eventDetailsData.place,
+        date = PreviewData.eventDetailsData.date
+    )
 }

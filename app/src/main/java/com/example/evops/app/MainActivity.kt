@@ -13,6 +13,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.lifecycleScope
 import com.example.evops.core.presentation.EvOpsTheme
+import com.example.evops.screens.PreviewData
 import com.example.evops.screens.eventlist.data.dto.ExampleDto
 import com.example.evops.screens.eventlist.domain.repository.ExampleRepository
 import com.example.evops.screens.eventlist.presentation.components.PreviewData

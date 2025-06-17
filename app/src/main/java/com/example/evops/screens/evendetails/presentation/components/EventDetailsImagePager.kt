@@ -1,5 +1,8 @@
-package com.example.evops.screens.eventlist.presentation.components.eventcard.components
+package com.example.evops.screens.evendetails.presentation.components
 
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.pager.HorizontalPager
+import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
@@ -12,7 +15,18 @@ import com.example.evops.R
 import com.example.evops.screens.PreviewData
 
 @Composable
-fun EventImage(
+fun EventDetailsImagePager(
+    imageUrls: List<String>,
+    modifier: Modifier = Modifier
+) {
+    val pagerState = rememberPagerState(pageCount = { imageUrls.size })
+    HorizontalPager(state = pagerState, modifier = modifier) { page ->
+        EventDetailsImage(imageUrl = imageUrls[page], modifier = Modifier.fillMaxWidth())
+    }
+}
+
+@Composable
+private fun EventDetailsImage(
     imageUrl: String,
     modifier: Modifier = Modifier
 ) {
@@ -30,6 +44,11 @@ fun EventImage(
 
 @Preview
 @Composable
-private fun EventImagePreview() {
-    EventImage(imageUrl = PreviewData.eventData.eventImageUrl)
+private fun EventDetailsImagePagerPreview() {
+    EventDetailsImagePager(
+        imageUrls = listOf(
+            PreviewData.eventData.eventImageUrl,
+            PreviewData.eventData.eventImageUrl,
+        )
+    )
 }

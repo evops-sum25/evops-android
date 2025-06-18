@@ -4,7 +4,7 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class Author(
+data class AuthorDto(
     val id: String,
     val name: String,
     @SerialName("profile_picture_url")

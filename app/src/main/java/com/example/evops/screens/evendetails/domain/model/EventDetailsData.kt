@@ -8,7 +8,6 @@ data class EventDetailsData(
     val title: String,
     val description: String,
     val attendeesCount: UInt,
-    val commentsCount: UInt,
     val place: String,
     val date: LocalDate,
     val tagsData: List<TagData>,

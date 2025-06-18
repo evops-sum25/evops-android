@@ -39,7 +39,6 @@ object PreviewData {
                 "Cras interdum lectus sed justo sollicitudin, id porta nisl consequat. Ut maximus " +
                 "viverra est nec rutrum.",
         attendeesCount = 16u,
-        commentsCount = 4u,
         place = "IU 108",
         date = LocalDate.now(),
         tagsData = listOf(TagData("BDSM"), TagData("study"), TagData("math"), TagData("B23")),

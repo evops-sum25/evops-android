@@ -10,8 +10,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.example.evops.screens.eventlist.domain.model.EventData
-import com.example.evops.screens.PreviewData.eventData
+import com.example.evops.screens.eventlist.domain.model.EventItemData
+import com.example.evops.screens.PreviewData.eventItemData
 import com.example.evops.screens.eventlist.presentation.components.eventcard.components.EventAttendeesButton
 import com.example.evops.screens.eventlist.presentation.components.eventcard.components.EventImage
 import com.example.evops.screens.eventlist.presentation.components.eventcard.components.EventPlaceAndDate
@@ -20,7 +20,7 @@ import com.example.evops.screens.eventlist.presentation.components.eventcard.com
 
 @Composable
 fun EventCard(
-    eventData: EventData,
+    eventData: EventItemData,
     modifier: Modifier = Modifier
 ) {
     Column(
@@ -35,7 +35,7 @@ fun EventCard(
                 .fillMaxWidth()
         )
 
-        EventImage(imageUrl = eventData.eventImageUrl, modifier = Modifier.fillMaxWidth())
+        EventImage(imageUrl = eventData.imageUrl, modifier = Modifier.fillMaxWidth())
 
         EventTitle(
             title = eventData.title,
@@ -63,5 +63,5 @@ fun EventCard(
 @Preview
 @Composable
 private fun EventCardPreview() {
-    EventCard(eventData = eventData)
+    EventCard(eventData = eventItemData)
 }

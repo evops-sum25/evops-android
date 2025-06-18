@@ -1,4 +1,4 @@
-package com.example.evops.screens.evendetails.data
+package com.example.evops.screens.evendetails.data.mappers
 
 import com.example.evops.core.data.model.AuthorDto
 import com.example.evops.core.data.model.EventDto

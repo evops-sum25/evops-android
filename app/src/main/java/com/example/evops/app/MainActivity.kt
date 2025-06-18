@@ -42,7 +42,7 @@ class MainActivity : ComponentActivity() {
                         )
 
                         EventCard(
-                            eventData = PreviewData.eventData,
+                            eventData = PreviewData.eventItemData,
                             modifier = Modifier
                         )
                     }

@@ -36,5 +36,5 @@ private fun EventDate(date: LocalDate, modifier: Modifier = Modifier) {
 @Preview
 @Composable
 private fun EventPlaceAndDatePreview() {
-    EventPlaceAndDate(place = PreviewData.eventData.place, date = PreviewData.eventData.date)
+    EventPlaceAndDate(place = PreviewData.eventItemData.place, date = PreviewData.eventItemData.date)
 }

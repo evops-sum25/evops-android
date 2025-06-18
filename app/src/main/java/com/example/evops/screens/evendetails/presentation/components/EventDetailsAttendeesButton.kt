@@ -1,4 +1,4 @@
-package com.example.evops.screens.eventlist.presentation.components.eventcard.components
+package com.example.evops.screens.evendetails.presentation.components
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -17,7 +17,7 @@ import com.example.evops.R
 import com.example.evops.screens.PreviewData
 
 @Composable
-fun EventAttendeesButton(attendeesCount: UInt, modifier: Modifier = Modifier) {
+fun EventDetailsAttendeesButton(attendeesCount: UInt, modifier: Modifier = Modifier) {
     Row(
         horizontalArrangement = Arrangement.Start,
         verticalAlignment = Alignment.CenterVertically,
@@ -49,5 +49,5 @@ private fun AttendIcon(
 @Preview
 @Composable
 private fun EventAttendeesPreview() {
-    EventAttendeesButton(attendeesCount = PreviewData.eventData.attendeesCount)
+    EventDetailsAttendeesButton(attendeesCount = PreviewData.eventData.attendeesCount)
 }

@@ -18,12 +18,12 @@ import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
 import coil3.request.ImageRequest
 import com.example.evops.R
-import com.example.evops.screens.eventlist.domain.model.PublisherData
-import com.example.evops.screens.eventlist.presentation.components.PreviewData.publisherData
+import com.example.evops.screens.eventlist.domain.model.EventPublisherData
+import com.example.evops.screens.PreviewData.eventPublisherData
 
 @Composable
 fun EventPublisherInfo(
-    publisherData: PublisherData,
+    eventPublisherData: EventPublisherData,
     modifier: Modifier = Modifier
 ) {
     Row(
@@ -31,10 +31,10 @@ fun EventPublisherInfo(
         horizontalArrangement = Arrangement.Start,
         modifier = modifier
     ) {
-        AvatarPreview(avatarPreviewUrl = publisherData.avatarPreviewUrl)
+        AvatarPreview(avatarPreviewUrl = eventPublisherData.avatarPreviewUrl)
 
         PublisherTitle(
-            publisherName = publisherData.name,
+            publisherName = eventPublisherData.name,
             modifier = Modifier.padding(horizontal = 6.dp)
         )
     }
@@ -71,6 +71,6 @@ private fun PublisherTitle(
 @Composable
 private fun EventPublisherInfoPreview() {
     EventPublisherInfo(
-        publisherData = publisherData
+        eventPublisherData = eventPublisherData
     )
 }

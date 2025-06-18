@@ -1,6 +1,6 @@
 package com.example.evops.screens.eventlist.domain.model
 
-data class PublisherData(
+data class EventPublisherData(
     val name: String,
     val avatarPreviewUrl: String,
 )

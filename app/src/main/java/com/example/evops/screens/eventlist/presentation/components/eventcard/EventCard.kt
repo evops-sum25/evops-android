@@ -11,7 +11,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.evops.screens.eventlist.domain.model.EventData
-import com.example.evops.screens.eventlist.presentation.components.PreviewData.eventData
+import com.example.evops.screens.PreviewData.eventData
 import com.example.evops.screens.eventlist.presentation.components.eventcard.components.EventAttendeesButton
 import com.example.evops.screens.eventlist.presentation.components.eventcard.components.EventImage
 import com.example.evops.screens.eventlist.presentation.components.eventcard.components.EventPlaceAndDate
@@ -29,7 +29,7 @@ fun EventCard(
         modifier = modifier.fillMaxWidth()
     ) {
         EventPublisherInfo(
-            publisherData = eventData.publisherData,
+            eventPublisherData = eventData.eventPublisherData,
             modifier = Modifier
                 .padding(horizontal = 18.dp, vertical = 12.dp)
                 .fillMaxWidth()

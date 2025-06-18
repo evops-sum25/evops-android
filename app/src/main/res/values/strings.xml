@@ -3,4 +3,6 @@
     <string name="description_publisher_avatar_preview">publisher avatar preview</string>
     <string name="description_event_image_preview">event image preview</string>
     <string name="description_disabled_attend_icon">disabled attend icon</string>
+    <string name="event_details">Event Details</string>
+    <string name="description_navigate_back_icon">Navigate Back Icon</string>
 </resources>

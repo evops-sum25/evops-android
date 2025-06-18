@@ -16,7 +16,6 @@ import com.example.evops.core.presentation.EvOpsTheme
 import com.example.evops.screens.PreviewData
 import com.example.evops.screens.eventlist.data.dto.ExampleDto
 import com.example.evops.screens.eventlist.domain.repository.ExampleRepository
-import com.example.evops.screens.eventlist.presentation.components.PreviewData
 import com.example.evops.screens.eventlist.presentation.components.eventcard.EventCard
 import com.example.evops.screens.eventlist.presentation.components.searchfield.SearchField
 import dagger.hilt.android.AndroidEntryPoint
@@ -43,7 +42,7 @@ class MainActivity : ComponentActivity() {
                         )
 
                         EventCard(
-                            eventData = PreviewData.eventData,
+                            eventData = PreviewData.eventItemData,
                             modifier = Modifier
                         )
                     }

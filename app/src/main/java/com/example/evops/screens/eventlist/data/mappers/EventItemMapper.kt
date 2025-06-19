@@ -13,6 +13,7 @@ object EventItemMapper {
     }
     
     fun EventDto.toDomain() = EventItem(
+        id = this.id,
         title = this.title,
         eventPublisherData = this.author.toDomain(),
         imageUrl = this.imageUrls.first(), // TODO("handle empty list")

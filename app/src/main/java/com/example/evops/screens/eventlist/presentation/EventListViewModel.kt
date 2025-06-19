@@ -1,4 +1,4 @@
-package com.example.evops.screens.eventlist.presentation.components
+package com.example.evops.screens.eventlist.presentation
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

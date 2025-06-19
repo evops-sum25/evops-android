@@ -1,4 +1,4 @@
-package com.example.evops.screens.eventlist.presentation.components.eventcard.components
+package com.example.evops.screens.eventlist.presentation.components.eventlist.eventcard.components
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column

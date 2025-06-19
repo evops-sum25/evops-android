@@ -13,6 +13,7 @@ object PreviewData {
         avatarPreviewUrl = "https://meowle.fintech-qa.ru/photos/image-1745661496544.jpg"
     )
     val eventItem = EventItem(
+        id = "",
         title = "Probstat Final Preparation",
         eventPublisherData = eventItemPublisher,
         imageUrl = "https://meowle.fintech-qa.ru/photos/image-1745661496544.jpg",

@@ -1,4 +1,4 @@
-package com.example.evops.screens.eventlist.presentation.components
+package com.example.evops.screens.eventlist.presentation
 
 import com.example.evops.screens.eventlist.domain.model.EventItem
 

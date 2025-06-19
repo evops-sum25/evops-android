@@ -2,9 +2,9 @@ package com.example.evops.screens.eventlist.domain.model
 
 import java.time.LocalDate
 
-data class EventItemData(
+data class EventItem(
     val title: String,
-    val eventPublisherData: EventItemPublisherData,
+    val eventPublisherData: EventItemPublisher,
     val imageUrl: String,
     val attendeesCount: UInt,
     val place: String,

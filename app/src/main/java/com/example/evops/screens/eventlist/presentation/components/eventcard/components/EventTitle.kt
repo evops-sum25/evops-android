@@ -14,5 +14,5 @@ fun EventTitle(title: String, modifier: Modifier = Modifier) {
 @Preview
 @Composable
 private fun EventTitlePreview() {
-    EventTitle(title = PreviewData.eventItemData.title)
+    EventTitle(title = PreviewData.eventItem.title)
 }

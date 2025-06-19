@@ -14,8 +14,7 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.lifecycleScope
 import com.example.evops.core.presentation.EvOpsTheme
 import com.example.evops.screens.PreviewData
-import com.example.evops.screens.eventlist.data.dto.ExampleDto
-import com.example.evops.screens.eventlist.domain.repository.ExampleRepository
+import com.example.evops.screens.eventlist.domain.repository.EventListNetworkRepository
 import com.example.evops.screens.eventlist.presentation.components.eventcard.EventCard
 import com.example.evops.screens.eventlist.presentation.components.searchfield.SearchField
 import dagger.hilt.android.AndroidEntryPoint
@@ -25,7 +24,7 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     @Inject
-    lateinit var repository: ExampleRepository
+    lateinit var repository: EventListNetworkRepository
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,7 +41,7 @@ class MainActivity : ComponentActivity() {
                         )
 
                         EventCard(
-                            eventData = PreviewData.eventItemData,
+                            eventData = PreviewData.eventItem,
                             modifier = Modifier
                         )
                     }

@@ -49,5 +49,5 @@ private fun AttendIcon(
 @Preview
 @Composable
 private fun EventAttendeesPreview() {
-    EventDetailsAttendeesButton(attendeesCount = PreviewData.eventItemData.attendeesCount)
+    EventDetailsAttendeesButton(attendeesCount = PreviewData.eventItem.attendeesCount)
 }

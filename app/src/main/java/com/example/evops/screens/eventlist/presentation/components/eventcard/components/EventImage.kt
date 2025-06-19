@@ -31,5 +31,5 @@ fun EventImage(
 @Preview
 @Composable
 private fun EventImagePreview() {
-    EventImage(imageUrl = PreviewData.eventItemData.imageUrl)
+    EventImage(imageUrl = PreviewData.eventItem.imageUrl)
 }

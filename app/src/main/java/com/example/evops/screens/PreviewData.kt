@@ -3,18 +3,18 @@ package com.example.evops.screens
 import com.example.evops.screens.evendetails.domain.model.EventDetailsData
 import com.example.evops.screens.evendetails.domain.model.EventDetailsPublisherData
 import com.example.evops.screens.evendetails.domain.model.TagData
-import com.example.evops.screens.eventlist.domain.model.EventItemData
-import com.example.evops.screens.eventlist.domain.model.EventItemPublisherData
+import com.example.evops.screens.eventlist.domain.model.EventItem
+import com.example.evops.screens.eventlist.domain.model.EventItemPublisher
 import java.time.LocalDate
 
 object PreviewData {
-    val eventItemPublisherData = EventItemPublisherData(
+    val eventItemPublisher = EventItemPublisher(
         name = "BDSM",
         avatarPreviewUrl = "https://meowle.fintech-qa.ru/photos/image-1745661496544.jpg"
     )
-    val eventItemData = EventItemData(
+    val eventItem = EventItem(
         title = "Probstat Final Preparation",
-        eventPublisherData = eventItemPublisherData,
+        eventPublisherData = eventItemPublisher,
         imageUrl = "https://meowle.fintech-qa.ru/photos/image-1745661496544.jpg",
         attendeesCount = 16u,
         place = "IU 108",

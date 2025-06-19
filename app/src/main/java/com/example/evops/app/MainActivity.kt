@@ -48,18 +48,18 @@ class MainActivity : ComponentActivity() {
                 }
             }
         }
-        lifecycleScope.launch {
-            try {
-                val result = repository.createEvent(
-                    ExampleDto(
-                        description = "max lox",
-                        name = "lol"
-                    )
-                )
-                Log.d("DEBUG API", "name: ${result.name}, description: ${result.description}")
-            } catch (e: Exception) {
-                Log.e("DEBUG API", "Create event failed", e)
-            }
-        }
+//        lifecycleScope.launch {
+//            try {
+//                val result = repository.createEvent(
+//                    ExampleDto(
+//                        description = "max lox",
+//                        name = "lol"
+//                    )
+//                )
+//                Log.d("DEBUG API", "name: ${result.name}, description: ${result.description}")
+//            } catch (e: Exception) {
+//                Log.e("DEBUG API", "Create event failed", e)
+//            }
+//        }
     }
 }

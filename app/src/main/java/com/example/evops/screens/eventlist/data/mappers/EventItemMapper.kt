@@ -1,5 +1,6 @@
 package com.example.evops.screens.eventlist.data.mappers
 
+import android.util.Log
 import com.example.evops.core.data.model.AuthorDto
 import com.example.evops.core.data.model.EventDto
 import com.example.evops.screens.eventlist.data.dto.EventListDto
@@ -9,6 +10,7 @@ import java.time.LocalDate
 
 object EventItemMapper {
     fun EventListDto.toDomain(): List<EventItem> {
+        Log.d("DEBUG MAPPER", this.events.toString())
         return this.events.map { it.toDomain() }
     }
     

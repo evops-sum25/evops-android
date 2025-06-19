@@ -8,6 +8,8 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
@@ -15,10 +17,20 @@ class EventListViewModel @Inject constructor(val getEventsUseCase: GetEventsUseC
 
     private val _listState = MutableStateFlow(EventListState())
     val listState = _listState
-        .onStart { getEventsUseCase() }
+        .onStart { loadEvents() }
         .stateIn(
             scope = viewModelScope,
             started = SharingStarted.WhileSubscribed(5000L),
             initialValue = EventListState()
         )
+
+    fun loadEvents() {
+        viewModelScope.launch {
+            getEventsUseCase().collect { result ->
+                _listState.update { currentState ->
+                    currentState.copy(events = result.data ?: emptyList())
+                }
+            }
+        }
+    }
 }

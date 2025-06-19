@@ -3,6 +3,7 @@ package com.example.evops.screens.eventlist.domain.usecases
 import com.example.evops.core.common.Result
 import com.example.evops.screens.eventlist.domain.model.EventItem
 import com.example.evops.screens.eventlist.domain.repository.EventListNetworkRepository
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import retrofit2.HttpException
 import java.io.IOException
@@ -11,9 +12,9 @@ import javax.inject.Inject
 class GetEventsUseCase @Inject constructor(
     private val eventListNetworkRepository: EventListNetworkRepository
 ) {
-    operator fun invoke() = flow {
+    operator fun invoke(): Flow<Result<List<EventItem>>> = flow {
         try {
-            emit(Result.Loading<EventItem>())
+            emit(Result.Loading())
             val events = eventListNetworkRepository.getEvents()
             emit(Result.Success(events))
         } catch (e: HttpException) {

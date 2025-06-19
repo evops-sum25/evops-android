@@ -27,7 +27,11 @@ fun EventListScreen(
             )
         )
 
-        EventList(events = listState.events, modifier = Modifier.fillMaxSize())
+        EventList(
+            events = listState.events,
+            onRefresh = viewModel::loadEvents,
+            modifier = Modifier.fillMaxSize()
+        )
     }
 }
 

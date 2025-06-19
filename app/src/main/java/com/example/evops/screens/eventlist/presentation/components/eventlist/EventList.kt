@@ -8,7 +8,16 @@ import com.example.evops.screens.eventlist.domain.model.EventItem
 @Composable
 fun EventList(
     events: List<EventItem>,
+    onRefresh: () -> Unit,
     modifier: Modifier = Modifier
 ) {
-    EventListContent(events = events, modifier = Modifier.fillMaxSize())
+    SwipeRefreshWrapper(
+        onRefresh = onRefresh,
+        modifier = modifier.fillMaxSize()
+    ) {
+        EventListContent(
+            events = events,
+            modifier = Modifier.fillMaxSize()
+        )
+    }
 }

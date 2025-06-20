@@ -2,6 +2,7 @@ package com.example.evops.screens.eventlist.presentation.components.eventlist.ev
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -23,6 +24,7 @@ fun EventImage(
         contentDescription = stringResource(R.string.description_event_image_preview),
         placeholder = painterResource(R.drawable.image_placeholder),
         error = painterResource(R.drawable.image_placeholder),
+        contentScale = ContentScale.FillWidth,
         modifier = modifier,
     )
 //    TODO("add error placeholder")

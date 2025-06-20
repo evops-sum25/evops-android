@@ -77,4 +77,7 @@ dependencies {
     implementation(libs.hilt.android)
     kapt(libs.hilt.android.compiler)
     implementation(libs.androidx.hilt.navigation.compose)
+
+    // SwipeRefreshLayout
+    implementation(libs.accompanist.swiperefresh)
 }

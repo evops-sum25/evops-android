@@ -1,4 +1,4 @@
-package com.example.evops.screens.eventlist.presentation.components.eventcard.components
+package com.example.evops.screens.eventlist.presentation.components.eventlist.eventcard.components
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
@@ -18,12 +18,12 @@ import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
 import coil3.request.ImageRequest
 import com.example.evops.R
-import com.example.evops.screens.eventlist.domain.model.EventItemPublisherData
-import com.example.evops.screens.PreviewData.eventItemPublisherData
+import com.example.evops.screens.eventlist.domain.model.EventItemPublisher
+import com.example.evops.screens.PreviewData.eventItemPublisher
 
 @Composable
 fun EventPublisherInfo(
-    eventPublisherData: EventItemPublisherData,
+    eventPublisherData: EventItemPublisher,
     modifier: Modifier = Modifier
 ) {
     Row(
@@ -71,6 +71,6 @@ private fun PublisherTitle(
 @Composable
 private fun EventPublisherInfoPreview() {
     EventPublisherInfo(
-        eventPublisherData = eventItemPublisherData
+        eventPublisherData = eventItemPublisher
     )
 }

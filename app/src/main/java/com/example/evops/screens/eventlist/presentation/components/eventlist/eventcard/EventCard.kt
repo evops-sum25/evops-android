@@ -1,4 +1,4 @@
-package com.example.evops.screens.eventlist.presentation.components.eventcard
+package com.example.evops.screens.eventlist.presentation.components.eventlist.eventcard
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -10,17 +10,17 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.example.evops.screens.eventlist.domain.model.EventItemData
-import com.example.evops.screens.PreviewData.eventItemData
-import com.example.evops.screens.eventlist.presentation.components.eventcard.components.EventAttendeesButton
-import com.example.evops.screens.eventlist.presentation.components.eventcard.components.EventImage
-import com.example.evops.screens.eventlist.presentation.components.eventcard.components.EventPlaceAndDate
-import com.example.evops.screens.eventlist.presentation.components.eventcard.components.EventPublisherInfo
-import com.example.evops.screens.eventlist.presentation.components.eventcard.components.EventTitle
+import com.example.evops.screens.PreviewData.eventItem
+import com.example.evops.screens.eventlist.domain.model.EventItem
+import com.example.evops.screens.eventlist.presentation.components.eventlist.eventcard.components.EventAttendeesButton
+import com.example.evops.screens.eventlist.presentation.components.eventlist.eventcard.components.EventImage
+import com.example.evops.screens.eventlist.presentation.components.eventlist.eventcard.components.EventPlaceAndDate
+import com.example.evops.screens.eventlist.presentation.components.eventlist.eventcard.components.EventPublisherInfo
+import com.example.evops.screens.eventlist.presentation.components.eventlist.eventcard.components.EventTitle
 
 @Composable
 fun EventCard(
-    eventData: EventItemData,
+    eventData: EventItem,
     modifier: Modifier = Modifier
 ) {
     Column(
@@ -35,7 +35,10 @@ fun EventCard(
                 .fillMaxWidth()
         )
 
-        EventImage(imageUrl = eventData.imageUrl, modifier = Modifier.fillMaxWidth())
+        EventImage(
+            imageUrl = eventData.imageUrl,
+            modifier = Modifier.fillMaxWidth()
+        )
 
         EventTitle(
             title = eventData.title,
@@ -63,5 +66,5 @@ fun EventCard(
 @Preview
 @Composable
 private fun EventCardPreview() {
-    EventCard(eventData = eventItemData)
+    EventCard(eventData = eventItem)
 }

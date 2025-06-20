@@ -1,9 +1,9 @@
 package com.example.evops.screens.eventlist.data.dto
 
+import com.example.evops.core.data.model.EventDto
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class ExampleDto(
-    val description: String,
-    val name: String,
+data class EventListDto(
+    val events: List<EventDto>
 )

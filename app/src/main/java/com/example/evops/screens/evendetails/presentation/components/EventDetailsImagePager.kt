@@ -47,8 +47,8 @@ private fun EventDetailsImage(
 private fun EventDetailsImagePagerPreview() {
     EventDetailsImagePager(
         imageUrls = listOf(
-            PreviewData.eventItemData.imageUrl,
-            PreviewData.eventItemData.imageUrl,
+            PreviewData.eventItem.imageUrl,
+            PreviewData.eventItem.imageUrl,
         )
     )
 }

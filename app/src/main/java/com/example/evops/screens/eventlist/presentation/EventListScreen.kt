@@ -10,12 +10,15 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.navigation.NavController
 import com.example.evops.screens.eventlist.presentation.components.eventlist.EventList
 import com.example.evops.screens.eventlist.presentation.components.searchfield.SearchField
 
 @Composable
 fun EventListScreen(
-    modifier: Modifier = Modifier, viewModel: EventListViewModel = hiltViewModel()
+    navController: NavController,
+    modifier: Modifier = Modifier,
+    viewModel: EventListViewModel = hiltViewModel()
 ) {
     val listState by viewModel.listState.collectAsStateWithLifecycle()
 

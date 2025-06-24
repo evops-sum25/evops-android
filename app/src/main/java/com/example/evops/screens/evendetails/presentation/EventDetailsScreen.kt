@@ -35,7 +35,7 @@ fun EventDetailsScreen(
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = modifier.fillMaxSize()
     ) {
-        EventDetailsTopBar(modifier = Modifier.fillMaxWidth())
+        EventDetailsTopBar(navController = navController, modifier = Modifier.fillMaxWidth())
         EventDetailsImagePager(
             imageUrls = eventDetailsState.eventDetails?.eventImageUrls ?: emptyList(),
             modifier = Modifier.fillMaxWidth()

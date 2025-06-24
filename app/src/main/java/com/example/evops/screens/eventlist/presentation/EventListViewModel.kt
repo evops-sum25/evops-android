@@ -13,7 +13,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class EventListViewModel @Inject constructor(val getEventsUseCase: GetEventsUseCase) : ViewModel() {
+class EventListViewModel @Inject constructor(private val getEventsUseCase: GetEventsUseCase) : ViewModel() {
 
     private val _listState = MutableStateFlow(EventListState())
     val listState = _listState

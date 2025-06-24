@@ -8,8 +8,9 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.ui.Modifier
+import androidx.navigation.compose.rememberNavController
+import com.example.evops.core.navigation.EvOpsNavGraph
 import com.example.evops.core.presentation.EvOpsTheme
-import com.example.evops.screens.eventlist.presentation.EventListScreen
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -20,7 +21,12 @@ class MainActivity : ComponentActivity() {
         setContent {
             EvOpsTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    EventListScreen(modifier = Modifier.padding(innerPadding))
+                    val navController = rememberNavController()
+
+                    EvOpsNavGraph(
+                        navController = navController,
+                        modifier = Modifier.padding(innerPadding)
+                    )
                 }
             }
         }

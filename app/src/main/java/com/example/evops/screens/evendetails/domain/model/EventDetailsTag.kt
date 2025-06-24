@@ -1,5 +1,5 @@
 package com.example.evops.screens.evendetails.domain.model
 
-data class TagData(
+data class EventDetailsTag(
     val name: String,
 )

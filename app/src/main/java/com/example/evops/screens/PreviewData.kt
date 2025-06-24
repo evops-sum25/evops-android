@@ -1,8 +1,8 @@
 package com.example.evops.screens
 
-import com.example.evops.screens.evendetails.domain.model.EventDetailsData
-import com.example.evops.screens.evendetails.domain.model.EventDetailsPublisherData
-import com.example.evops.screens.evendetails.domain.model.TagData
+import com.example.evops.screens.evendetails.domain.model.EventDetails
+import com.example.evops.screens.evendetails.domain.model.EventDetailsPublisher
+import com.example.evops.screens.evendetails.domain.model.EventDetailsTag
 import com.example.evops.screens.eventlist.domain.model.EventItem
 import com.example.evops.screens.eventlist.domain.model.EventItemPublisher
 import java.time.LocalDate
@@ -22,12 +22,12 @@ object PreviewData {
         date = LocalDate.now(),
     )
 
-    val eventDetailsPublisherData = EventDetailsPublisherData(
+    val eventDetailsPublisher = EventDetailsPublisher(
         name = "BDSM",
         avatarPreviewUrl = "https://meowle.fintech-qa.ru/photos/image-1745661496544.jpg"
     )
-    val eventDetailsData = EventDetailsData(
-        eventDetailsPublisherData = eventDetailsPublisherData,
+    val eventDetails = EventDetails(
+        eventDetailsPublisher = eventDetailsPublisher,
         eventImageUrls = listOf(
             "https://meowle.fintech-qa.ru/photos/image-1745661496544.jpg",
             "https://meowle.fintech-qa.ru/photos/image-1745661496544.jpg",
@@ -41,6 +41,6 @@ object PreviewData {
         attendeesCount = 16u,
         place = "IU 108",
         date = LocalDate.now(),
-        tagsData = listOf(TagData("BDSM"), TagData("study"), TagData("math"), TagData("B23")),
+        tagsData = listOf(EventDetailsTag("BDSM"), EventDetailsTag("study"), EventDetailsTag("math"), EventDetailsTag("B23")),
     )
 }

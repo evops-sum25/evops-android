@@ -3,14 +3,14 @@ package com.example.evops.screens.evendetails.data.mappers
 import com.example.evops.core.data.model.AuthorDto
 import com.example.evops.core.data.model.EventDto
 import com.example.evops.core.data.model.TagDto
-import com.example.evops.screens.evendetails.domain.model.EventDetailsData
-import com.example.evops.screens.evendetails.domain.model.EventDetailsPublisherData
-import com.example.evops.screens.evendetails.domain.model.TagData
+import com.example.evops.screens.evendetails.domain.model.EventDetails
+import com.example.evops.screens.evendetails.domain.model.EventDetailsPublisher
+import com.example.evops.screens.evendetails.domain.model.EventDetailsTag
 import java.time.LocalDate
 
 object EventDetailsMapper {
-    fun EventDto.toDomain() = EventDetailsData(
-        eventDetailsPublisherData = this.author.toDomain(),
+    fun EventDto.toDomain() = EventDetails(
+        eventDetailsPublisher = this.author.toDomain(),
         eventImageUrls = this.imageUrls,
         title = this.title,
         description = this.description,
@@ -20,13 +20,13 @@ object EventDetailsMapper {
         tagsData = this.tags.map { it.toDomain() }
     )
 
-    fun AuthorDto.toDomain() = EventDetailsPublisherData(
+    fun AuthorDto.toDomain() = EventDetailsPublisher(
         id = this.id,
         name = this.name,
         avatarPreviewUrl = this.profilePictureUrl ?: "" // TODO("add default url")
     )
 
-    fun TagDto.toDomain() = TagData(
+    fun TagDto.toDomain() = EventDetailsTag(
         name = this.name
     )
 }

@@ -5,6 +5,7 @@ import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -37,6 +38,7 @@ private fun EventDetailsImage(
         contentDescription = stringResource(R.string.description_event_image_preview),
         placeholder = painterResource(R.drawable.image_placeholder),
         error = painterResource(R.drawable.image_placeholder),
+        contentScale = ContentScale.FillWidth,
         modifier = modifier,
     )
 //    TODO("add error placeholder")

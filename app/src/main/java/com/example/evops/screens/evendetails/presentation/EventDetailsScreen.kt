@@ -11,6 +11,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.navigation.NavController
 import com.example.evops.screens.evendetails.presentation.components.EventDetailsAttendeesButton
 import com.example.evops.screens.evendetails.presentation.components.EventDetailsDescription
 import com.example.evops.screens.evendetails.presentation.components.EventDetailsImagePager
@@ -23,6 +24,7 @@ import java.time.LocalDate
 
 @Composable
 fun EventDetailsScreen(
+    navController: NavController,
     modifier: Modifier = Modifier,
     viewModel: EventDetailsViewModel = hiltViewModel()
 ) {
@@ -33,7 +35,7 @@ fun EventDetailsScreen(
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = modifier.fillMaxSize()
     ) {
-        EventDetailsTopBar(modifier = Modifier.fillMaxWidth())
+        EventDetailsTopBar(navController = navController, modifier = Modifier.fillMaxWidth())
         EventDetailsImagePager(
             imageUrls = eventDetailsState.eventDetails?.eventImageUrls ?: emptyList(),
             modifier = Modifier.fillMaxWidth()

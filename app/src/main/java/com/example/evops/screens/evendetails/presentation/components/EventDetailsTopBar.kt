@@ -13,19 +13,21 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.example.evops.R
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun EventDetailsTopBar(modifier: Modifier = Modifier) {
+fun EventDetailsTopBar(navController: NavController, modifier: Modifier = Modifier) {
     TopAppBar(
         title = { ScreenTitle() },
         navigationIcon = {
             NavigateBackButton(
-                onClick = {},
+                onClick = { navController.popBackStack() },
                 modifier = Modifier.padding(4.dp)
             )
-        }, // TODO("add on click")
+        },
         modifier = modifier
     )
 }
@@ -50,5 +52,5 @@ private fun NavigateBackButton(
 @Preview
 @Composable
 private fun EventDetailsTopBarPreview() {
-    EventDetailsTopBar()
+    EventDetailsTopBar(navController = rememberNavController())
 }

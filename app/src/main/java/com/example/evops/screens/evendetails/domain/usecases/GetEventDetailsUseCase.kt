@@ -15,8 +15,8 @@ class GetEventDetailsUseCase @Inject constructor(
     operator fun invoke(eventId: String): Flow<Result<EventDetails>> = flow {
         try {
             emit(Result.Loading())
-            val events = eventDetailsNetworkRepository.getEventDetails(eventId)
-            emit(Result.Success(events))
+            val eventDetails = eventDetailsNetworkRepository.getEventDetails(eventId)
+            emit(Result.Success(eventDetails))
         } catch (e: HttpException) {
             emit(Result.Error(e.localizedMessage ?: "An unexpected Http error occurred"))
         } catch (_: IOException) {

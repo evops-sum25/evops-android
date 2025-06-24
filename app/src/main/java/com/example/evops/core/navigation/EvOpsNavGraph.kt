@@ -1,4 +1,4 @@
-package com.example.evops.app.navigation
+package com.example.evops.core.navigation
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -15,13 +15,14 @@ fun EvOpsNavGraph(
 ) {
     NavHost(
         navController = navController,
-        startDestination = Route.EventList.route,
+        startDestination = Route.EventList,
         modifier = modifier
     ) {
-        composable(route = Route.EventList.route) {
+
+        composable<Route.EventList> {
             EventListScreen(navController = navController)
         }
-        composable(route = Route.EventDetails.route + "/{eventId}") {
+        composable<Route.EventDetails> {
             EventDetailsScreen(navController = navController)
         }
     }

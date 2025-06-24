@@ -33,6 +33,7 @@ fun EventListScreen(
         EventList(
             events = listState.events,
             onRefresh = viewModel::loadEvents,
+            navController = navController,
             modifier = Modifier.fillMaxSize()
         )
     }

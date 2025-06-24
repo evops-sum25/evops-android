@@ -3,6 +3,8 @@ package com.example.evops.screens.evendetails.presentation
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.navigation.toRoute
+import com.example.evops.core.navigation.Route
 import com.example.evops.screens.evendetails.domain.usecases.GetEventDetailsUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -29,14 +31,14 @@ class EventDetailsViewModel @Inject constructor(
         )
 
     fun loadEventDetails() {
-        savedStateHandle.get<String>("event_details_id")?.let { eventId ->
-            viewModelScope.launch {
-                getEventDetailsUseCase(eventId).collect { result ->
-                    _eventDetailsState.update { currentState ->
-                        currentState.copy(eventDetails = result.data)
-                    }
+        val args = savedStateHandle.toRoute<Route.EventDetails>()
+        viewModelScope.launch {
+            getEventDetailsUseCase(args.eventId).collect { result ->
+                _eventDetailsState.update { currentState ->
+                    currentState.copy(eventDetails = result.data)
                 }
             }
+
         }
     }
 }

@@ -14,5 +14,5 @@ fun EventDetailsDescription(description: String, modifier: Modifier = Modifier) 
 @Preview
 @Composable
 private fun EventDetailsDescriptionPreview() {
-    EventDetailsDescription(description = PreviewData.eventDetailsData.description)
+    EventDetailsDescription(description = PreviewData.eventDetails.description)
 }

@@ -14,35 +14,35 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.evops.screens.PreviewData
-import com.example.evops.screens.evendetails.domain.model.TagData
+import com.example.evops.screens.evendetails.domain.model.EventDetailsTag
 
 @Composable
-fun EventDetailsTags(tagsData: List<TagData>, modifier: Modifier = Modifier) {
+fun EventDetailsTags(tagsData: List<EventDetailsTag>, modifier: Modifier = Modifier) {
     FlowRow(
         horizontalArrangement = Arrangement.spacedBy(12.dp),
         verticalArrangement = Arrangement.spacedBy(12.dp),
         modifier = modifier
     ) {
         tagsData.forEach { tagData ->
-            EventDetailsTag(tagData = tagData)
+            EventDetailsTag(eventDetailsTag = tagData)
         }
     }
 }
 
 @Composable
-private fun EventDetailsTag(tagData: TagData, modifier: Modifier = Modifier) {
+private fun EventDetailsTag(eventDetailsTag: EventDetailsTag, modifier: Modifier = Modifier) {
     Row(
         modifier = modifier
             .clip(RoundedCornerShape(8.dp))
             .background(MaterialTheme.colorScheme.secondaryContainer)
             .padding(horizontal = 6.dp, vertical = 4.dp)
     ) {
-        Text(text = tagData.name)
+        Text(text = eventDetailsTag.name)
     }
 }
 
 @Preview
 @Composable
 private fun EventDetailsTagsPreview() {
-    EventDetailsTags(tagsData = PreviewData.eventDetailsData.tagsData)
+    EventDetailsTags(tagsData = PreviewData.eventDetails.tagsData)
 }

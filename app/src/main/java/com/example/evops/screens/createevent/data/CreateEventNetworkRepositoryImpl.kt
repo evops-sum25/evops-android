@@ -4,9 +4,9 @@ import com.example.evops.screens.createevent.data.api.CreateEventApi
 import com.example.evops.screens.createevent.data.mappers.CreateEventMapper.toData
 import com.example.evops.screens.createevent.domain.model.CreateEventForm
 import com.example.evops.screens.createevent.domain.model.CreateUserForm
-import com.example.evops.screens.createevent.domain.repository.CreateEventRepository
+import com.example.evops.screens.createevent.domain.repository.CreateEventNetworkRepository
 
-class CreateEventRepositoryImpl(private val createEventApi: CreateEventApi) : CreateEventRepository {
+class CreateEventNetworkRepositoryImpl(private val createEventApi: CreateEventApi) : CreateEventNetworkRepository {
     override suspend fun getUserIds(): List<String> {
         return createEventApi.getUsers().users.map { it.id }
     }

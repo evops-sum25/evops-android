@@ -9,7 +9,7 @@ class CreateEventUseCase @Inject constructor(
     private val createEventNetworkRepository: CreateEventNetworkRepository
 ) {
     suspend operator fun invoke(eventForm: CreateEventForm) {
-        val userId = createEventNetworkRepository.getUserIds().firstOrNull()
+        val userId = createEventNetworkRepository.getUserIds().lastOrNull()
         userId?.let {
             createEventNetworkRepository.createEvent(eventForm, userId)
             return

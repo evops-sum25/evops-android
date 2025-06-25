@@ -10,6 +10,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.rememberNavController
 import com.example.evops.core.navigation.EvOpsNavGraph
+import com.example.evops.core.navigation.navbar.EvOpsNavigationBar
 import com.example.evops.core.presentation.EvOpsTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -20,9 +21,11 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             EvOpsTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    val navController = rememberNavController()
-
+                val navController = rememberNavController()
+                Scaffold(
+                    bottomBar = { EvOpsNavigationBar(navController = navController) },
+                    modifier = Modifier.fillMaxSize()
+                ) { innerPadding ->
                     EvOpsNavGraph(
                         navController = navController,
                         modifier = Modifier.padding(innerPadding)

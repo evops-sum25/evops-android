@@ -5,10 +5,12 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
@@ -33,24 +35,35 @@ fun EventDetailsScreen(
     Column(
         verticalArrangement = Arrangement.Top,
         horizontalAlignment = Alignment.CenterHorizontally,
-        modifier = modifier.fillMaxSize()
+        modifier = modifier
+            .padding(horizontal = 12.dp)
+            .fillMaxSize()
     ) {
-        EventDetailsTopBar(navController = navController, modifier = Modifier.fillMaxWidth())
+        EventDetailsTopBar(
+            navController = navController,
+            modifier = Modifier.fillMaxWidth()
+        )
         EventDetailsImagePager(
             imageUrls = eventDetailsState.eventDetails?.eventImageUrls ?: emptyList(),
             modifier = Modifier.fillMaxWidth()
         )
         EventDetailsTitle(
             title = eventDetailsState.eventDetails?.title ?: "Default Title",
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(vertical = 4.dp)
         )
         EventDetailsDescription(
             description = eventDetailsState.eventDetails?.description ?: "Default Description",
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(vertical = 4.dp)
         )
         EventDetailsTags(
             tagsData = eventDetailsState.eventDetails?.tagsData ?: emptyList(),
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(vertical = 4.dp)
         )
         Row(
             horizontalArrangement = Arrangement.SpaceBetween,

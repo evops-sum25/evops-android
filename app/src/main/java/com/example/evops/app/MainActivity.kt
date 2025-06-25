@@ -12,6 +12,7 @@ import androidx.navigation.compose.rememberNavController
 import com.example.evops.core.navigation.EvOpsNavGraph
 import com.example.evops.core.navigation.navbar.EvOpsNavigationBar
 import com.example.evops.core.presentation.EvOpsTheme
+import com.example.evops.screens.eventlist.presentation.components.eventlist.eventcard.components.EventImage
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

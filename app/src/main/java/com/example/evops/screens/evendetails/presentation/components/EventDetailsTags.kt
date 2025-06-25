@@ -2,6 +2,7 @@ package com.example.evops.screens.evendetails.presentation.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
@@ -16,6 +17,7 @@ import androidx.compose.ui.unit.dp
 import com.example.evops.screens.PreviewData
 import com.example.evops.screens.evendetails.domain.model.EventDetailsTag
 
+@OptIn(ExperimentalLayoutApi::class)
 @Composable
 fun EventDetailsTags(tagsData: List<EventDetailsTag>, modifier: Modifier = Modifier) {
     FlowRow(

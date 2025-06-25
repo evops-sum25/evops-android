@@ -5,7 +5,6 @@ import androidx.compose.material3.NavigationBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
-import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 
@@ -19,7 +18,7 @@ fun EvOpsNavigationBar(
 
     NavigationBar(modifier = modifier.fillMaxWidth()) {
         NavItemData.navItems.forEach { item ->
-            val isSelected = currentDestination?.hierarchy == item.subGraph
+            val isSelected = item.subGraph == currentDestination?.parent
             NavItem(
                 navItemData = item,
                 onClick = { navController.navigate(item.subGraph) },

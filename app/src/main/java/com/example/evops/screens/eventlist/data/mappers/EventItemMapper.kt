@@ -1,7 +1,7 @@
 package com.example.evops.screens.eventlist.data.mappers
 
 import android.util.Log
-import com.example.evops.core.data.model.AuthorDto
+import com.example.evops.core.data.model.UserDto
 import com.example.evops.core.data.model.EventDto
 import com.example.evops.screens.eventlist.data.dto.EventListDto
 import com.example.evops.screens.eventlist.domain.model.EventItem
@@ -25,7 +25,7 @@ object EventItemMapper {
 
     )
 
-    fun AuthorDto.toDomain() = EventItemPublisher(
+    fun UserDto.toDomain() = EventItemPublisher(
         id = this.id,
         name = this.name,
         avatarPreviewUrl = this.profilePictureUrl ?: "" // TODO("add default url")

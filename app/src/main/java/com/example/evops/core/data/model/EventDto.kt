@@ -5,7 +5,7 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class EventDto(
-    val author: AuthorDto,
+    val author: UserDto,
     @SerializedName("created_at")
     val createdAt: String,
     val description: String,

@@ -9,7 +9,6 @@ sealed class Destination {
 
     @Serializable
     data class EventDetails(val eventId: String) : Destination()
-
 }
 
 sealed class SubGraph {
@@ -18,5 +17,5 @@ sealed class SubGraph {
     data object Home : SubGraph()
 
     @Serializable
-    data object AddEvent : SubGraph()
+    data object CreateEvent : SubGraph()
 }

@@ -41,11 +41,11 @@ fun EventDetailsScreen(
             modifier = Modifier.fillMaxWidth()
         )
         EventDetailsTitle(
-            title = eventDetailsState.eventDetails?.title ?: "hui",
+            title = eventDetailsState.eventDetails?.title ?: "Default Title",
             modifier = Modifier.fillMaxWidth()
         )
         EventDetailsDescription(
-            description = eventDetailsState.eventDetails?.description ?: "max lox",
+            description = eventDetailsState.eventDetails?.description ?: "Default Description",
             modifier = Modifier.fillMaxWidth()
         )
         EventDetailsTags(

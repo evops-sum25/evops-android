@@ -1,20 +1,17 @@
-package com.example.evops.core.data.model
+package com.example.evops.screens.createevent.data.model
 
 import com.google.gson.annotations.SerializedName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class EventDto(
-    val author: UserDto,
-    @SerializedName("created_at")
-    val createdAt: String,
+data class CreateEventFormDto(
+    @SerializedName("author_id")
+    val authorId: String,
     val description: String,
-    val id: String,
     @SerializedName("image_urls")
     val imageUrls: List<String>,
-    @SerializedName("modified_at")
-    val modifiedAt: String,
-    val tags: List<TagDto>,
+    @SerializedName("tag_ids")
+    val tagIds: List<String>,
     val title: String,
     @SerializedName("with_attendance")
     val withAttendance: Boolean

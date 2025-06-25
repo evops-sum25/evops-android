@@ -1,16 +1,15 @@
 package com.example.evops.screens.evendetails.data.mappers
 
-import com.example.evops.core.data.model.AuthorDto
-import com.example.evops.core.data.model.EventDto
+import com.example.evops.core.data.model.UserDto
 import com.example.evops.core.data.model.TagDto
-import com.example.evops.screens.evendetails.data.EventDetailsDto
+import com.example.evops.core.data.model.EventWrapperDto
 import com.example.evops.screens.evendetails.domain.model.EventDetails
 import com.example.evops.screens.evendetails.domain.model.EventDetailsPublisher
 import com.example.evops.screens.evendetails.domain.model.EventDetailsTag
 import java.time.LocalDate
 
 object EventDetailsMapper {
-    fun EventDetailsDto.toDomain() = EventDetails(
+    fun EventWrapperDto.toDomain() = EventDetails(
         eventDetailsPublisher = this.event.author.toDomain(),
         eventImageUrls = this.event.imageUrls,
         title = this.event.title,
@@ -21,7 +20,7 @@ object EventDetailsMapper {
         tagsData = this.event.tags.map { it.toDomain() }
     )
 
-    fun AuthorDto.toDomain() = EventDetailsPublisher(
+    fun UserDto.toDomain() = EventDetailsPublisher(
         id = this.id,
         name = this.name,
         avatarPreviewUrl = this.profilePictureUrl ?: "" // TODO("add default url")

@@ -4,5 +4,5 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class CreateUserFormWrapperDto(
-    val createUserForm: CreateUserForm
+    val form: CreateUserFormDto
 )

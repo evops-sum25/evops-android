@@ -4,8 +4,8 @@ import com.google.gson.annotations.SerializedName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class CreateUserForm(
+data class CreateUserFormDto(
     val name: String,
     @SerializedName("profile_picture_url")
-    val profilePictureUrl: String
+    val profilePictureUrl: String?
 )

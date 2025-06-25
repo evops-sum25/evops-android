@@ -15,7 +15,7 @@ class CreateEventNetworkRepositoryImpl(private val createEventApi: CreateEventAp
         createEventApi.createUser(userForm.toData())
     }
 
-    override suspend fun createEvent(eventForm: CreateEventForm) {
-        createEventApi.createEvent(eventForm.toData())
+    override suspend fun createEvent(eventForm: CreateEventForm, userId: String) {
+        createEventApi.createEvent(eventForm.toData(userId))
     }
 }

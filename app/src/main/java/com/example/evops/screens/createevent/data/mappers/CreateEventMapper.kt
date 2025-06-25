@@ -8,9 +8,9 @@ import com.example.evops.screens.createevent.domain.model.CreateEventForm
 import com.example.evops.screens.createevent.domain.model.CreateUserForm
 
 object CreateEventMapper {
-    fun CreateEventForm.toData() = CreateEventFormWrapperDto(
+    fun CreateEventForm.toData(authorId: String) = CreateEventFormWrapperDto(
         form = CreateEventFormDto(
-            authorId = this.authorId,
+            authorId = authorId,
             description = this.description,
             imageUrls = this.imageUrls,
             tagIds = this.tagIds,

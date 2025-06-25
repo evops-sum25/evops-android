@@ -5,4 +5,7 @@
     <string name="description_disabled_attend_icon">disabled attend icon</string>
     <string name="event_details">Event Details</string>
     <string name="description_navigate_back_icon">Navigate Back Icon</string>
+    <string name="description">Description</string>
+    <string name="title">Title</string>
+    <string name="submit">Submit</string>
 </resources>

@@ -10,7 +10,6 @@ import java.time.LocalDate
 
 object EventItemMapper {
     fun EventListDto.toDomain(): List<EventItem> {
-        Log.d("DEBUG MAPPER", this.events.toString())
         return this.events.map { it.toDomain() }
     }
     
@@ -18,7 +17,7 @@ object EventItemMapper {
         id = this.id,
         title = this.title,
         eventPublisherData = this.author.toDomain(),
-        imageUrl = this.imageUrls.first(), // TODO("handle empty list")
+        imageUrl = this.imageUrls.firstOrNull() ?: "", // TODO("add default url")
         attendeesCount = 0u, // TODO("create default attendees count")
         place = "UI", // TODO("create default place")
         date = LocalDate.now(), // TODO("create default date")

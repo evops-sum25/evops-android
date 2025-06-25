@@ -9,6 +9,9 @@ sealed class Destination {
 
     @Serializable
     data class EventDetails(val eventId: String) : Destination()
+
+    @Serializable
+    data object CreateEvent : Destination()
 }
 
 sealed class SubGraph {

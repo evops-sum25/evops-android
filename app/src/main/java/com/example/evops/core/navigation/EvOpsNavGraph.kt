@@ -6,6 +6,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
+import com.example.evops.screens.createevent.presentation.CreateEventScreen
 import com.example.evops.screens.evendetails.presentation.EventDetailsScreen
 import com.example.evops.screens.eventlist.presentation.EventListScreen
 
@@ -27,6 +28,13 @@ fun EvOpsNavGraph(
             }
             composable<Destination.EventDetails> {
                 EventDetailsScreen(navController = navController)
+            }
+        }
+        navigation<SubGraph.CreateEvent>(
+            startDestination = Destination.CreateEvent
+        ) {
+            composable<Destination.CreateEvent> {
+                CreateEventScreen()
             }
         }
     }

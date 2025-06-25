@@ -11,7 +11,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
-import com.example.evops.core.navigation.Route
+import com.example.evops.core.navigation.Destination
 import com.example.evops.screens.PreviewData
 import com.example.evops.screens.eventlist.domain.model.EventItem
 import com.example.evops.screens.eventlist.presentation.components.eventlist.eventcard.EventCard
@@ -31,7 +31,7 @@ fun EventListContent(
                 eventData = event,
                 modifier = Modifier
                     .fillMaxWidth()
-                    .clickable { navController.navigate(Route.EventDetails(eventId = event.id)) }
+                    .clickable { navController.navigate(Destination.EventDetails(eventId = event.id)) }
             )
         }
     }

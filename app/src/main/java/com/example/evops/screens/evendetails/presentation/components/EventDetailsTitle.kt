@@ -7,7 +7,10 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.example.evops.screens.PreviewData
 
 @Composable
-fun EventDetailsTitle(title: String, modifier: Modifier = Modifier) {
+fun EventDetailsTitle(
+    title: String,
+    modifier: Modifier = Modifier,
+) {
     Text(text = title, modifier = modifier)
 }
 

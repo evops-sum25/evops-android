@@ -18,23 +18,24 @@ import com.example.evops.screens.eventlist.presentation.components.searchfield.S
 fun EventListScreen(
     navController: NavController,
     modifier: Modifier = Modifier,
-    viewModel: EventListViewModel = hiltViewModel()
+    viewModel: EventListViewModel = hiltViewModel(),
 ) {
     val listState by viewModel.listState.collectAsStateWithLifecycle()
 
     Column(modifier = modifier.fillMaxSize()) {
         SearchField(
-            modifier = Modifier.padding(
-                horizontal = 18.dp,
-                vertical = 4.dp
-            )
+            modifier =
+                Modifier.padding(
+                    horizontal = 18.dp,
+                    vertical = 4.dp,
+                ),
         )
 
         EventList(
             events = listState.events,
             onRefresh = viewModel::loadEvents,
             navController = navController,
-            modifier = Modifier.fillMaxSize()
+            modifier = Modifier.fillMaxSize(),
         )
     }
 }
@@ -42,5 +43,4 @@ fun EventListScreen(
 @Preview
 @Composable
 private fun EventListScreenPreview() {
-
 }

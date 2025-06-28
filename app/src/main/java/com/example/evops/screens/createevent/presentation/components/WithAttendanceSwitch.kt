@@ -17,12 +17,12 @@ import com.example.evops.screens.createevent.presentation.CreateEventEvent
 fun WithAttendanceSwitch(
     withAttendance: Boolean,
     onEvent: (CreateEventEvent) -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     Row(
         horizontalArrangement = Arrangement.Start,
         verticalAlignment = Alignment.CenterVertically,
-        modifier = modifier.fillMaxWidth()
+        modifier = modifier.fillMaxWidth(),
     ) {
         Text(text = "With Attendance:")
 
@@ -30,7 +30,7 @@ fun WithAttendanceSwitch(
 
         Switch(
             checked = withAttendance,
-            onCheckedChange = { onEvent(CreateEventEvent.UpdateWithAttendance(it)) }
+            onCheckedChange = { onEvent(CreateEventEvent.UpdateWithAttendance(it)) },
         )
     }
 }

@@ -20,18 +20,19 @@ import com.example.evops.screens.eventlist.presentation.components.eventlist.eve
 fun EventListContent(
     events: List<EventItem>,
     navController: NavController,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     LazyColumn(state = rememberLazyListState(), modifier = modifier) {
         items(
             items = events,
-            key = { event -> event.id }
+            key = { event -> event.id },
         ) { event ->
             EventCard(
                 eventData = event,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .clickable { navController.navigate(Destination.EventDetails(eventId = event.id)) }
+                modifier =
+                    Modifier
+                        .fillMaxWidth()
+                        .clickable { navController.navigate(Destination.EventDetails(eventId = event.id)) },
             )
         }
     }
@@ -41,12 +42,13 @@ fun EventListContent(
 @Composable
 private fun EventListPreview() {
     EventListContent(
-        events = listOf(
-            PreviewData.eventItem,
-            PreviewData.eventItem,
-            PreviewData.eventItem,
-        ),
+        events =
+            listOf(
+                PreviewData.eventItem,
+                PreviewData.eventItem,
+                PreviewData.eventItem,
+            ),
         navController = rememberNavController(),
-        modifier = Modifier.fillMaxSize()
+        modifier = Modifier.fillMaxSize(),
     )
 }

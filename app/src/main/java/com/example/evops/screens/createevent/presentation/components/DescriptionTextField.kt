@@ -20,7 +20,7 @@ import com.example.evops.screens.createevent.presentation.CreateEventEvent
 fun DescriptionTextField(
     description: String,
     onEvent: (CreateEventEvent) -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     var textFieldValue by remember { mutableStateOf(TextFieldValue(description)) }
 
@@ -33,7 +33,7 @@ fun DescriptionTextField(
         label = { DescriptionLabel() },
         minLines = 3,
         keyboardOptions = KeyboardOptions(imeAction = ImeAction.Done),
-        modifier = modifier.fillMaxWidth()
+        modifier = modifier.fillMaxWidth(),
     )
 }
 

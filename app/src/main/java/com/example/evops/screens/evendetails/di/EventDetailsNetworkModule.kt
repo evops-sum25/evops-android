@@ -2,7 +2,7 @@ package com.example.evops.screens.evendetails.di
 
 import com.example.evops.screens.evendetails.data.EventDetailsNetworkRepositoryImpl
 import com.example.evops.screens.evendetails.data.api.EventDetailsApi
-import com.example.evops.screens.evendetails.domain.repository.EventDetailsNetworkRepository
+import com.example.evops.screens.evendetails.domain.repositories.EventDetailsNetworkRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -13,7 +13,6 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object EventDetailsNetworkModule {
-
     @Provides
     @Singleton
     fun provideEventDetailsApi(retrofit: Retrofit): EventDetailsApi {

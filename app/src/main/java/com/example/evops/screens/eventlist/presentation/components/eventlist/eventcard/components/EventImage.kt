@@ -16,12 +16,13 @@ import com.example.evops.screens.PreviewData
 @Composable
 fun EventImage(
     imageUrl: String,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     AsyncImage(
-        model = ImageRequest.Builder(LocalContext.current)
-            .data(imageUrl)
-            .build(),
+        model =
+            ImageRequest.Builder(LocalContext.current)
+                .data(imageUrl)
+                .build(),
         contentDescription = stringResource(R.string.description_event_image_preview),
         placeholder = painterResource(R.drawable.image_placeholder),
         error = painterResource(R.drawable.image_placeholder),

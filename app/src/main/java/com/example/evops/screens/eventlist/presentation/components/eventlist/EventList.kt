@@ -11,16 +11,16 @@ fun EventList(
     events: List<EventItem>,
     onRefresh: () -> Unit,
     navController: NavController,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     SwipeRefreshWrapper(
         onRefresh = onRefresh,
-        modifier = modifier.fillMaxSize()
+        modifier = modifier.fillMaxSize(),
     ) {
         EventListContent(
             events = events,
             navController = navController,
-            modifier = Modifier.fillMaxSize()
+            modifier = Modifier.fillMaxSize(),
         )
     }
 }

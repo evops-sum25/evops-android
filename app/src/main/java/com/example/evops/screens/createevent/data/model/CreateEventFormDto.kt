@@ -14,5 +14,5 @@ data class CreateEventFormDto(
     val tagIds: List<String>,
     val title: String,
     @SerializedName("with_attendance")
-    val withAttendance: Boolean
+    val withAttendance: Boolean,
 )

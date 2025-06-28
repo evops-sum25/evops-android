@@ -13,24 +13,26 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class EventListViewModel @Inject constructor(private val getEventsUseCase: GetEventsUseCase) : ViewModel() {
+class EventListViewModel
+    @Inject
+    constructor(private val getEventsUseCase: GetEventsUseCase) : ViewModel() {
+        private val _listState = MutableStateFlow(EventListState())
+        val listState =
+            _listState
+                .onStart { loadEvents() }
+                .stateIn(
+                    scope = viewModelScope,
+                    started = SharingStarted.WhileSubscribed(5000L),
+                    initialValue = EventListState(),
+                )
 
-    private val _listState = MutableStateFlow(EventListState())
-    val listState = _listState
-        .onStart { loadEvents() }
-        .stateIn(
-            scope = viewModelScope,
-            started = SharingStarted.WhileSubscribed(5000L),
-            initialValue = EventListState()
-        )
-
-    fun loadEvents() {
-        viewModelScope.launch {
-            getEventsUseCase().collect { result ->
-                _listState.update { currentState ->
-                    currentState.copy(events = result.data ?: emptyList())
+        fun loadEvents() {
+            viewModelScope.launch {
+                getEventsUseCase().collect { result ->
+                    _listState.update { currentState ->
+                        currentState.copy(events = result.data ?: emptyList())
+                    }
                 }
             }
         }
     }
-}

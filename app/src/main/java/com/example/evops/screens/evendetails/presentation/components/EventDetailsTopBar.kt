@@ -19,16 +19,19 @@ import com.example.evops.R
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun EventDetailsTopBar(navController: NavController, modifier: Modifier = Modifier) {
+fun EventDetailsTopBar(
+    navController: NavController,
+    modifier: Modifier = Modifier,
+) {
     TopAppBar(
         title = { ScreenTitle() },
         navigationIcon = {
             NavigateBackButton(
                 onClick = { navController.popBackStack() },
-                modifier = Modifier.padding(4.dp)
+                modifier = Modifier.padding(4.dp),
             )
         },
-        modifier = modifier
+        modifier = modifier,
     )
 }
 
@@ -40,12 +43,12 @@ private fun ScreenTitle(modifier: Modifier = Modifier) {
 @Composable
 private fun NavigateBackButton(
     onClick: () -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     Icon(
         imageVector = Icons.AutoMirrored.Rounded.ArrowBack,
         contentDescription = stringResource(R.string.description_navigate_back_icon),
-        modifier = modifier.clickable(onClick = onClick)
+        modifier = modifier.clickable(onClick = onClick),
     )
 }
 

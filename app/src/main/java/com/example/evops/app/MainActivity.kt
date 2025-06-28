@@ -11,8 +11,7 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.compose.rememberNavController
 import com.example.evops.core.navigation.EvOpsNavGraph
 import com.example.evops.core.navigation.navbar.EvOpsNavigationBar
-import com.example.evops.core.presentation.EvOpsTheme
-import com.example.evops.screens.eventlist.presentation.components.eventlist.eventcard.components.EventImage
+import com.example.evops.core.presentation.style.EvOpsTheme
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -25,11 +24,11 @@ class MainActivity : ComponentActivity() {
                 val navController = rememberNavController()
                 Scaffold(
                     bottomBar = { EvOpsNavigationBar(navController = navController) },
-                    modifier = Modifier.fillMaxSize()
+                    modifier = Modifier.fillMaxSize(),
                 ) { innerPadding ->
                     EvOpsNavGraph(
                         navController = navController,
-                        modifier = Modifier.padding(innerPadding)
+                        modifier = Modifier.padding(innerPadding),
                     )
                 }
             }

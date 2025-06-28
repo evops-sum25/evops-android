@@ -11,11 +11,15 @@ import com.example.evops.screens.PreviewData
 import java.time.LocalDate
 
 @Composable
-fun EventDetailsPlaceAndDate(place: String, date: LocalDate, modifier: Modifier = Modifier) {
+fun EventDetailsPlaceAndDate(
+    place: String,
+    date: LocalDate,
+    modifier: Modifier = Modifier,
+) {
     Column(
         horizontalAlignment = Alignment.End,
         verticalArrangement = Arrangement.Top,
-        modifier = modifier
+        modifier = modifier,
     ) {
         EventDetailsPlace(place = place)
 
@@ -24,12 +28,18 @@ fun EventDetailsPlaceAndDate(place: String, date: LocalDate, modifier: Modifier 
 }
 
 @Composable
-private fun EventDetailsPlace(place: String, modifier: Modifier = Modifier) {
+private fun EventDetailsPlace(
+    place: String,
+    modifier: Modifier = Modifier,
+) {
     Text(text = place, modifier = modifier)
 }
 
 @Composable
-private fun EventDetailsDate(date: LocalDate, modifier: Modifier = Modifier) {
+private fun EventDetailsDate(
+    date: LocalDate,
+    modifier: Modifier = Modifier,
+) {
     Text(text = date.toString(), modifier = modifier)
 }
 
@@ -38,6 +48,6 @@ private fun EventDetailsDate(date: LocalDate, modifier: Modifier = Modifier) {
 private fun EventDetailsPlaceAndDatePreview() {
     EventDetailsPlaceAndDate(
         place = PreviewData.eventDetails.place,
-        date = PreviewData.eventDetails.date
+        date = PreviewData.eventDetails.date,
     )
 }

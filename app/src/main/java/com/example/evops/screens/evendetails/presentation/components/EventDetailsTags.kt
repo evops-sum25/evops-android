@@ -19,11 +19,14 @@ import com.example.evops.screens.evendetails.domain.model.EventDetailsTag
 
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
-fun EventDetailsTags(tagsData: List<EventDetailsTag>, modifier: Modifier = Modifier) {
+fun EventDetailsTags(
+    tagsData: List<EventDetailsTag>,
+    modifier: Modifier = Modifier,
+) {
     FlowRow(
         horizontalArrangement = Arrangement.spacedBy(12.dp),
         verticalArrangement = Arrangement.spacedBy(12.dp),
-        modifier = modifier
+        modifier = modifier,
     ) {
         tagsData.forEach { tagData ->
             EventDetailsTag(eventDetailsTag = tagData)
@@ -32,12 +35,16 @@ fun EventDetailsTags(tagsData: List<EventDetailsTag>, modifier: Modifier = Modif
 }
 
 @Composable
-private fun EventDetailsTag(eventDetailsTag: EventDetailsTag, modifier: Modifier = Modifier) {
+private fun EventDetailsTag(
+    eventDetailsTag: EventDetailsTag,
+    modifier: Modifier = Modifier,
+) {
     Row(
-        modifier = modifier
-            .clip(RoundedCornerShape(8.dp))
-            .background(MaterialTheme.colorScheme.secondaryContainer)
-            .padding(horizontal = 6.dp, vertical = 4.dp)
+        modifier =
+            modifier
+                .clip(RoundedCornerShape(8.dp))
+                .background(MaterialTheme.colorScheme.secondaryContainer)
+                .padding(horizontal = 6.dp, vertical = 4.dp),
     ) {
         Text(text = eventDetailsTag.name)
     }

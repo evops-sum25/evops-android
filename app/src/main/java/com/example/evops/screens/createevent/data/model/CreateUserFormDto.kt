@@ -7,5 +7,5 @@ import kotlinx.serialization.Serializable
 data class CreateUserFormDto(
     val name: String,
     @SerializedName("profile_picture_url")
-    val profilePictureUrl: String?
+    val profilePictureUrl: String?,
 )

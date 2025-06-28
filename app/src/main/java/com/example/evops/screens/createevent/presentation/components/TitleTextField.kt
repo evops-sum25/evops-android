@@ -1,7 +1,6 @@
 package com.example.evops.screens.createevent.presentation.components
 
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
@@ -21,7 +20,7 @@ import com.example.evops.screens.createevent.presentation.CreateEventEvent
 fun TitleTextField(
     title: String,
     onEvent: (CreateEventEvent) -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     var textFieldValue by remember { mutableStateOf(TextFieldValue(title)) }
 
@@ -34,7 +33,7 @@ fun TitleTextField(
         label = { TitleLabel() },
         singleLine = true,
         keyboardOptions = KeyboardOptions(imeAction = ImeAction.Next),
-        modifier = modifier.fillMaxWidth()
+        modifier = modifier.fillMaxWidth(),
     )
 }
 

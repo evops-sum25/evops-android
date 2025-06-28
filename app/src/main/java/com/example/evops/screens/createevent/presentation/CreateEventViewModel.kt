@@ -11,46 +11,48 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class CreateEventViewModel @Inject constructor(
-    private val createEventUseCase: CreateEventUseCase
-) : ViewModel() {
+class CreateEventViewModel
+    @Inject
+    constructor(
+        private val createEventUseCase: CreateEventUseCase,
+    ) : ViewModel() {
+        private val _formState = MutableStateFlow(CreateEventState())
+        val formState = _formState
 
-    private val _formState = MutableStateFlow(CreateEventState())
-    val formState = _formState
-
-    fun onEvent(event: CreateEventEvent) {
-        when (event) {
-            is CreateEventEvent.UpdateTitle -> {
-                _formState.update { currentState ->
-                    currentState.copy(title = event.title)
+        fun onEvent(event: CreateEventEvent) {
+            when (event) {
+                is CreateEventEvent.UpdateTitle -> {
+                    _formState.update { currentState ->
+                        currentState.copy(title = event.title)
+                    }
                 }
-            }
 
-            is CreateEventEvent.UpdateDescription -> {
-                _formState.update { currentState ->
-                    currentState.copy(description = event.description)
+                is CreateEventEvent.UpdateDescription -> {
+                    _formState.update { currentState ->
+                        currentState.copy(description = event.description)
+                    }
                 }
-            }
 
-            is CreateEventEvent.UpdateWithAttendance -> {
-                _formState.update { currentState ->
-                    currentState.copy(withAttendance = event.withAttendance)
+                is CreateEventEvent.UpdateWithAttendance -> {
+                    _formState.update { currentState ->
+                        currentState.copy(withAttendance = event.withAttendance)
+                    }
                 }
-            }
 
-            is CreateEventEvent.SubmitEvent -> {
-                viewModelScope.launch {
-                    createEventUseCase(_formState.value.toDomain())
+                is CreateEventEvent.SubmitEvent -> {
+                    viewModelScope.launch {
+                        createEventUseCase(_formState.value.toDomain())
+                    }
                 }
             }
         }
-    }
 
-    private fun CreateEventState.toDomain() = CreateEventForm(
-        description = this.description,
-        imageUrls = emptyList(),
-        tagIds = emptyList(),
-        title = this.title,
-        withAttendance = this.withAttendance
-    )
-}
+        private fun CreateEventState.toDomain() =
+            CreateEventForm(
+                description = this.description,
+                imageUrls = emptyList(),
+                tagIds = emptyList(),
+                title = this.title,
+                withAttendance = this.withAttendance,
+            )
+    }

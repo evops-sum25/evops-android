@@ -3,7 +3,6 @@ package com.example.evops.core.navigation
 import kotlinx.serialization.Serializable
 
 sealed class Destination {
-
     @Serializable
     data object EventList : Destination()
 
@@ -15,7 +14,6 @@ sealed class Destination {
 }
 
 sealed class SubGraph {
-
     @Serializable
     data object Home : SubGraph()
 

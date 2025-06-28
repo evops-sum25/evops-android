@@ -5,5 +5,5 @@ data class CreateEventForm(
     val imageUrls: List<String>,
     val tagIds: List<String>,
     val title: String,
-    val withAttendance: Boolean
+    val withAttendance: Boolean,
 )

@@ -1,8 +1,8 @@
 package com.example.evops.screens.eventlist.di
 
-import com.example.evops.screens.eventlist.data.api.EventListApi
 import com.example.evops.screens.eventlist.data.EventListNetworkRepositoryImpl
-import com.example.evops.screens.eventlist.domain.repository.EventListNetworkRepository
+import com.example.evops.screens.eventlist.data.api.EventListApi
+import com.example.evops.screens.eventlist.domain.repositories.EventListNetworkRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -13,7 +13,6 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object EventListNetworkModule {
-
     @Provides
     @Singleton
     fun provideEventListApi(retrofit: Retrofit): EventListApi {

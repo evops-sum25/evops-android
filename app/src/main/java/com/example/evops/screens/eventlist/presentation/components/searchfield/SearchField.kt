@@ -27,28 +27,29 @@ fun SearchField(modifier: Modifier = Modifier) {
         value = TextFieldValue(""),
         onValueChange = {},
         shape = RoundedCornerShape(16.dp),
-        colors = TextFieldDefaults.colors(
-            focusedIndicatorColor = Color.Transparent,
-            unfocusedIndicatorColor = Color.Transparent,
-            disabledIndicatorColor = Color.Transparent
-        ),
+        colors =
+            TextFieldDefaults.colors(
+                focusedIndicatorColor = Color.Transparent,
+                unfocusedIndicatorColor = Color.Transparent,
+                disabledIndicatorColor = Color.Transparent,
+            ),
         prefix = { Icon(Icons.Rounded.Search, contentDescription = null) },
         suffix = {
             Row(modifier = Modifier.height(IntrinsicSize.Min)) {
                 VerticalDivider(
                     thickness = 2.dp,
                     color = LocalContentColor.current,
-                    modifier = Modifier
+                    modifier = Modifier,
                 )
 
                 Icon(
                     Icons.Rounded.FilterList,
                     contentDescription = null,
-                    modifier = Modifier.padding(start = 4.dp)
+                    modifier = Modifier.padding(start = 4.dp),
                 )
             }
         },
-        modifier = modifier.fillMaxWidth()
+        modifier = modifier.fillMaxWidth(),
     )
 }
 

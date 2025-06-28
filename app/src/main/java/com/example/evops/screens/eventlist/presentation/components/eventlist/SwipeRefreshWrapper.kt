@@ -28,7 +28,7 @@ fun SwipeRefreshWrapper(
     SwipeRefresh(
         state = rememberSwipeRefreshState(isRefreshing = refreshing),
         onRefresh = { refreshing = true },
-        modifier = modifier
+        modifier = modifier,
     ) {
         content()
     }

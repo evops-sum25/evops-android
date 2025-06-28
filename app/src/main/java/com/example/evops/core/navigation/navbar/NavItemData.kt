@@ -12,17 +12,18 @@ data class NavItemData(
     val label: String,
 ) {
     companion object {
-        val navItems = listOf(
-            NavItemData(
-                subGraph = SubGraph.Home,
-                icon = Icons.Outlined.Home,
-                label = "Home"
-            ),
-            NavItemData(
-                subGraph = SubGraph.CreateEvent,
-                icon = Icons.Outlined.AddCircleOutline,
-                label = "Add event"
-            ),
-        )
+        val navItems =
+            listOf(
+                NavItemData(
+                    subGraph = SubGraph.Home,
+                    icon = Icons.Outlined.Home,
+                    label = "Home",
+                ),
+                NavItemData(
+                    subGraph = SubGraph.CreateEvent,
+                    icon = Icons.Outlined.AddCircleOutline,
+                    label = "Add event",
+                ),
+            )
     }
 }

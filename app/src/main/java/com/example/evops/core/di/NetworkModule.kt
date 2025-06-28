@@ -12,14 +12,14 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object NetworkModule {
-
     @Provides
     @Singleton
     fun provideOkHttpClient(): OkHttpClient {
         return OkHttpClient.Builder().addInterceptor { chain ->
-            val request = chain.request().newBuilder()
-                .addHeader("accept", "application/json")
-                .build()
+            val request =
+                chain.request().newBuilder()
+                    .addHeader("accept", "application/json")
+                    .build()
             chain.proceed(request)
         }.build()
     }

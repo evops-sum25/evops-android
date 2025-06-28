@@ -18,7 +18,7 @@ import com.example.evops.screens.PreviewData
 @Composable
 fun EventDetailsImagePager(
     imageUrls: List<String>,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     val pagerState = rememberPagerState(pageCount = { imageUrls.size })
     HorizontalPager(state = pagerState, modifier = modifier) { page ->
@@ -29,12 +29,13 @@ fun EventDetailsImagePager(
 @Composable
 private fun EventDetailsImage(
     imageUrl: String,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     AsyncImage(
-        model = ImageRequest.Builder(LocalContext.current)
-            .data(imageUrl)
-            .build(),
+        model =
+            ImageRequest.Builder(LocalContext.current)
+                .data(imageUrl)
+                .build(),
         contentDescription = stringResource(R.string.description_event_image_preview),
         placeholder = painterResource(R.drawable.image_placeholder),
         error = painterResource(R.drawable.image_placeholder),
@@ -48,9 +49,10 @@ private fun EventDetailsImage(
 @Composable
 private fun EventDetailsImagePagerPreview() {
     EventDetailsImagePager(
-        imageUrls = listOf(
-            PreviewData.eventItem.imageUrl,
-            PreviewData.eventItem.imageUrl,
-        )
+        imageUrls =
+            listOf(
+                PreviewData.eventItem.imageUrl,
+                PreviewData.eventItem.imageUrl,
+            ),
     )
 }

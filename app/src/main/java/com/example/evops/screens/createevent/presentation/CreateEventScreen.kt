@@ -19,7 +19,7 @@ import com.example.evops.screens.createevent.presentation.components.WithAttenda
 @Composable
 fun CreateEventScreen(
     modifier: Modifier = Modifier,
-    viewModel: CreateEventViewModel = hiltViewModel()
+    viewModel: CreateEventViewModel = hiltViewModel(),
 ) {
     val formState by viewModel.formState.collectAsState()
     val isSubmitButtonActive =
@@ -28,24 +28,25 @@ fun CreateEventScreen(
     Column(
         verticalArrangement = Arrangement.Top,
         horizontalAlignment = Alignment.CenterHorizontally,
-        modifier = modifier
-            .padding(horizontal = 12.dp)
-            .fillMaxSize()
+        modifier =
+            modifier
+                .padding(horizontal = 12.dp)
+                .fillMaxSize(),
     ) {
         TitleTextField(
             title = formState.title,
             onEvent = viewModel::onEvent,
-            modifier = Modifier.padding(vertical = 4.dp)
+            modifier = Modifier.padding(vertical = 4.dp),
         )
         DescriptionTextField(
             description = formState.description,
             onEvent = viewModel::onEvent,
-            modifier = Modifier.padding(vertical = 4.dp)
+            modifier = Modifier.padding(vertical = 4.dp),
         )
         WithAttendanceSwitch(
             withAttendance = formState.withAttendance,
             onEvent = viewModel::onEvent,
-            modifier = Modifier.padding(vertical = 4.dp)
+            modifier = Modifier.padding(vertical = 4.dp),
         )
         SubmitButton(isActive = isSubmitButtonActive, onEvent = viewModel::onEvent)
     }

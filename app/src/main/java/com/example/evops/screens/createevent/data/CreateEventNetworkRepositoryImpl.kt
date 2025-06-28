@@ -4,7 +4,7 @@ import com.example.evops.screens.createevent.data.api.CreateEventApi
 import com.example.evops.screens.createevent.data.mappers.CreateEventMapper.toData
 import com.example.evops.screens.createevent.domain.model.CreateEventForm
 import com.example.evops.screens.createevent.domain.model.CreateUserForm
-import com.example.evops.screens.createevent.domain.repository.CreateEventNetworkRepository
+import com.example.evops.screens.createevent.domain.repositories.CreateEventNetworkRepository
 
 class CreateEventNetworkRepositoryImpl(private val createEventApi: CreateEventApi) : CreateEventNetworkRepository {
     override suspend fun getUserIds(): List<String> {
@@ -15,7 +15,10 @@ class CreateEventNetworkRepositoryImpl(private val createEventApi: CreateEventAp
         createEventApi.createUser(userForm.toData())
     }
 
-    override suspend fun createEvent(eventForm: CreateEventForm, userId: String) {
+    override suspend fun createEvent(
+        eventForm: CreateEventForm,
+        userId: String,
+    ) {
         createEventApi.createEvent(eventForm.toData(userId))
     }
 }

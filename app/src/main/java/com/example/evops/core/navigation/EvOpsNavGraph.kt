@@ -13,12 +13,12 @@ import com.example.evops.screens.eventlist.presentation.EventListScreen
 @Composable
 fun EvOpsNavGraph(
     navController: NavHostController,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     NavHost(
         navController = navController,
         startDestination = SubGraph.Home,
-        modifier = modifier
+        modifier = modifier,
     ) {
         navigation<SubGraph.Home>(
             startDestination = Destination.EventList,
@@ -31,7 +31,7 @@ fun EvOpsNavGraph(
             }
         }
         navigation<SubGraph.CreateEvent>(
-            startDestination = Destination.CreateEvent
+            startDestination = Destination.CreateEvent,
         ) {
             composable<Destination.CreateEvent> {
                 CreateEventScreen()

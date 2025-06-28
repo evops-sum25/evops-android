@@ -21,43 +21,45 @@ import com.example.evops.screens.eventlist.presentation.components.eventlist.eve
 @Composable
 fun EventCard(
     eventData: EventItem,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     Column(
         verticalArrangement = Arrangement.Top,
         horizontalAlignment = Alignment.Start,
-        modifier = modifier.fillMaxWidth()
+        modifier = modifier.fillMaxWidth(),
     ) {
         EventPublisherInfo(
             eventPublisherData = eventData.eventPublisherData,
-            modifier = Modifier
-                .padding(horizontal = 18.dp, vertical = 12.dp)
-                .fillMaxWidth()
+            modifier =
+                Modifier
+                    .padding(horizontal = 18.dp, vertical = 12.dp)
+                    .fillMaxWidth(),
         )
 
         EventImage(
             imageUrl = eventData.imageUrl,
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier.fillMaxWidth(),
         )
 
         EventTitle(
             title = eventData.title,
-            modifier = Modifier
-                .padding(horizontal = 18.dp, vertical = 12.dp)
-                .fillMaxWidth()
+            modifier =
+                Modifier
+                    .padding(horizontal = 18.dp, vertical = 12.dp)
+                    .fillMaxWidth(),
         )
 
         Row(
             horizontalArrangement = Arrangement.Start,
             verticalAlignment = Alignment.CenterVertically,
-            modifier = Modifier.padding(horizontal = 18.dp)
+            modifier = Modifier.padding(horizontal = 18.dp),
         ) {
             EventAttendeesButton(attendeesCount = eventData.attendeesCount)
 
             EventPlaceAndDate(
                 place = eventData.place,
                 date = eventData.date,
-                modifier = Modifier.weight(1f)
+                modifier = Modifier.weight(1f),
             )
         }
     }

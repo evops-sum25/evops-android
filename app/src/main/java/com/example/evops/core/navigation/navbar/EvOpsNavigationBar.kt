@@ -11,7 +11,7 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 @Composable
 fun EvOpsNavigationBar(
     navController: NavHostController,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     val currentDestination = navBackStackEntry?.destination
@@ -23,7 +23,7 @@ fun EvOpsNavigationBar(
                 navItemData = item,
                 onClick = { navController.navigate(item.subGraph) },
                 isSelected = isSelected,
-                modifier = Modifier
+                modifier = Modifier,
             )
         }
     }

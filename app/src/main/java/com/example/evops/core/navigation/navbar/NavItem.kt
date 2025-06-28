@@ -14,16 +14,17 @@ fun RowScope.NavItem(
     navItemData: NavItemData,
     onClick: () -> Unit,
     isSelected: Boolean,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     NavigationBarItem(
         selected = isSelected,
         onClick = onClick,
         icon = { Icon(navItemData.icon, contentDescription = navItemData.label) },
-        colors = NavigationBarItemDefaults.colors(
-            selectedIconColor = MaterialTheme.colorScheme.primary,
-            unselectedIconColor = Color.Red
-        ),
+        colors =
+            NavigationBarItemDefaults.colors(
+                selectedIconColor = MaterialTheme.colorScheme.primary,
+                unselectedIconColor = Color.Red,
+            ),
         modifier = modifier,
     )
 }

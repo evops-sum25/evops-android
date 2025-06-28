@@ -12,12 +12,12 @@ import com.example.evops.screens.createevent.presentation.CreateEventEvent
 fun SubmitButton(
     isActive: Boolean,
     onEvent: (CreateEventEvent) -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     Button(
         onClick = { onEvent(CreateEventEvent.SubmitEvent) },
         enabled = isActive,
-        modifier = modifier
+        modifier = modifier,
     ) {
         Text(text = stringResource(R.string.submit))
     }

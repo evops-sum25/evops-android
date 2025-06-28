@@ -17,11 +17,14 @@ import com.example.evops.R
 import com.example.evops.screens.PreviewData
 
 @Composable
-fun EventAttendeesButton(attendeesCount: UInt, modifier: Modifier = Modifier) {
+fun EventAttendeesButton(
+    attendeesCount: UInt,
+    modifier: Modifier = Modifier,
+) {
     Row(
         horizontalArrangement = Arrangement.Start,
         verticalAlignment = Alignment.CenterVertically,
-        modifier = modifier.clickable(onClick = {}) // TODO("add on click")
+        modifier = modifier.clickable(onClick = {}), // TODO("add on click")
     ) {
         AttendIcon(isAttending = false, modifier = Modifier) // TODO("add is attending")
 
@@ -31,18 +34,20 @@ fun EventAttendeesButton(attendeesCount: UInt, modifier: Modifier = Modifier) {
 
 @Composable
 private fun AttendIcon(
-    isAttending: Boolean, modifier: Modifier = Modifier
+    isAttending: Boolean,
+    modifier: Modifier = Modifier,
 ) {
-    val iconVector = if (isAttending) {
-        Icons.Filled.ThumbUp
-    } else {
-        Icons.Outlined.ThumbUpOffAlt
-    }
+    val iconVector =
+        if (isAttending) {
+            Icons.Filled.ThumbUp
+        } else {
+            Icons.Outlined.ThumbUpOffAlt
+        }
 
     Icon(
         imageVector = iconVector,
         contentDescription = stringResource(R.string.description_disabled_attend_icon),
-        modifier = modifier
+        modifier = modifier,
     )
 }
 

@@ -1,4 +1,4 @@
-package com.example.evops.screens.evendetails.data
+package com.example.evops.screens.evendetails.data.repositories
 
 import com.example.evops.screens.evendetails.data.api.EventDetailsApi
 import com.example.evops.screens.evendetails.data.mappers.EventDetailsMapper.toDomain

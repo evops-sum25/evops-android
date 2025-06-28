@@ -1,6 +1,6 @@
 package com.example.evops.screens.eventlist.domain.usecases
 
-import com.example.evops.core.common.Result
+import com.example.evops.core.common.Resource
 import com.example.evops.screens.eventlist.domain.model.EventItem
 import com.example.evops.screens.eventlist.domain.repositories.EventListNetworkRepository
 import kotlinx.coroutines.flow.Flow
@@ -14,16 +14,16 @@ class GetEventsUseCase
     constructor(
         private val eventListNetworkRepository: EventListNetworkRepository,
     ) {
-        operator fun invoke(): Flow<Result<List<EventItem>>> =
+        operator fun invoke(): Flow<Resource<List<EventItem>>> =
             flow {
                 try {
-                    emit(Result.Loading())
+                    emit(Resource.Loading())
                     val events = eventListNetworkRepository.getEvents()
-                    emit(Result.Success(events))
+                    emit(Resource.Success(events))
                 } catch (e: HttpException) {
-                    emit(Result.Error(e.localizedMessage ?: "An unexpected Http error occurred"))
+                    emit(Resource.Error(e.localizedMessage ?: "An unexpected Http error occurred"))
                 } catch (_: IOException) {
-                    emit(Result.Error("Could not reach server. Check your Internet connection"))
+                    emit(Resource.Error("Could not reach server. Check your Internet connection"))
                 }
             }
     }

@@ -1,16 +1,16 @@
 package com.example.evops.screens.createevent.data.mappers
 
+import com.example.evops.screens.createevent.data.model.CreateAuthorFormDto
+import com.example.evops.screens.createevent.data.model.CreateAuthorFormWrapperDto
 import com.example.evops.screens.createevent.data.model.CreateEventFormDto
 import com.example.evops.screens.createevent.data.model.CreateEventFormWrapperDto
-import com.example.evops.screens.createevent.data.model.CreateUserFormDto
-import com.example.evops.screens.createevent.data.model.CreateUserFormWrapperDto
+import com.example.evops.screens.createevent.domain.model.CreateAuthorForm
 import com.example.evops.screens.createevent.domain.model.CreateEventForm
-import com.example.evops.screens.createevent.domain.model.CreateUserForm
 
 object CreateEventMapper {
     fun CreateEventForm.toData(authorId: String) =
         CreateEventFormWrapperDto(
-            form =
+            eventForm =
                 CreateEventFormDto(
                     authorId = authorId,
                     description = this.description,
@@ -21,12 +21,11 @@ object CreateEventMapper {
                 ),
         )
 
-    fun CreateUserForm.toData() =
-        CreateUserFormWrapperDto(
-            form =
-                CreateUserFormDto(
+    fun CreateAuthorForm.toData() =
+        CreateAuthorFormWrapperDto(
+            authorForm =
+                CreateAuthorFormDto(
                     name = this.name,
-                    profilePictureUrl = null,
                 ),
         )
 }

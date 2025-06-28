@@ -7,12 +7,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.example.evops.screens.PreviewData.eventItemPublisher
-import com.example.evops.screens.eventlist.domain.model.EventItemPublisher
+import com.example.evops.screens.PreviewData.eventItemAuthor
+import com.example.evops.screens.eventlist.domain.model.EventItemAuthor
 
 @Composable
-fun EventPublisherInfo(
-    eventPublisherData: EventItemPublisher,
+fun EventAuthorInfo(
+    eventPublisherData: EventItemAuthor,
     modifier: Modifier = Modifier,
 ) {
     Row(
@@ -38,7 +38,7 @@ private fun PublisherTitle(
 @Preview
 @Composable
 private fun EventPublisherInfoPreview() {
-    EventPublisherInfo(
-        eventPublisherData = eventItemPublisher,
+    EventAuthorInfo(
+        eventPublisherData = eventItemAuthor,
     )
 }

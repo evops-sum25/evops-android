@@ -1,9 +1,9 @@
-package com.example.evops.core.data.model.user
+package com.example.evops.core.data.model.author
 
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class UserDto(
+data class AuthorDto(
     val id: String,
     val name: String,
 )

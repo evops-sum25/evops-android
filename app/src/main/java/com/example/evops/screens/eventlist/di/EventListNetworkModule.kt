@@ -1,7 +1,7 @@
 package com.example.evops.screens.eventlist.di
 
-import com.example.evops.screens.eventlist.data.EventListNetworkRepositoryImpl
 import com.example.evops.screens.eventlist.data.api.EventListApi
+import com.example.evops.screens.eventlist.data.repositories.EventListNetworkRepositoryImpl
 import com.example.evops.screens.eventlist.domain.repositories.EventListNetworkRepository
 import dagger.Module
 import dagger.Provides

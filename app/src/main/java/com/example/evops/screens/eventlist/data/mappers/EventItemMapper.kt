@@ -1,10 +1,10 @@
 package com.example.evops.screens.eventlist.data.mappers
 
+import com.example.evops.core.data.model.author.AuthorDto
 import com.example.evops.core.data.model.event.EventDto
-import com.example.evops.core.data.model.user.UserDto
 import com.example.evops.screens.eventlist.data.dto.EventListDto
 import com.example.evops.screens.eventlist.domain.model.EventItem
-import com.example.evops.screens.eventlist.domain.model.EventItemPublisher
+import com.example.evops.screens.eventlist.domain.model.EventItemAuthor
 import java.time.LocalDate
 
 object EventItemMapper {
@@ -23,8 +23,8 @@ object EventItemMapper {
             date = LocalDate.now(), // TODO("create default date")
         )
 
-    fun UserDto.toDomain() =
-        EventItemPublisher(
+    fun AuthorDto.toDomain() =
+        EventItemAuthor(
             id = this.id,
             name = this.name,
         )

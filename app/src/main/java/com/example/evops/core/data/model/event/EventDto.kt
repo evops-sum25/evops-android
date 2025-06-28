@@ -1,13 +1,13 @@
 package com.example.evops.core.data.model.event
 
+import com.example.evops.core.data.model.author.AuthorDto
 import com.example.evops.core.data.model.tag.TagDto
-import com.example.evops.core.data.model.user.UserDto
 import com.google.gson.annotations.SerializedName
 import kotlinx.serialization.Serializable
 
 @Serializable
 data class EventDto(
-    val author: UserDto,
+    val author: AuthorDto,
     @SerializedName("created_at")
     val createdAt: String,
     val description: String,

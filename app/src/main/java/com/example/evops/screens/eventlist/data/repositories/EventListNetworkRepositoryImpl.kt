@@ -1,4 +1,4 @@
-package com.example.evops.screens.eventlist.data
+package com.example.evops.screens.eventlist.data.repositories
 
 import com.example.evops.screens.eventlist.data.api.EventListApi
 import com.example.evops.screens.eventlist.data.mappers.EventItemMapper.toDomain

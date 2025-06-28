@@ -1,35 +1,37 @@
 package com.example.evops.screens
 
 import com.example.evops.screens.evendetails.domain.model.EventDetails
-import com.example.evops.screens.evendetails.domain.model.EventDetailsPublisher
+import com.example.evops.screens.evendetails.domain.model.EventDetailsAuthor
 import com.example.evops.screens.evendetails.domain.model.EventDetailsTag
 import com.example.evops.screens.eventlist.domain.model.EventItem
-import com.example.evops.screens.eventlist.domain.model.EventItemPublisher
+import com.example.evops.screens.eventlist.domain.model.EventItemAuthor
 import java.time.LocalDate
 
 object PreviewData {
-    val eventItemPublisher =
-        EventItemPublisher(
+    val eventItemAuthor =
+        EventItemAuthor(
+            id = "",
             name = "BDSM",
         )
     val eventItem =
         EventItem(
             id = "",
             title = "Probstat Final Preparation",
-            eventPublisherData = eventItemPublisher,
+            eventPublisherData = eventItemAuthor,
             imageUrl = "https://meowle.fintech-qa.ru/photos/image-1745661496544.jpg",
             attendeesCount = 16u,
             place = "IU 108",
             date = LocalDate.now(),
         )
 
-    val eventDetailsPublisher =
-        EventDetailsPublisher(
+    val eventDetailsAuthor =
+        EventDetailsAuthor(
+            id = "",
             name = "BDSM",
         )
     val eventDetails =
         EventDetails(
-            eventDetailsPublisher = eventDetailsPublisher,
+            author = eventDetailsAuthor,
             eventImageUrls =
                 listOf(
                     "https://meowle.fintech-qa.ru/photos/image-1745661496544.jpg",

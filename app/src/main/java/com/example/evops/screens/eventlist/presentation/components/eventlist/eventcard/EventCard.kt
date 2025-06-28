@@ -13,9 +13,9 @@ import androidx.compose.ui.unit.dp
 import com.example.evops.screens.PreviewData.eventItem
 import com.example.evops.screens.eventlist.domain.model.EventItem
 import com.example.evops.screens.eventlist.presentation.components.eventlist.eventcard.components.EventAttendeesButton
+import com.example.evops.screens.eventlist.presentation.components.eventlist.eventcard.components.EventAuthorInfo
 import com.example.evops.screens.eventlist.presentation.components.eventlist.eventcard.components.EventImage
 import com.example.evops.screens.eventlist.presentation.components.eventlist.eventcard.components.EventPlaceAndDate
-import com.example.evops.screens.eventlist.presentation.components.eventlist.eventcard.components.EventPublisherInfo
 import com.example.evops.screens.eventlist.presentation.components.eventlist.eventcard.components.EventTitle
 
 @Composable
@@ -28,7 +28,7 @@ fun EventCard(
         horizontalAlignment = Alignment.Start,
         modifier = modifier.fillMaxWidth(),
     ) {
-        EventPublisherInfo(
+        EventAuthorInfo(
             eventPublisherData = eventData.eventPublisherData,
             modifier =
                 Modifier

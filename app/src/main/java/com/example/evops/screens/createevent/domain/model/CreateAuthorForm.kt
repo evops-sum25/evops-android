@@ -1,5 +1,5 @@
 package com.example.evops.screens.createevent.domain.model
 
-data class CreateUserForm(
+data class CreateAuthorForm(
     val name: String,
 )

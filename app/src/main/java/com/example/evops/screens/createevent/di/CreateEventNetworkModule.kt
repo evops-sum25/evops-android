@@ -1,7 +1,7 @@
 package com.example.evops.screens.createevent.di
 
-import com.example.evops.screens.createevent.data.CreateEventNetworkRepositoryImpl
 import com.example.evops.screens.createevent.data.api.CreateEventApi
+import com.example.evops.screens.createevent.data.repositories.CreateEventNetworkRepositoryImpl
 import com.example.evops.screens.createevent.domain.repositories.CreateEventNetworkRepository
 import dagger.Module
 import dagger.Provides

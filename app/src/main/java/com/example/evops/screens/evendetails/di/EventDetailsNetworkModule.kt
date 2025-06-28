@@ -1,7 +1,7 @@
 package com.example.evops.screens.evendetails.di
 
-import com.example.evops.screens.evendetails.data.EventDetailsNetworkRepositoryImpl
 import com.example.evops.screens.evendetails.data.api.EventDetailsApi
+import com.example.evops.screens.evendetails.data.repositories.EventDetailsNetworkRepositoryImpl
 import com.example.evops.screens.evendetails.domain.repositories.EventDetailsNetworkRepository
 import dagger.Module
 import dagger.Provides

@@ -1,8 +1,10 @@
 package com.example.evops.screens.createevent.data.model
 
+import com.google.gson.annotations.SerializedName
 import kotlinx.serialization.Serializable
 
 @Serializable
 data class CreateEventFormWrapperDto(
-    val form: CreateEventFormDto,
+    @SerializedName("form")
+    val eventForm: CreateEventFormDto,
 )

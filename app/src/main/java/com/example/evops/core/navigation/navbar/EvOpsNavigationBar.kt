@@ -21,7 +21,13 @@ fun EvOpsNavigationBar(
             val isSelected = item.subGraph == currentDestination?.parent
             NavItem(
                 navItemData = item,
-                onClick = { navController.navigate(item.subGraph) },
+                onClick = {
+                    navController.navigate(item.subGraph) {
+                        popUpTo(navController.graph.startDestinationId) { saveState = true }
+                        launchSingleTop = true
+                        restoreState = true
+                    }
+                },
                 isSelected = isSelected,
                 modifier = Modifier,
             )

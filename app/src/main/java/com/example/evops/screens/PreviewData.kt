@@ -17,7 +17,7 @@ object PreviewData {
         EventItem(
             id = "",
             title = "Probstat Final Preparation",
-            eventPublisherData = eventItemAuthor,
+            author = eventItemAuthor,
             imageUrl = "https://meowle.fintech-qa.ru/photos/image-1745661496544.jpg",
             attendeesCount = 16u,
             place = "IU 108",
@@ -32,7 +32,7 @@ object PreviewData {
     val eventDetails =
         EventDetails(
             author = eventDetailsAuthor,
-            eventImageUrls =
+            imageUrls =
                 listOf(
                     "https://meowle.fintech-qa.ru/photos/image-1745661496544.jpg",
                     "https://meowle.fintech-qa.ru/photos/image-1745661496544.jpg",

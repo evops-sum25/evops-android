@@ -5,7 +5,7 @@ import java.time.LocalDate
 data class EventItem(
     val id: String,
     val title: String,
-    val eventPublisherData: EventItemAuthor,
+    val author: EventItemAuthor,
     val imageUrl: String,
     val attendeesCount: UInt,
     val place: String,

@@ -6,12 +6,14 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
+import com.example.evops.core.navigation.NavAnimationUtils.slideInToLeft
+import com.example.evops.core.navigation.NavAnimationUtils.slideOutToRight
 import com.example.evops.screens.createevent.presentation.CreateEventScreen
 import com.example.evops.screens.evendetails.presentation.EventDetailsScreen
 import com.example.evops.screens.eventlist.presentation.EventListScreen
 
 @Composable
-fun EvOpsNavGraph(
+fun EvopsNavGraph(
     navController: NavHostController,
     modifier: Modifier = Modifier,
 ) {
@@ -26,7 +28,10 @@ fun EvOpsNavGraph(
             composable<Destination.EventList> {
                 EventListScreen(navController = navController)
             }
-            composable<Destination.EventDetails> {
+            composable<Destination.EventDetails>(
+                enterTransition = ::slideInToLeft,
+                exitTransition = ::slideOutToRight
+            ) {
                 EventDetailsScreen(navController = navController)
             }
         }

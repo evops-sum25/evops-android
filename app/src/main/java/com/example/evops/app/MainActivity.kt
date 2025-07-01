@@ -9,8 +9,8 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.rememberNavController
-import com.example.evops.core.navigation.EvOpsNavGraph
-import com.example.evops.core.navigation.navbar.EvOpsNavigationBar
+import com.example.evops.core.navigation.EvopsNavGraph
+import com.example.evops.core.navigation.navbar.EvopsNavigationBar
 import com.example.evops.core.presentation.style.EvOpsTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -23,10 +23,10 @@ class MainActivity : ComponentActivity() {
             EvOpsTheme {
                 val navController = rememberNavController()
                 Scaffold(
-                    bottomBar = { EvOpsNavigationBar(navController = navController) },
+                    bottomBar = { EvopsNavigationBar(navController = navController) },
                     modifier = Modifier.fillMaxSize(),
                 ) { innerPadding ->
-                    EvOpsNavGraph(
+                    EvopsNavGraph(
                         navController = navController,
                         modifier = Modifier.padding(innerPadding),
                     )

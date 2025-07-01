@@ -10,7 +10,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 
 @Composable
-fun EvOpsNavigationBar(
+fun EvopsNavigationBar(
     navController: NavHostController,
     modifier: Modifier = Modifier,
 ) {

@@ -31,10 +31,11 @@ fun EventDetailsTopBar(
     Row(
         horizontalArrangement = Arrangement.spacedBy(4.dp),
         verticalAlignment = Alignment.CenterVertically,
-        modifier = modifier
-            .fillMaxWidth()
-            .background(MaterialTheme.colorScheme.background)
-            .padding(4.dp)
+        modifier =
+            modifier
+                .fillMaxWidth()
+                .background(MaterialTheme.colorScheme.background)
+                .padding(4.dp),
     ) {
         NavigateBackButton(onClick = { navController.popBackStack() })
         ScreenTitle()
@@ -46,7 +47,7 @@ private fun ScreenTitle(modifier: Modifier = Modifier) {
     Text(
         text = stringResource(R.string.event_details),
         style = MaterialTheme.typography.displayMedium,
-        modifier = modifier
+        modifier = modifier,
     )
 }
 
@@ -57,7 +58,7 @@ private fun NavigateBackButton(
 ) {
     IconButton(
         onClick = onClick,
-        modifier = modifier
+        modifier = modifier,
     ) {
         Icon(
             imageVector = Icons.AutoMirrored.Rounded.ArrowBack,
@@ -71,6 +72,6 @@ private fun NavigateBackButton(
 private fun EventDetailsTopBarPreview() {
     EventDetailsTopBar(
         navController = rememberNavController(),
-        modifier = Modifier.fillMaxWidth()
+        modifier = Modifier.fillMaxWidth(),
     )
 }

@@ -18,16 +18,16 @@ fun EvopsNavigationBar(
     val currentDestination = navBackStackEntry?.destination
 
     NavigationBar(modifier = modifier.fillMaxWidth()) {
-        NavItemData.navItems.forEach { item ->
-            val isSelected = item.isSelected(currentDestination)
+        NavItemData.navItems.forEach { navItem ->
+            val isSelected = navItem.isSelected(currentDestination)
             NavItem(
-                navItemData = item,
+                navItemData = navItem,
                 onClick = {
-                    navController.navigate(item.subGraph) {
-                        popUpTo(navController.graph.startDestinationId) { saveState = true }
-                        launchSingleTop = true
-                        restoreState = true
-                    }
+                    onNavItemClick(
+                        navController = navController,
+                        navItem = navItem,
+                        isNotSelected = !isSelected
+                    )
                 },
                 isSelected = isSelected,
                 modifier = Modifier,
@@ -47,4 +47,16 @@ private fun NavItemData.isSelected(currentDestination: NavDestination?): Boolean
 
 private fun String.shortRoute(): String? {
     return this.split(".").lastOrNull()
+}
+
+private fun onNavItemClick(
+    navController: NavHostController,
+    navItem: NavItemData,
+    isNotSelected: Boolean
+) {
+    navController.navigate(navItem.subGraph) {
+        popUpTo(navController.graph.startDestinationId) { saveState = isNotSelected }
+        launchSingleTop = true
+        restoreState = true
+    }
 }

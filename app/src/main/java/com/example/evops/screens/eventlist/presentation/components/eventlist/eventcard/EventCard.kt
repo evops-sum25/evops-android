@@ -2,7 +2,6 @@ package com.example.evops.screens.eventlist.presentation.components.eventlist.ev
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
@@ -12,11 +11,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.evops.screens.PreviewData.eventItem
 import com.example.evops.screens.eventlist.domain.model.EventItem
-import com.example.evops.screens.eventlist.presentation.components.eventlist.eventcard.components.EventAttendeesButton
-import com.example.evops.screens.eventlist.presentation.components.eventlist.eventcard.components.EventAuthorInfo
 import com.example.evops.screens.eventlist.presentation.components.eventlist.eventcard.components.EventImage
-import com.example.evops.screens.eventlist.presentation.components.eventlist.eventcard.components.EventPlaceAndDate
-import com.example.evops.screens.eventlist.presentation.components.eventlist.eventcard.components.EventTitle
+import com.example.evops.screens.eventlist.presentation.components.eventlist.eventcard.components.EventTitleAndAuthor
 
 @Composable
 fun EventCard(
@@ -28,40 +24,33 @@ fun EventCard(
         horizontalAlignment = Alignment.Start,
         modifier = modifier.fillMaxWidth(),
     ) {
-        EventAuthorInfo(
-            eventPublisherData = eventData.eventPublisherData,
-            modifier =
-                Modifier
-                    .padding(horizontal = 18.dp, vertical = 12.dp)
-                    .fillMaxWidth(),
-        )
-
         EventImage(
             imageUrl = eventData.imageUrl,
             modifier = Modifier.fillMaxWidth(),
         )
 
-        EventTitle(
+        EventTitleAndAuthor(
             title = eventData.title,
+            author = eventData.author,
             modifier =
                 Modifier
                     .padding(horizontal = 18.dp, vertical = 12.dp)
                     .fillMaxWidth(),
         )
 
-        Row(
-            horizontalArrangement = Arrangement.Start,
-            verticalAlignment = Alignment.CenterVertically,
-            modifier = Modifier.padding(horizontal = 18.dp),
-        ) {
-            EventAttendeesButton(attendeesCount = eventData.attendeesCount)
-
-            EventPlaceAndDate(
-                place = eventData.place,
-                date = eventData.date,
-                modifier = Modifier.weight(1f),
-            )
-        }
+//        Row(
+//            horizontalArrangement = Arrangement.Start,
+//            verticalAlignment = Alignment.CenterVertically,
+//            modifier = Modifier.padding(horizontal = 18.dp),
+//        ) {
+//            EventAttendeesButton(attendeesCount = eventData.attendeesCount)
+//
+//            EventPlaceAndDate(
+//                place = eventData.place,
+//                date = eventData.date,
+//                modifier = Modifier.weight(1f),
+//            )
+//        }
     }
 }
 

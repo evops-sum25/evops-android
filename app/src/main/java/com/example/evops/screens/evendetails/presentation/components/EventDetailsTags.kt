@@ -44,9 +44,12 @@ private fun EventDetailsTag(
             modifier
                 .clip(RoundedCornerShape(8.dp))
                 .background(MaterialTheme.colorScheme.secondaryContainer)
-                .padding(horizontal = 6.dp, vertical = 4.dp),
+                .padding(horizontal = 8.dp, vertical = 4.dp),
     ) {
-        Text(text = eventDetailsTag.name)
+        Text(
+            text = eventDetailsTag.name,
+            style = MaterialTheme.typography.bodyLarge,
+        )
     }
 }
 

@@ -12,7 +12,7 @@ object EventDetailsMapper {
     fun EventWrapperDto.toDomain() =
         EventDetails(
             author = this.event.author.toDomain(),
-            eventImageUrls = this.event.imageUrls,
+            imageUrls = this.event.imageUrls,
             title = this.event.title,
             description = this.event.description,
             attendeesCount = 0u, // TODO("create default attendees count")

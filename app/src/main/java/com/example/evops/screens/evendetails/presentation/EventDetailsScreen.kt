@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
@@ -37,20 +38,22 @@ fun EventDetailsScreen(
             modifier =
                 Modifier
                     .verticalScroll(rememberScrollState())
-                    .padding(innerPadding)
-                    .fillMaxSize(),
+                    .fillMaxSize()
+                    .padding(innerPadding),
         ) {
-            EventDetailsImagePager(
-                imageUrls = eventDetailsState.eventDetails?.eventImageUrls ?: emptyList(),
-                modifier = Modifier.fillMaxWidth(),
-            )
-            EventDetailsScreenContent(
-                eventDetailsState = eventDetailsState,
-                modifier =
-                    Modifier
-                        .padding(12.dp)
-                        .fillMaxSize(),
-            )
+            eventDetailsState.eventDetails?.let { eventDetails ->
+                EventDetailsImagePager(
+                    imageUrls = eventDetails.imageUrls,
+                    modifier = Modifier.fillMaxWidth(),
+                )
+                EventDetailsScreenContent(
+                    eventDetails = eventDetails,
+                    modifier =
+                        Modifier
+                            .padding(horizontal = 18.dp, vertical = 12.dp)
+                            .fillMaxSize(),
+                )
+            }
         }
     }
 }

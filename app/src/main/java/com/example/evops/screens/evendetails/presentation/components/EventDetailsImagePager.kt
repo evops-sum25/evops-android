@@ -13,6 +13,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.example.evops.R
+import com.example.evops.core.common.Config
 import com.example.evops.screens.PreviewData
 
 @Composable
@@ -25,7 +26,7 @@ fun EventDetailsImagePager(imageIds: List<String>, modifier: Modifier = Modifier
 
 @Composable
 private fun EventDetailsImage(imageId: String, modifier: Modifier = Modifier) {
-    val imageUrl = "http://10.0.2.2:8080/v1/events/images/$imageId"
+    val imageUrl = Config.constructImageUrl(imageId)
     AsyncImage(
         model = ImageRequest.Builder(LocalContext.current).data(imageUrl).build(),
         contentDescription = stringResource(R.string.description_event_image_preview),

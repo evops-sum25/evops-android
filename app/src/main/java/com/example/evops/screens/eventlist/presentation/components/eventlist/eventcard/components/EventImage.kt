@@ -20,11 +20,12 @@ import androidx.compose.ui.unit.dp
 import coil.compose.SubcomposeAsyncImage
 import coil.request.ImageRequest
 import com.example.evops.R
+import com.example.evops.core.common.Config
 import com.example.evops.screens.PreviewData
 
 @Composable
 fun EventImage(imageId: String, modifier: Modifier = Modifier) {
-    val imageUrl = "http://10.0.2.2:8080/v1/events/images/$imageId"
+    val imageUrl = Config.constructImageUrl(imageId)
     val context = LocalContext.current
     val imageRequest = remember(imageUrl) { ImageRequest.Builder(context).data(imageUrl).build() }
 

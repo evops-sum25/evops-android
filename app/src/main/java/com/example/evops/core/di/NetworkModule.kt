@@ -1,20 +1,18 @@
 package com.example.evops.core.di
 
+import com.example.evops.core.common.Config
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import javax.inject.Singleton
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
 object NetworkModule {
-    private const val DEV_URL = "http://10.0.2.2:8080"
-    private const val PROD_URL = "http://31.59.170.53:8080"
-
     @Provides
     @Singleton
     fun provideOkHttpClient(): OkHttpClient {
@@ -31,7 +29,7 @@ object NetworkModule {
     @Singleton
     fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit {
         return Retrofit.Builder()
-            .baseUrl(DEV_URL)
+            .baseUrl(Config.BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .client(okHttpClient)
             .build()

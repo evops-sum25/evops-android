@@ -12,8 +12,8 @@ data class EventDto(
     val createdAt: String,
     val description: String,
     val id: String,
-    @SerializedName("image_urls")
-    val imageUrls: List<String>,
+    @SerializedName("image_ids")
+    val imageIds: List<String>,
     @SerializedName("modified_at")
     val modifiedAt: String,
     val tags: List<TagDto>,

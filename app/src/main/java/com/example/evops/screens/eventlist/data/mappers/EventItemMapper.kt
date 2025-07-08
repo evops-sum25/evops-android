@@ -17,7 +17,7 @@ object EventItemMapper {
             id = this.id,
             title = this.title,
             author = this.author.toDomain(),
-            imageUrl = this.imageUrls.firstOrNull() ?: "", // TODO("add default url")
+            imageUrl = this.imageIds.firstOrNull() ?: "", // TODO("add default url")
             attendeesCount = 0u, // TODO("create default attendees count")
             place = "UI", // TODO("create default place")
             date = LocalDate.now(), // TODO("create default date")

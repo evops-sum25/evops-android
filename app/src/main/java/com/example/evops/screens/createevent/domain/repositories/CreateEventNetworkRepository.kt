@@ -8,8 +8,5 @@ interface CreateEventNetworkRepository {
 
     suspend fun createAuthor(userForm: CreateAuthorForm)
 
-    suspend fun createEvent(
-        eventForm: CreateEventForm,
-        userId: String,
-    )
+    suspend fun createEvent(eventForm: CreateEventForm, userId: String)
 }

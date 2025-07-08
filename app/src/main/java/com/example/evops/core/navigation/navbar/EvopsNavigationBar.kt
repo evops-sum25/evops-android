@@ -10,10 +10,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 
 @Composable
-fun EvopsNavigationBar(
-    navController: NavHostController,
-    modifier: Modifier = Modifier,
-) {
+fun EvopsNavigationBar(navController: NavHostController, modifier: Modifier = Modifier) {
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     val currentDestination = navBackStackEntry?.destination
 
@@ -26,7 +23,7 @@ fun EvopsNavigationBar(
                     onNavItemClick(
                         navController = navController,
                         navItem = navItem,
-                        isNotSelected = !isSelected
+                        isNotSelected = !isSelected,
                     )
                 },
                 isSelected = isSelected,
@@ -52,7 +49,7 @@ private fun String.shortRoute(): String? {
 private fun onNavItemClick(
     navController: NavHostController,
     navItem: NavItemData,
-    isNotSelected: Boolean
+    isNotSelected: Boolean,
 ) {
     navController.navigate(navItem.subGraph) {
         popUpTo(navController.graph.startDestinationId) { saveState = isNotSelected }

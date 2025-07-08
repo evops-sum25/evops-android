@@ -24,18 +24,12 @@ import com.example.evops.R
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun EventDetailsTopBar(
-    navController: NavController,
-    modifier: Modifier = Modifier,
-) {
+fun EventDetailsTopBar(navController: NavController, modifier: Modifier = Modifier) {
     Row(
         horizontalArrangement = Arrangement.spacedBy(4.dp),
         verticalAlignment = Alignment.CenterVertically,
         modifier =
-            modifier
-                .fillMaxWidth()
-                .background(MaterialTheme.colorScheme.background)
-                .padding(4.dp),
+            modifier.fillMaxWidth().background(MaterialTheme.colorScheme.background).padding(4.dp),
     ) {
         NavigateBackButton(onClick = { navController.popBackStack() })
         ScreenTitle()
@@ -52,14 +46,8 @@ private fun ScreenTitle(modifier: Modifier = Modifier) {
 }
 
 @Composable
-private fun NavigateBackButton(
-    onClick: () -> Unit,
-    modifier: Modifier = Modifier,
-) {
-    IconButton(
-        onClick = onClick,
-        modifier = modifier,
-    ) {
+private fun NavigateBackButton(onClick: () -> Unit, modifier: Modifier = Modifier) {
+    IconButton(onClick = onClick, modifier = modifier) {
         Icon(
             imageVector = Icons.AutoMirrored.Rounded.ArrowBack,
             contentDescription = stringResource(R.string.description_navigate_back_icon),
@@ -70,8 +58,5 @@ private fun NavigateBackButton(
 @Preview
 @Composable
 private fun EventDetailsTopBarPreview() {
-    EventDetailsTopBar(
-        navController = rememberNavController(),
-        modifier = Modifier.fillMaxWidth(),
-    )
+    EventDetailsTopBar(navController = rememberNavController(), modifier = Modifier.fillMaxWidth())
 }

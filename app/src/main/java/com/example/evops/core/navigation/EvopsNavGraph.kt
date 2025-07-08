@@ -13,34 +13,19 @@ import com.example.evops.screens.evendetails.presentation.EventDetailsScreen
 import com.example.evops.screens.eventlist.presentation.EventListScreen
 
 @Composable
-fun EvopsNavGraph(
-    navController: NavHostController,
-    modifier: Modifier = Modifier,
-) {
-    NavHost(
-        navController = navController,
-        startDestination = SubGraph.Home,
-        modifier = modifier,
-    ) {
-        navigation<SubGraph.Home>(
-            startDestination = Destination.EventList,
-        ) {
-            composable<Destination.EventList> {
-                EventListScreen(navController = navController)
-            }
+fun EvopsNavGraph(navController: NavHostController, modifier: Modifier = Modifier) {
+    NavHost(navController = navController, startDestination = SubGraph.Home, modifier = modifier) {
+        navigation<SubGraph.Home>(startDestination = Destination.EventList) {
+            composable<Destination.EventList> { EventListScreen(navController = navController) }
             composable<Destination.EventDetails>(
                 enterTransition = ::slideInToLeft,
-                exitTransition = ::slideOutToRight
+                exitTransition = ::slideOutToRight,
             ) {
                 EventDetailsScreen(navController = navController)
             }
         }
-        navigation<SubGraph.CreateEvent>(
-            startDestination = Destination.CreateEvent,
-        ) {
-            composable<Destination.CreateEvent> {
-                CreateEventScreen()
-            }
+        navigation<SubGraph.CreateEvent>(startDestination = Destination.CreateEvent) {
+            composable<Destination.CreateEvent> { CreateEventScreen() }
         }
     }
 }

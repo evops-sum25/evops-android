@@ -23,13 +23,7 @@ fun EventListScreen(
     val listState by viewModel.listState.collectAsStateWithLifecycle()
 
     Column(modifier = modifier.fillMaxSize()) {
-        SearchField(
-            modifier =
-                Modifier.padding(
-                    horizontal = 18.dp,
-                    vertical = 4.dp,
-                ),
-        )
+        SearchField(modifier = Modifier.padding(horizontal = 18.dp, vertical = 4.dp))
 
         EventList(
             events = listState.events,
@@ -40,7 +34,4 @@ fun EventListScreen(
     }
 }
 
-@Preview
-@Composable
-private fun EventListScreenPreview() {
-}
+@Preview @Composable private fun EventListScreenPreview() {}

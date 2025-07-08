@@ -13,10 +13,7 @@ fun EventList(
     navController: NavController,
     modifier: Modifier = Modifier,
 ) {
-    SwipeRefreshWrapper(
-        onRefresh = onRefresh,
-        modifier = modifier.fillMaxSize(),
-    ) {
+    SwipeRefreshWrapper(onRefresh = onRefresh, modifier = modifier.fillMaxSize()) {
         EventListContent(
             events = events,
             navController = navController,

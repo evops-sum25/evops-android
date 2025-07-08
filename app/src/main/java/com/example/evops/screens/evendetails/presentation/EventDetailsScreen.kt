@@ -27,30 +27,22 @@ fun EventDetailsScreen(
 ) {
     val eventDetailsState by viewModel.eventDetailsState.collectAsStateWithLifecycle()
 
-    Scaffold(
-        topBar = { EventDetailsTopBar(navController = navController) },
-        modifier = modifier,
-    ) { innerPadding ->
+    Scaffold(topBar = { EventDetailsTopBar(navController = navController) }, modifier = modifier) {
+        innerPadding ->
         Column(
             verticalArrangement = Arrangement.Top,
             horizontalAlignment = Alignment.CenterHorizontally,
             modifier =
-                Modifier
-                    .verticalScroll(rememberScrollState())
-                    .fillMaxSize()
-                    .padding(innerPadding),
+                Modifier.verticalScroll(rememberScrollState()).fillMaxSize().padding(innerPadding),
         ) {
             eventDetailsState.eventDetails?.let { eventDetails ->
                 EventDetailsImagePager(
-                    imageUrls = eventDetails.imageUrls,
+                    imageIds = eventDetails.imageUrls,
                     modifier = Modifier.fillMaxWidth(),
                 )
                 EventDetailsScreenContent(
                     eventDetails = eventDetails,
-                    modifier =
-                        Modifier
-                            .padding(horizontal = 18.dp, vertical = 12.dp)
-                            .fillMaxSize(),
+                    modifier = Modifier.padding(horizontal = 18.dp, vertical = 12.dp).fillMaxSize(),
                 )
             }
         }

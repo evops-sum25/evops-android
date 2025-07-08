@@ -11,29 +11,16 @@ import androidx.compose.ui.unit.dp
 import com.example.evops.screens.eventlist.domain.model.EventItemAuthor
 
 @Composable
-fun EventTitleAndAuthor(
-    title: String,
-    author: EventItemAuthor,
-    modifier: Modifier = Modifier,
-) {
+fun EventTitleAndAuthor(title: String, author: EventItemAuthor, modifier: Modifier = Modifier) {
     Column(modifier = modifier) {
-        EventTitle(
-            title = title,
-            modifier = Modifier.padding(bottom = 2.dp),
-        )
+        EventTitle(title = title, modifier = Modifier.padding(bottom = 2.dp))
 
-        EventAuthorInfo(
-            author = author,
-            modifier = Modifier,
-        )
+        EventAuthorInfo(author = author, modifier = Modifier)
     }
 }
 
 @Composable
-private fun EventTitle(
-    title: String,
-    modifier: Modifier = Modifier,
-) {
+private fun EventTitle(title: String, modifier: Modifier = Modifier) {
     Text(
         text = title,
         style = MaterialTheme.typography.titleMedium,
@@ -44,10 +31,7 @@ private fun EventTitle(
 }
 
 @Composable
-private fun EventAuthorInfo(
-    author: EventItemAuthor,
-    modifier: Modifier = Modifier,
-) {
+private fun EventAuthorInfo(author: EventItemAuthor, modifier: Modifier = Modifier) {
     Text(
         text = author.name,
         style = MaterialTheme.typography.bodyMedium,

@@ -25,17 +25,13 @@ fun EventListContent(
     modifier: Modifier = Modifier,
 ) {
     LazyColumn(state = rememberLazyListState(), modifier = modifier) {
-        items(
-            items = events,
-            key = { event -> event.id },
-        ) { event ->
+        items(items = events, key = { event -> event.id }) { event ->
             EventCard(
                 eventData = event,
                 modifier =
-                    Modifier
-                        .fillMaxWidth()
-                        .padding(bottom = 18.dp)
-                        .clickable { navController.navigate(Destination.EventDetails(eventId = event.id)) },
+                    Modifier.fillMaxWidth().padding(bottom = 18.dp).clickable {
+                        navController.navigate(Destination.EventDetails(eventId = event.id))
+                    },
             )
         }
     }
@@ -45,12 +41,7 @@ fun EventListContent(
 @Composable
 private fun EventListPreview() {
     EventListContent(
-        events =
-            listOf(
-                PreviewData.eventItem,
-                PreviewData.eventItem,
-                PreviewData.eventItem,
-            ),
+        events = listOf(PreviewData.eventItem, PreviewData.eventItem, PreviewData.eventItem),
         navController = rememberNavController(),
         modifier = Modifier.fillMaxSize(),
     )

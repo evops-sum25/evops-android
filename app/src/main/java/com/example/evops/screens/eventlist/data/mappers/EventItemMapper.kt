@@ -23,9 +23,5 @@ object EventItemMapper {
             date = LocalDate.now(), // TODO("create default date")
         )
 
-    fun AuthorDto.toDomain() =
-        EventItemAuthor(
-            id = this.id,
-            name = this.name,
-        )
+    fun AuthorDto.toDomain() = EventItemAuthor(id = this.id, name = this.name)
 }

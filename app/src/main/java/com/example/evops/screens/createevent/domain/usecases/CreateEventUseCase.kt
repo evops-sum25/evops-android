@@ -6,17 +6,15 @@ import com.example.evops.screens.createevent.domain.repositories.CreateEventNetw
 import javax.inject.Inject
 
 class CreateEventUseCase
-    @Inject
-    constructor(
-        private val createEventNetworkRepository: CreateEventNetworkRepository,
-    ) {
-        suspend operator fun invoke(eventForm: CreateEventForm) {
-            val userId = createEventNetworkRepository.getAuthorIds().lastOrNull()
-            userId?.let {
-                createEventNetworkRepository.createEvent(eventForm, userId)
-                return
-            }
-            createEventNetworkRepository.createAuthor(CreateAuthorForm(name = "Asqar Arslanov"))
-            this.invoke(eventForm)
+@Inject
+constructor(private val createEventNetworkRepository: CreateEventNetworkRepository) {
+    suspend operator fun invoke(eventForm: CreateEventForm) {
+        val userId = createEventNetworkRepository.getAuthorIds().lastOrNull()
+        userId?.let {
+            createEventNetworkRepository.createEvent(eventForm, userId)
+            return
         }
+        createEventNetworkRepository.createAuthor(CreateAuthorForm(name = "Asqar Arslanov"))
+        this.invoke(eventForm)
     }
+}

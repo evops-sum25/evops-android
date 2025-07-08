@@ -8,16 +8,12 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class EventDto(
     val author: AuthorDto,
-    @SerializedName("created_at")
-    val createdAt: String,
+    @SerializedName("created_at") val createdAt: String,
     val description: String,
     val id: String,
-    @SerializedName("image_ids")
-    val imageIds: List<String>,
-    @SerializedName("modified_at")
-    val modifiedAt: String,
+    @SerializedName("image_ids") val imageIds: List<String>,
+    @SerializedName("modified_at") val modifiedAt: String,
     val tags: List<TagDto>,
     val title: String,
-    @SerializedName("with_attendance")
-    val withAttendance: Boolean,
+    @SerializedName("with_attendance") val withAttendance: Boolean,
 )

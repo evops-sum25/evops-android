@@ -17,10 +17,7 @@ import com.example.evops.R
 import com.example.evops.screens.PreviewData
 
 @Composable
-fun EventAttendeesButton(
-    attendeesCount: UInt,
-    modifier: Modifier = Modifier,
-) {
+fun EventAttendeesButton(attendeesCount: UInt, modifier: Modifier = Modifier) {
     Row(
         horizontalArrangement = Arrangement.Start,
         verticalAlignment = Alignment.CenterVertically,
@@ -33,10 +30,7 @@ fun EventAttendeesButton(
 }
 
 @Composable
-private fun AttendIcon(
-    isAttending: Boolean,
-    modifier: Modifier = Modifier,
-) {
+private fun AttendIcon(isAttending: Boolean, modifier: Modifier = Modifier) {
     val iconVector =
         if (isAttending) {
             Icons.Filled.ThumbUp

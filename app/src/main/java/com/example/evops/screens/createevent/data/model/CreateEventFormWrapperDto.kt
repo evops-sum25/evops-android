@@ -4,7 +4,4 @@ import com.google.gson.annotations.SerializedName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class CreateEventFormWrapperDto(
-    @SerializedName("form")
-    val eventForm: CreateEventFormDto,
-)
+data class CreateEventFormWrapperDto(@SerializedName("form") val eventForm: CreateEventFormDto)

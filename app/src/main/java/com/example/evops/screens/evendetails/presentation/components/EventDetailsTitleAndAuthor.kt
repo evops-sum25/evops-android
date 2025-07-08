@@ -16,34 +16,19 @@ fun EventDetailsTitleAndAuthor(
     modifier: Modifier = Modifier,
 ) {
     Column(modifier = modifier) {
-        EventDetailsTitle(
-            title = title,
-            modifier = Modifier.padding(bottom = 2.dp),
-        )
+        EventDetailsTitle(title = title, modifier = Modifier.padding(bottom = 2.dp))
 
-        EventDetailsAuthorInfo(
-            author = author,
-        )
+        EventDetailsAuthorInfo(author = author)
     }
 }
 
 @Composable
-private fun EventDetailsTitle(
-    title: String,
-    modifier: Modifier = Modifier,
-) {
-    Text(
-        text = title,
-        style = MaterialTheme.typography.titleMedium,
-        modifier = modifier,
-    )
+private fun EventDetailsTitle(title: String, modifier: Modifier = Modifier) {
+    Text(text = title, style = MaterialTheme.typography.titleMedium, modifier = modifier)
 }
 
 @Composable
-private fun EventDetailsAuthorInfo(
-    author: EventDetailsAuthor,
-    modifier: Modifier = Modifier,
-) {
+private fun EventDetailsAuthorInfo(author: EventDetailsAuthor, modifier: Modifier = Modifier) {
     Text(
         text = author.name,
         style = MaterialTheme.typography.bodyMedium,

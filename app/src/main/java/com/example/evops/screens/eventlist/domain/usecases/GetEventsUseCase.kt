@@ -10,20 +10,17 @@ import java.io.IOException
 import javax.inject.Inject
 
 class GetEventsUseCase
-    @Inject
-    constructor(
-        private val eventListNetworkRepository: EventListNetworkRepository,
-    ) {
-        operator fun invoke(): Flow<Resource<List<EventItem>>> =
-            flow {
-                try {
-                    emit(Resource.Loading())
-                    val events = eventListNetworkRepository.getEvents()
-                    emit(Resource.Success(events))
-                } catch (e: HttpException) {
-                    emit(Resource.Error(e.localizedMessage ?: "An unexpected Http error occurred"))
-                } catch (_: IOException) {
-                    emit(Resource.Error("Could not reach server. Check your Internet connection"))
-                }
-            }
+@Inject
+constructor(private val eventListNetworkRepository: EventListNetworkRepository) {
+    operator fun invoke(): Flow<Resource<List<EventItem>>> = flow {
+        try {
+            emit(Resource.Loading())
+            val events = eventListNetworkRepository.getEvents()
+            emit(Resource.Success(events))
+        } catch (e: HttpException) {
+            emit(Resource.Error(e.localizedMessage ?: "An unexpected Http error occurred"))
+        } catch (_: IOException) {
+            emit(Resource.Error("Could not reach server. Check your Internet connection"))
+        }
     }
+}

@@ -18,14 +18,9 @@ object CreateEventMapper {
                     tagIds = this.tagIds,
                     title = this.title,
                     withAttendance = this.withAttendance,
-                ),
+                )
         )
 
     fun CreateAuthorForm.toData() =
-        CreateAuthorFormWrapperDto(
-            authorForm =
-                CreateAuthorFormDto(
-                    name = this.name,
-                ),
-        )
+        CreateAuthorFormWrapperDto(authorForm = CreateAuthorFormDto(name = this.name))
 }

@@ -23,17 +23,10 @@ import com.example.evops.R
 import com.example.evops.screens.PreviewData
 
 @Composable
-fun EventImage(
-    imageUrl: String,
-    modifier: Modifier = Modifier,
-) {
+fun EventImage(imageId: String, modifier: Modifier = Modifier) {
+    val imageUrl = "http://10.0.2.2:8080/v1/events/images/$imageId"
     val context = LocalContext.current
-    val imageRequest =
-        remember(imageUrl) {
-            ImageRequest.Builder(context)
-                .data(imageUrl)
-                .build()
-        }
+    val imageRequest = remember(imageUrl) { ImageRequest.Builder(context).data(imageUrl).build() }
 
     Box(modifier = modifier.aspectRatio(1f)) {
         // Background layer - blurred with proper scaling
@@ -43,10 +36,7 @@ fun EventImage(
             error = { LoadingImagePlaceholder() },
             contentScale = ContentScale.Crop,
             contentDescription = null,
-            modifier =
-                Modifier
-                    .matchParentSize()
-                    .blur(12.dp),
+            modifier = Modifier.matchParentSize().blur(12.dp),
         )
 
         // Foreground layer - properly fitted image
@@ -66,20 +56,14 @@ private fun LoadingImagePlaceholder(modifier: Modifier = Modifier) {
     Box(
         contentAlignment = Alignment.Center,
         modifier =
-            modifier
-                .background(MaterialTheme.colorScheme.surface)
-                .padding(96.dp)
-                .fillMaxSize(),
+            modifier.background(MaterialTheme.colorScheme.surface).padding(96.dp).fillMaxSize(),
     ) {
-        CircularProgressIndicator(
-            strokeWidth = 6.dp,
-            modifier = Modifier.fillMaxSize(),
-        )
+        CircularProgressIndicator(strokeWidth = 6.dp, modifier = Modifier.fillMaxSize())
     }
 }
 
 @Preview
 @Composable
 private fun EventImagePreview() {
-    EventImage(imageUrl = PreviewData.eventItem.imageUrl)
+    EventImage(imageId = PreviewData.eventItem.imageUrl)
 }

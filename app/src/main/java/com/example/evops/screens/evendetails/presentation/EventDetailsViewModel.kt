@@ -17,29 +17,29 @@ import javax.inject.Inject
 
 @HiltViewModel
 class EventDetailsViewModel
-    @Inject
-    constructor(
-        private val getEventDetailsUseCase: GetEventDetailsUseCase,
-        private val savedStateHandle: SavedStateHandle,
-    ) : ViewModel() {
-        private val _eventDetailsState = MutableStateFlow(EventDetailsState())
-        val eventDetailsState =
-            _eventDetailsState
-                .onStart { loadEventDetails() }
-                .stateIn(
-                    scope = viewModelScope,
-                    started = SharingStarted.WhileSubscribed(5000L),
-                    initialValue = EventDetailsState(),
-                )
+@Inject
+constructor(
+    private val getEventDetailsUseCase: GetEventDetailsUseCase,
+    private val savedStateHandle: SavedStateHandle,
+) : ViewModel() {
+    private val _eventDetailsState = MutableStateFlow(EventDetailsState())
+    val eventDetailsState =
+        _eventDetailsState
+            .onStart { loadEventDetails() }
+            .stateIn(
+                scope = viewModelScope,
+                started = SharingStarted.WhileSubscribed(5000L),
+                initialValue = EventDetailsState(),
+            )
 
-        fun loadEventDetails() {
-            val args = savedStateHandle.toRoute<Destination.EventDetails>()
-            viewModelScope.launch {
-                getEventDetailsUseCase(args.eventId).collect { result ->
-                    _eventDetailsState.update { currentState ->
-                        currentState.copy(eventDetails = result.data)
-                    }
+    fun loadEventDetails() {
+        val args = savedStateHandle.toRoute<Destination.EventDetails>()
+        viewModelScope.launch {
+            getEventDetailsUseCase(args.eventId).collect { result ->
+                _eventDetailsState.update { currentState ->
+                    currentState.copy(eventDetails = result.data)
                 }
             }
         }
     }
+}

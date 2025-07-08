@@ -8,11 +8,7 @@ import com.example.evops.screens.eventlist.domain.model.EventItemAuthor
 import java.time.LocalDate
 
 object PreviewData {
-    val eventItemAuthor =
-        EventItemAuthor(
-            id = "",
-            name = "BDSM",
-        )
+    val eventItemAuthor = EventItemAuthor(id = "", name = "BDSM")
     val eventItem =
         EventItem(
             id = "",
@@ -24,11 +20,7 @@ object PreviewData {
             date = LocalDate.now(),
         )
 
-    val eventDetailsAuthor =
-        EventDetailsAuthor(
-            id = "",
-            name = "BDSM",
-        )
+    val eventDetailsAuthor = EventDetailsAuthor(id = "", name = "BDSM")
     val eventDetails =
         EventDetails(
             author = eventDetailsAuthor,
@@ -47,6 +39,12 @@ object PreviewData {
             attendeesCount = 16u,
             place = "IU 108",
             date = LocalDate.now(),
-            tagsData = listOf(EventDetailsTag("BDSM"), EventDetailsTag("study"), EventDetailsTag("math"), EventDetailsTag("B23")),
+            tagsData =
+                listOf(
+                    EventDetailsTag("BDSM"),
+                    EventDetailsTag("study"),
+                    EventDetailsTag("math"),
+                    EventDetailsTag("B23"),
+                ),
         )
 }

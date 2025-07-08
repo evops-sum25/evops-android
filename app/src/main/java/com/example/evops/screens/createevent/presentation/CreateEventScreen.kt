@@ -22,16 +22,12 @@ fun CreateEventScreen(
     viewModel: CreateEventViewModel = hiltViewModel(),
 ) {
     val formState by viewModel.formState.collectAsState()
-    val isSubmitButtonActive =
-        formState.title.isNotBlank() && formState.description.isNotBlank()
+    val isSubmitButtonActive = formState.title.isNotBlank() && formState.description.isNotBlank()
 
     Column(
         verticalArrangement = Arrangement.Top,
         horizontalAlignment = Alignment.CenterHorizontally,
-        modifier =
-            modifier
-                .padding(horizontal = 12.dp)
-                .fillMaxSize(),
+        modifier = modifier.padding(horizontal = 12.dp).fillMaxSize(),
     ) {
         TitleTextField(
             title = formState.title,

@@ -21,14 +21,7 @@ object EventDetailsMapper {
             tagsData = this.event.tags.map { it.toDomain() },
         )
 
-    fun AuthorDto.toDomain() =
-        EventDetailsAuthor(
-            id = this.id,
-            name = this.name,
-        )
+    fun AuthorDto.toDomain() = EventDetailsAuthor(id = this.id, name = this.name)
 
-    fun TagDto.toDomain() =
-        EventDetailsTag(
-            name = this.name,
-        )
+    fun TagDto.toDomain() = EventDetailsTag(name = this.name)
 }

@@ -16,40 +16,22 @@ import com.example.evops.screens.evendetails.presentation.components.EventDetail
 import com.example.evops.screens.evendetails.presentation.components.EventDetailsTitleAndAuthor
 
 @Composable
-fun EventDetailsScreenContent(
-    eventDetails: EventDetails,
-    modifier: Modifier = Modifier,
-) {
-    Column(
-        verticalArrangement = Arrangement.spacedBy(12.dp),
-        modifier = modifier,
-    ) {
-        EventDetailsTitleAndAuthor(
-            title = eventDetails.title,
-            author = eventDetails.author,
-        )
+fun EventDetailsScreenContent(eventDetails: EventDetails, modifier: Modifier = Modifier) {
+    Column(verticalArrangement = Arrangement.spacedBy(12.dp), modifier = modifier) {
+        EventDetailsTitleAndAuthor(title = eventDetails.title, author = eventDetails.author)
 
-        EventDetailsDescription(
-            description = eventDetails.description,
-        )
+        EventDetailsDescription(description = eventDetails.description)
 
-        EventDetailsTags(
-            tagsData = eventDetails.tagsData,
-        )
+        EventDetailsTags(tagsData = eventDetails.tagsData)
 
         Row(
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.Top,
             modifier = Modifier.fillMaxWidth(),
         ) {
-            EventDetailsAttendeesButton(
-                attendeesCount = eventDetails.attendeesCount,
-            )
+            EventDetailsAttendeesButton(attendeesCount = eventDetails.attendeesCount)
 
-            EventDetailsPlaceAndDate(
-                place = eventDetails.place,
-                date = eventDetails.date,
-            )
+            EventDetailsPlaceAndDate(place = eventDetails.place, date = eventDetails.date)
         }
     }
 }

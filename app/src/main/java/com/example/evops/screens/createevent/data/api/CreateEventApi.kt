@@ -11,15 +11,10 @@ import retrofit2.http.POST
 
 interface CreateEventApi {
     @POST("/v1/events")
-    suspend fun createEvent(
-        @Body formDto: CreateEventFormWrapperDto,
-    ): EventWrapperDto
+    suspend fun createEvent(@Body formDto: CreateEventFormWrapperDto): EventWrapperDto
 
-    @GET("v1/users")
-    suspend fun getUsers(): AuthorListDto
+    @GET("v1/users") suspend fun getUsers(): AuthorListDto
 
     @POST("v1/users")
-    suspend fun createUser(
-        @Body formDto: CreateAuthorFormWrapperDto,
-    ): AuthorWrapperDto
+    suspend fun createUser(@Body formDto: CreateAuthorFormWrapperDto): AuthorWrapperDto
 }

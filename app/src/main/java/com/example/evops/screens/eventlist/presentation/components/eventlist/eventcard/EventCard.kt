@@ -15,42 +15,33 @@ import com.example.evops.screens.eventlist.presentation.components.eventlist.eve
 import com.example.evops.screens.eventlist.presentation.components.eventlist.eventcard.components.EventTitleAndAuthor
 
 @Composable
-fun EventCard(
-    eventData: EventItem,
-    modifier: Modifier = Modifier,
-) {
+fun EventCard(eventData: EventItem, modifier: Modifier = Modifier) {
     Column(
         verticalArrangement = Arrangement.Top,
         horizontalAlignment = Alignment.Start,
         modifier = modifier.fillMaxWidth(),
     ) {
-        EventImage(
-            imageUrl = eventData.imageUrl,
-            modifier = Modifier.fillMaxWidth(),
-        )
+        EventImage(imageId = eventData.imageUrl, modifier = Modifier.fillMaxWidth())
 
         EventTitleAndAuthor(
             title = eventData.title,
             author = eventData.author,
-            modifier =
-                Modifier
-                    .padding(horizontal = 18.dp, vertical = 12.dp)
-                    .fillMaxWidth(),
+            modifier = Modifier.padding(horizontal = 18.dp, vertical = 12.dp).fillMaxWidth(),
         )
 
-//        Row(
-//            horizontalArrangement = Arrangement.Start,
-//            verticalAlignment = Alignment.CenterVertically,
-//            modifier = Modifier.padding(horizontal = 18.dp),
-//        ) {
-//            EventAttendeesButton(attendeesCount = eventData.attendeesCount)
-//
-//            EventPlaceAndDate(
-//                place = eventData.place,
-//                date = eventData.date,
-//                modifier = Modifier.weight(1f),
-//            )
-//        }
+        //        Row(
+        //            horizontalArrangement = Arrangement.Start,
+        //            verticalAlignment = Alignment.CenterVertically,
+        //            modifier = Modifier.padding(horizontal = 18.dp),
+        //        ) {
+        //            EventAttendeesButton(attendeesCount = eventData.attendeesCount)
+        //
+        //            EventPlaceAndDate(
+        //                place = eventData.place,
+        //                date = eventData.date,
+        //                modifier = Modifier.weight(1f),
+        //            )
+        //        }
     }
 }
 

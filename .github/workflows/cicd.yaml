@@ -1,7 +1,6 @@
 name: CD Pipeline (Manual Release)
 
-on:
-  push 
+on: push
 
 jobs:
   release:
@@ -12,11 +11,14 @@ jobs:
       - name: Set up JDK
         uses: actions/setup-java@v3
         with:
-          distribution: 'temurin'
-          java-version: '17'
+          distribution: "temurin"
+          java-version: "17"
 
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
+
+      - name: Format Kotlin code with ktfmt
+        run: ./gradlew ktfmtFormat
 
       - name: Build with Gradle
         run: ./gradlew build
@@ -24,9 +26,9 @@ jobs:
       - name: Create Release
         uses: actions/create-release@v1
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Автоматически доступен в GitHub Actions
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Автоматически доступен в GitHub Actions
         with:
-          tag_name: v${{ github.run_number }}  # Используем номер запуска как тег
+          tag_name: v${{ github.run_number }} # Используем номер запуска как тег
           release_name: Release v${{ github.run_number }}
           draft: false
           prerelease: false

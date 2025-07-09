@@ -7,39 +7,7 @@ on:
     branches: [cicd]
 
 jobs:
-  build-and-test:
-    name: Build and Test
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Set up JDK
-        uses: actions/setup-java@v4
-        with:
-          java-version: "17"
-          distribution: "temurin"
-          cache: "gradle"
-
-      - name: Grant execute permission for gradlew
-        run: chmod +x gradlew
-
-      - name: Format Kotlin code with ktfmt
-        run: ./gradlew ktfmtFormat
-
-      - name: Build with Gradle
-        run: ./gradlew build
-
-      - name: Run tests
-        run: ./gradlew test
-
-      - name: Upload test results
-        uses: actions/upload-artifact@v4
-        if: always()
-        with:
-          name: test-results
-          path: build/reports/tests/test
+  
 
   create-release:
     name: Create Release
@@ -59,6 +27,9 @@ jobs:
 
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
+
+      - name: Format Kotlin code with ktfmt
+        run: ./gradlew ktfmtFormat
 
       - name: Build with Gradle
         run: ./gradlew build

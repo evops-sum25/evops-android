@@ -1,37 +1,32 @@
-name: Android Build and Release
+name: CD Pipeline (Manual Release)
 
 on:
-  push:
-    tags: ["v*"] # Запускать при создании тега v1.0, v2.0 и т.д.
+  workflow_dispatch:  # Позволяет запускать вручную через UI GitHub Actions
 
 jobs:
-  build:
+  release:
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v4
 
       - name: Set up JDK
         uses: actions/setup-java@v3
         with:
-          java-version: "17"
-          distribution: "temurin"
+          distribution: 'temurin'
+          java-version: '17'
 
-      - name: Build Release APK
-        run: |
-          chmod +x gradlew
-          ./gradlew assembleRelease
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
 
-      - name: Upload APK
-        uses: actions/upload-artifact@v4
-        with:
-          name: app-release
-          path: app/build/outputs/apk/release/*.apk
+      - name: Build with Gradle
+        run: ./gradlew build
 
       - name: Create Release
-        uses: softprops/action-gh-release@v1
+        uses: actions/create-release@v1
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        if: startsWith(github.ref, 'refs/tags/')
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Автоматически доступен в GitHub Actions
         with:
-          files: app/build/outputs/apk/release/*.apk
+          tag_name: v${{ github.run_number }}  # Используем номер запуска как тег
+          release_name: Release v${{ github.run_number }}
+          draft: false
+          prerelease: false

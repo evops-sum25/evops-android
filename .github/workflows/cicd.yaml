@@ -1,7 +1,7 @@
 name: CD Pipeline (Manual Release)
 
 on:
-  workflow_dispatch:  # Позволяет запускать вручную через UI GitHub Actions
+  push 
 
 jobs:
   release:

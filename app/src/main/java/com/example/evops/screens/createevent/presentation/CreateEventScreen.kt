@@ -1,49 +1,68 @@
 package com.example.evops.screens.createevent.presentation
 
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.PickVisualMediaRequest
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.SnackbarHost
+import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.ui.Alignment
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.dp
+import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.example.evops.screens.createevent.presentation.components.DescriptionTextField
-import com.example.evops.screens.createevent.presentation.components.SubmitButton
-import com.example.evops.screens.createevent.presentation.components.TitleTextField
-import com.example.evops.screens.createevent.presentation.components.WithAttendanceSwitch
+import com.example.evops.R
+import com.example.evops.screens.createevent.presentation.components.CreateEventScreenContent
+import kotlinx.coroutines.launch
 
 @Composable
 fun CreateEventScreen(
     modifier: Modifier = Modifier,
     viewModel: CreateEventViewModel = hiltViewModel(),
 ) {
+    val coroutineScope = rememberCoroutineScope()
     val formState by viewModel.formState.collectAsState()
-    val isSubmitButtonActive = formState.title.isNotBlank() && formState.description.isNotBlank()
+    val snackbarHostState = remember { SnackbarHostState() }
 
-    Column(
-        verticalArrangement = Arrangement.Top,
-        horizontalAlignment = Alignment.CenterHorizontally,
-        modifier = modifier.padding(horizontal = 12.dp).fillMaxSize(),
-    ) {
-        TitleTextField(
-            title = formState.title,
-            onEvent = viewModel::onEvent,
-            modifier = Modifier.padding(vertical = 4.dp),
+    val mediaPickerLauncher =
+        rememberLauncherForActivityResult(
+            contract =
+                ActivityResultContracts.PickMultipleVisualMedia(
+                    maxItems = formState.maxSelectableItems.takeUnless { it == 0 } ?: 2
+                ),
+            onResult = { uris ->
+                viewModel.onEvent(CreateEventEvent.AddImages(uris))
+                viewModel.onEvent(CreateEventEvent.OpenHideImagePicker(shouldOpen = false))
+            },
         )
-        DescriptionTextField(
-            description = formState.description,
+
+    LaunchedEffect(formState.isImagePickerOpened) {
+        if (formState.isImagePickerOpened) {
+            mediaPickerLauncher.launch(
+                PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly)
+            )
+        }
+    }
+
+    val message = stringResource(R.string.event_successfully_posted)
+    LaunchedEffect(formState.isSnackbarShown) {
+        if (formState.isSnackbarShown) {
+            coroutineScope.launch { snackbarHostState.showSnackbar(message) }
+            viewModel.onEvent(CreateEventEvent.HideShackbar)
+        }
+    }
+
+    Scaffold(snackbarHost = { SnackbarHost(hostState = snackbarHostState) }) { innerPaddings ->
+        CreateEventScreenContent(
+            formState = formState,
             onEvent = viewModel::onEvent,
-            modifier = Modifier.padding(vertical = 4.dp),
+            modifier = modifier.padding(innerPaddings).fillMaxSize(),
         )
-        WithAttendanceSwitch(
-            withAttendance = formState.withAttendance,
-            onEvent = viewModel::onEvent,
-            modifier = Modifier.padding(vertical = 4.dp),
-        )
-        SubmitButton(isActive = isSubmitButtonActive, onEvent = viewModel::onEvent)
     }
 }

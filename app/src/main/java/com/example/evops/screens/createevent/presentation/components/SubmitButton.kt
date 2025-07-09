@@ -1,6 +1,7 @@
 package com.example.evops.screens.createevent.presentation.components
 
 import androidx.compose.material3.Button
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -19,6 +20,6 @@ fun SubmitButton(
         enabled = isActive,
         modifier = modifier,
     ) {
-        Text(text = stringResource(R.string.submit))
+        Text(text = stringResource(R.string.submit), style = MaterialTheme.typography.bodyLarge)
     }
 }

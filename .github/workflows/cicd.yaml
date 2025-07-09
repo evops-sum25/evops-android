@@ -2,35 +2,39 @@ name: Build, Test and Release
 
 on:
   push:
-    branches: [ cicd ]
+    branches: [cicd]
   pull_request:
-    branches: [ cicd ]
+    branches: [cicd]
 
 jobs:
   build-and-test:
-    name: Build and Test
-    runs-on: ubuntu-latest
-    
-    steps:
+  name: Build and Test
+  runs-on: ubuntu-latest
+
+  steps:
     - name: Checkout code
       uses: actions/checkout@v4
-      
+
     - name: Set up JDK
       uses: actions/setup-java@v4
       with:
-        java-version: '17'
-        distribution: 'temurin'
-        cache: 'gradle'
-        
+        java-version: "17"
+        distribution: "temurin"
+        cache: "gradle"
+
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
-      
+
+    # Добавленный шаг для форматирования
+    - name: Format Kotlin code with ktfmt
+      run: ./gradlew ktfmtFormat
+
     - name: Build with Gradle
       run: ./gradlew build
-      
+
     - name: Run tests
       run: ./gradlew test
-      
+
     - name: Upload test results
       uses: actions/upload-artifact@v4
       if: always()
@@ -43,40 +47,40 @@ jobs:
     needs: build-and-test
     if: github.ref == 'refs/heads/cicd'
     runs-on: ubuntu-latest
-    
+
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
-      
-    - name: Set up JDK
-      uses: actions/setup-java@v4
-      with:
-        java-version: '17'
-        distribution: 'temurin'
-        
-    - name: Grant execute permission for gradlew
-      run: chmod +x gradlew
-      
-    - name: Build with Gradle
-      run: ./gradlew build
-      
-    - name: Get version from build
-      id: version
-      run: |
-        VERSION=$(./gradlew properties -q | grep "version:" | awk '{print $2}')
-        echo "version=$VERSION" >> $GITHUB_OUTPUT
-        
-    - name: Create Release
-      uses: softprops/action-gh-release@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        tag_name: v${{ steps.version.outputs.version }}
-        name: Release v${{ steps.version.outputs.version }}
-        body: |
-          Automatic release created by GitHub Actions
-          Version: ${{ steps.version.outputs.version }}
-        draft: false
-        prerelease: false
-        files: |
-          build/libs/*.jar
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up JDK
+        uses: actions/setup-java@v4
+        with:
+          java-version: "17"
+          distribution: "temurin"
+
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
+
+      - name: Build with Gradle
+        run: ./gradlew build
+
+      - name: Get version from build
+        id: version
+        run: |
+          VERSION=$(./gradlew properties -q | grep "version:" | awk '{print $2}')
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: v${{ steps.version.outputs.version }}
+          name: Release v${{ steps.version.outputs.version }}
+          body: |
+            Automatic release created by GitHub Actions
+            Version: ${{ steps.version.outputs.version }}
+          draft: false
+          prerelease: false
+          files: |
+            build/libs/*.jar

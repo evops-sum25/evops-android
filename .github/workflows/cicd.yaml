@@ -1,7 +1,8 @@
 name: CD Pipeline (Manual Release)
 
 on: push
-
+permissions:
+  contents: write
 jobs:
   release:
     runs-on: ubuntu-latest

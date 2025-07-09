@@ -3,6 +3,7 @@ package com.example.evops.screens.createevent.presentation
 import android.content.Context
 import android.net.Uri
 import android.provider.OpenableColumns
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.evops.screens.createevent.domain.model.CreateEventForm
@@ -22,9 +23,17 @@ class CreateEventViewModel
 constructor(
     private val createEventUseCase: CreateEventUseCase,
     @ApplicationContext private val context: Context,
+    private val savedStateHandle: SavedStateHandle,
 ) : ViewModel() {
-    private val _formState = MutableStateFlow(CreateEventState())
+    private val _formState =
+        MutableStateFlow(savedStateHandle.get<CreateEventState>("formState") ?: CreateEventState())
     val formState = _formState
+
+    init {
+        viewModelScope.launch {
+            _formState.collect { state -> savedStateHandle["formState"] = state }
+        }
+    }
 
     fun onEvent(event: CreateEventEvent) {
         when (event) {
@@ -51,6 +60,7 @@ constructor(
                         images = _formState.value.selectedUris.map { uri -> uri.toFile(context) },
                     )
                 }
+                _formState.value = CreateEventState(isSnackbarShown = true)
             }
 
             is CreateEventEvent.OpenHideImagePicker -> {
@@ -59,10 +69,32 @@ constructor(
                 }
             }
 
-            is CreateEventEvent.UpdateImages -> {
+            is CreateEventEvent.AddImages -> {
                 _formState.update { currentState ->
                     currentState.copy(selectedUris = currentState.selectedUris + event.uris)
                 }
+            }
+
+            is CreateEventEvent.DeleteImages -> {
+                _formState.update { currentState ->
+                    currentState.copy(selectedUris = currentState.selectedUris - event.uris)
+                }
+            }
+
+            is CreateEventEvent.AddDeletingImage -> {
+                _formState.update { currentState ->
+                    currentState.copy(deletingUris = currentState.deletingUris + event.uri)
+                }
+            }
+
+            is CreateEventEvent.RemoveDeletingImage -> {
+                _formState.update { currentState ->
+                    currentState.copy(deletingUris = currentState.deletingUris - event.uri)
+                }
+            }
+
+            CreateEventEvent.HideShackbar -> {
+                _formState.update { currentState -> currentState.copy(isSnackbarShown = false) }
             }
         }
     }

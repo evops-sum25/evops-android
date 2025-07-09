@@ -9,14 +9,15 @@ import javax.inject.Inject
 class CreateEventUseCase
 @Inject
 constructor(private val createEventNetworkRepository: CreateEventNetworkRepository) {
-    suspend operator fun invoke(eventForm: CreateEventForm, images: List<File>) {
+    suspend operator fun invoke(eventForm: CreateEventForm, images: List<File>): Boolean {
         val userId = createEventNetworkRepository.getAuthorIds().lastOrNull()
         userId?.let {
             val eventId = createEventNetworkRepository.createEvent(eventForm, userId)
             images.forEach { image -> createEventNetworkRepository.postImage(eventId, image) }
-            return
+            return true
         }
         createEventNetworkRepository.createAuthor(CreateAuthorForm(name = "Asqar Arslanov"))
         this.invoke(eventForm, images)
+        return false
     }
 }

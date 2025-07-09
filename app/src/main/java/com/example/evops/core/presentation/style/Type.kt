@@ -36,6 +36,14 @@ val Typography =
                 lineHeight = 28.sp,
                 letterSpacing = 0.15.sp,
             ),
+        titleSmall =
+            TextStyle(
+                fontFamily = OpenSans,
+                fontWeight = FontWeight.Bold,
+                fontSize = 16.sp,
+                lineHeight = 20.sp,
+                letterSpacing = 0.25.sp,
+            ),
         bodyLarge =
             TextStyle(
                 fontFamily = OpenSans,

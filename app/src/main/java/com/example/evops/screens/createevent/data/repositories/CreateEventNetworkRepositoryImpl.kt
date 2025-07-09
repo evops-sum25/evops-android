@@ -23,13 +23,13 @@ class CreateEventNetworkRepositoryImpl(private val createEventApi: CreateEventAp
         return createEventApi.createEvent(eventForm.toData(userId)).eventId
     }
 
-    override suspend fun postImage(eventId: String, image: File) {
+    override suspend fun postImage(eventId: String, image: File): String {
         val imageMultipart =
             MultipartBody.Part.createFormData(
                 name = "image",
                 filename = image.name,
                 body = image.asRequestBody(),
             )
-        createEventApi.postImage(eventId = eventId, image = imageMultipart)
+        return createEventApi.postImage(eventId = eventId, image = imageMultipart).imageId
     }
 }

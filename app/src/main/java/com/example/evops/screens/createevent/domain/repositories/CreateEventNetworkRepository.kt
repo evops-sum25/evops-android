@@ -11,5 +11,5 @@ interface CreateEventNetworkRepository {
 
     suspend fun createEvent(eventForm: CreateEventForm, userId: String): String
 
-    suspend fun postImage(eventId: String, image: File)
+    suspend fun postImage(eventId: String, image: File): String
 }

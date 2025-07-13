@@ -81,4 +81,6 @@ dependencies {
     // Navigation
     implementation(libs.androidx.navigation.compose)
     testImplementation(kotlin("test"))
+
+    implementation(libs.androidx.appcompat)
 }

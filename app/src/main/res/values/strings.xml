@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">EvOps</string>
+    <string name="app_name" translatable="false">EvOps</string>
     <string name="description_publisher_avatar_preview">publisher avatar preview</string>
     <string name="description_event_image_preview">event image preview</string>
     <string name="description_disabled_attend_icon">disabled attend icon</string>
@@ -12,4 +12,5 @@
     <string name="remove_images">Remove Images</string>
     <string name="try_adding_some_images_to_the_event">Try adding some images to the event</string>
     <string name="event_successfully_posted">Event successfully posted</string>
+    <string name="with_attendance">With Attendance:</string>
 </resources>

@@ -20,12 +20,7 @@ fun EvopsNavigationBar(navController: NavHostController, modifier: Modifier = Mo
             val isSelected = navItem.isSelected(currentDestination)
             NavItem(
                 navItemData = navItem,
-                onClick = {
-                    onNavItemClick(
-                        navController = navController,
-                        navItem = navItem,
-                    )
-                },
+                onClick = { onNavItemClick(navController = navController, navItem = navItem) },
                 isSelected = isSelected,
                 modifier = Modifier,
             )
@@ -46,10 +41,7 @@ private fun String.shortRoute(): String? {
     return this.split(".").lastOrNull()
 }
 
-private fun onNavItemClick(
-    navController: NavHostController,
-    navItem: NavItemData,
-) {
+private fun onNavItemClick(navController: NavHostController, navItem: NavItemData) {
     navController.navigate(navItem.subGraph) {
         popUpTo(navController.graph.findStartDestination().id) {
             saveState = true

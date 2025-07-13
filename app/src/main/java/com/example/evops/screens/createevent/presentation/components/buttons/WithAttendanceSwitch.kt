@@ -10,7 +10,9 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import com.example.evops.R
 import com.example.evops.screens.createevent.presentation.CreateEventEvent
 
 @Composable
@@ -24,7 +26,7 @@ fun WithAttendanceSwitch(
         verticalAlignment = Alignment.CenterVertically,
         modifier = modifier.fillMaxWidth(),
     ) {
-        Text(text = "With Attendance:")
+        Text(text = stringResource(R.string.with_attendance))
 
         Spacer(modifier = Modifier.size(8.dp))
 

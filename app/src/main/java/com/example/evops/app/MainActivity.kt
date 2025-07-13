@@ -5,7 +5,6 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.WindowInsets
-import androidx.compose.foundation.layout.consumeWindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
@@ -22,13 +21,15 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
+        //                val langChanger = LanguageChanger()
+        //                langChanger.changeLanguage(applicationContext, "ru")
         setContent {
             EvOpsTheme {
                 val navController = rememberNavController()
                 Scaffold(
                     bottomBar = { EvopsNavigationBar(navController = navController) },
                     modifier = Modifier.fillMaxSize(),
-                    contentWindowInsets = WindowInsets(0.dp)
+                    contentWindowInsets = WindowInsets(0.dp),
                 ) { innerPadding ->
                     EvopsNavGraph(
                         navController = navController,

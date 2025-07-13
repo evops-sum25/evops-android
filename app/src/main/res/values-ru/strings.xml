@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="description_publisher_avatar_preview">Превью аватара автора</string>
+    <string name="description_event_image_preview">Превью изображения события</string>
+    <string name="description_disabled_attend_icon">Отключенная иконка посещение</string>
+    <string name="event_details">Детали события</string>
+    <string name="description_navigate_back_icon">Иконка навигации назад</string>
+    <string name="description">Описание</string>
+    <string name="title">Название</string>
+    <string name="submit">Создать</string>
+    <string name="add_images">Добавить изображения</string>
+    <string name="remove_images">Убрать изображения</string>
+    <string name="try_adding_some_images_to_the_event">Попробуйте добавить изображения к событию</string>
+    <string name="event_successfully_posted">Событие успешно создано</string>
+    <string name="with_attendance">Отмечать посещаемость:</string>
+</resources>

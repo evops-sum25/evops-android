@@ -28,19 +28,12 @@ fun SelectImagesField(
     modifier: Modifier = Modifier,
 ) {
     Column(modifier = modifier) {
-        if (selectedUris.isNotEmpty()) {
-            SelectedImages(
-                imageUris = selectedUris,
-                deletingUris = deletingUris,
-                onEvent = onEvent,
-                modifier = Modifier.fillMaxWidth().padding(vertical = 8.dp),
-            )
-        } else {
-            Text(
-                stringResource(R.string.try_adding_some_images_to_the_event),
-                modifier = Modifier.padding(vertical = 8.dp),
-            )
-        }
+        SelectedImages(
+            imageUris = selectedUris,
+            deletingUris = deletingUris,
+            onEvent = onEvent,
+            modifier = Modifier.fillMaxWidth().padding(vertical = 8.dp),
+        )
 
         Row(
             horizontalArrangement = Arrangement.End,

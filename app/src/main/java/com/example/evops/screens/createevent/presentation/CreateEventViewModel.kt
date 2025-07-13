@@ -10,12 +10,12 @@ import com.example.evops.screens.createevent.domain.model.CreateEventForm
 import com.example.evops.screens.createevent.domain.usecases.CreateEventUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.update
-import kotlinx.coroutines.launch
 import java.io.File
 import java.io.FileOutputStream
 import javax.inject.Inject
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
 
 @HiltViewModel
 class CreateEventViewModel
@@ -77,7 +77,10 @@ constructor(
 
             is CreateEventEvent.DeleteImages -> {
                 _formState.update { currentState ->
-                    currentState.copy(selectedUris = currentState.selectedUris - event.uris)
+                    currentState.copy(
+                        selectedUris = currentState.selectedUris - event.uris,
+                        deletingUris = emptyList(),
+                    )
                 }
             }
 

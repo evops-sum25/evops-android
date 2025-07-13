@@ -24,6 +24,13 @@ fun CreateEventScreenContent(
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = modifier.padding(horizontal = 12.dp).fillMaxSize(),
     ) {
+        SelectImagesField(
+            selectedUris = formState.selectedUris,
+            deletingUris = formState.deletingUris,
+            canAddMoreImages = formState.canAddMoreImages,
+            onEvent = onEvent,
+            modifier = Modifier.fillMaxWidth().padding(vertical = 4.dp),
+        )
         TitleTextField(
             title = formState.title,
             onEvent = onEvent,
@@ -33,13 +40,6 @@ fun CreateEventScreenContent(
             description = formState.description,
             onEvent = onEvent,
             modifier = Modifier.padding(vertical = 4.dp),
-        )
-        SelectImagesField(
-            selectedUris = formState.selectedUris,
-            deletingUris = formState.deletingUris,
-            canAddMoreImages = formState.canAddMoreImages,
-            onEvent = onEvent,
-            modifier = Modifier.fillMaxWidth().padding(vertical = 4.dp),
         )
         WithAttendanceSwitch(
             withAttendance = formState.withAttendance,

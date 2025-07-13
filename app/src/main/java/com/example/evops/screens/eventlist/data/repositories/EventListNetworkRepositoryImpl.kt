@@ -9,6 +9,6 @@ import javax.inject.Inject
 class EventListNetworkRepositoryImpl @Inject constructor(private val api: EventListApi) :
     EventListNetworkRepository {
     override suspend fun getEvents(): List<EventItem> {
-        return api.getEvents().toDomain()
+        return api.getEvents(pageSize = 20).toDomain()
     }
 }

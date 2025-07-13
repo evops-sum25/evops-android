@@ -1,4 +1,4 @@
-package com.example.evops.screens.createevent.presentation.components
+package com.example.evops.screens.createevent.presentation.components.text
 
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.text.KeyboardOptions
@@ -19,16 +19,17 @@ import com.example.evops.R
 import com.example.evops.screens.createevent.presentation.CreateEventEvent
 
 @Composable
-fun TitleTextField(
-    title: String,
+fun DescriptionTextField(
+    description: String,
     onEvent: (CreateEventEvent) -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    var textFieldValue by remember { mutableStateOf(TextFieldValue(title)) }
+    var textFieldValue by remember { mutableStateOf(TextFieldValue(description)) }
 
-    LaunchedEffect(title) {
-        if (title != textFieldValue.text) {
-            textFieldValue = TextFieldValue(text = title, selection = TextRange(title.length))
+    LaunchedEffect(description) {
+        if (description != textFieldValue.text) {
+            textFieldValue =
+                TextFieldValue(text = description, selection = TextRange(description.length))
         }
     }
 
@@ -36,16 +37,16 @@ fun TitleTextField(
         value = textFieldValue,
         onValueChange = {
             textFieldValue = it
-            onEvent(CreateEventEvent.UpdateTitle(it.text))
+            onEvent(CreateEventEvent.UpdateDescription(it.text))
         },
-        label = { TitleLabel() },
-        singleLine = true,
-        keyboardOptions = KeyboardOptions(imeAction = ImeAction.Next),
+        label = { DescriptionLabel() },
+        minLines = 3,
+        keyboardOptions = KeyboardOptions(imeAction = ImeAction.Done),
         modifier = modifier.fillMaxWidth(),
     )
 }
 
 @Composable
-private fun TitleLabel(modifier: Modifier = Modifier) {
-    Text(text = stringResource(R.string.title), modifier = modifier)
+private fun DescriptionLabel(modifier: Modifier = Modifier) {
+    Text(text = stringResource(R.string.description), modifier = modifier)
 }

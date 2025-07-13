@@ -3,8 +3,10 @@ package com.example.evops.screens.createevent.presentation
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.FabPosition
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
@@ -16,9 +18,12 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.evops.R
+import com.example.evops.core.presentation.components.topbar.TitledTopBar
 import com.example.evops.screens.createevent.presentation.components.CreateEventScreenContent
+import com.example.evops.screens.createevent.presentation.components.buttons.SubmitButton
 import kotlinx.coroutines.launch
 
 @Composable
@@ -58,11 +63,21 @@ fun CreateEventScreen(
         }
     }
 
-    Scaffold(snackbarHost = { SnackbarHost(hostState = snackbarHostState) }) { innerPaddings ->
+    val isSubmitButtonActive = formState.title.isNotBlank() && formState.description.isNotBlank()
+    Scaffold(
+        topBar = { TitledTopBar(title = stringResource(R.string.event_details)) },
+        snackbarHost = { SnackbarHost(hostState = snackbarHostState) },
+        floatingActionButton = {
+            SubmitButton(isActive = isSubmitButtonActive, onEvent = viewModel::onEvent)
+        },
+        floatingActionButtonPosition = FabPosition.EndOverlay,
+        contentWindowInsets = WindowInsets(0.dp),
+        modifier = modifier,
+    ) { innerPaddings ->
         CreateEventScreenContent(
             formState = formState,
             onEvent = viewModel::onEvent,
-            modifier = modifier.padding(innerPaddings).fillMaxSize(),
+            modifier = Modifier.padding(innerPaddings).fillMaxSize(),
         )
     }
 }

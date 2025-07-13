@@ -1,4 +1,4 @@
-package com.example.evops.screens.createevent.presentation.components
+package com.example.evops.screens.createevent.presentation.components.images
 
 import android.net.Uri
 import androidx.compose.foundation.layout.Arrangement

@@ -1,4 +1,4 @@
-package com.example.evops.core.navigation.navbar
+package com.example.evops.core.presentation.components.navbar
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.AddCircleOutline

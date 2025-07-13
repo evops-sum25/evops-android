@@ -1,8 +1,9 @@
 package com.example.evops.screens.eventlist.presentation
 
-import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
@@ -22,15 +23,16 @@ fun EventListScreen(
 ) {
     val listState by viewModel.listState.collectAsStateWithLifecycle()
 
-    Column(modifier = modifier.fillMaxSize()) {
-        SearchField(modifier = Modifier.padding(horizontal = 18.dp, vertical = 4.dp))
-
-        EventList(
-            events = listState.events,
-            onRefresh = viewModel::loadEvents,
-            navController = navController,
-            modifier = Modifier.fillMaxSize(),
-        )
+    Scaffold { innerPadding ->
+        Box(modifier = modifier.padding(innerPadding).fillMaxSize()) {
+            EventList(
+                events = listState.events,
+                onRefresh = viewModel::loadEvents,
+                navController = navController,
+                modifier = Modifier.fillMaxSize(),
+            )
+            SearchField(modifier = Modifier.padding(horizontal = 18.dp, vertical = 4.dp))
+        }
     }
 }
 

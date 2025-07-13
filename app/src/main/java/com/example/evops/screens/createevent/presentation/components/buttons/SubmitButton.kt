@@ -1,4 +1,4 @@
-package com.example.evops.screens.createevent.presentation.components
+package com.example.evops.screens.createevent.presentation.components.buttons
 
 import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme

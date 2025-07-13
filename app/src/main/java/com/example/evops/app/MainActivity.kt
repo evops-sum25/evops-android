@@ -4,13 +4,16 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.consumeWindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
 import androidx.navigation.compose.rememberNavController
 import com.example.evops.core.navigation.EvopsNavGraph
-import com.example.evops.core.navigation.navbar.EvopsNavigationBar
+import com.example.evops.core.presentation.components.navbar.EvopsNavigationBar
 import com.example.evops.core.presentation.style.EvOpsTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -25,6 +28,7 @@ class MainActivity : ComponentActivity() {
                 Scaffold(
                     bottomBar = { EvopsNavigationBar(navController = navController) },
                     modifier = Modifier.fillMaxSize(),
+                    contentWindowInsets = WindowInsets(0.dp)
                 ) { innerPadding ->
                     EvopsNavGraph(
                         navController = navController,

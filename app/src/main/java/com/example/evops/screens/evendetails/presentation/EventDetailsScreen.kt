@@ -12,12 +12,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
+import com.example.evops.R
+import com.example.evops.core.presentation.components.topbar.TitledTopBar
 import com.example.evops.screens.evendetails.presentation.components.EventDetailsImagePager
-import com.example.evops.screens.evendetails.presentation.components.EventDetailsTopBar
 
 @Composable
 fun EventDetailsScreen(
@@ -27,8 +29,15 @@ fun EventDetailsScreen(
 ) {
     val eventDetailsState by viewModel.eventDetailsState.collectAsStateWithLifecycle()
 
-    Scaffold(topBar = { EventDetailsTopBar(navController = navController) }, modifier = modifier) {
-        innerPadding ->
+    Scaffold(
+        topBar = {
+            TitledTopBar(
+                title = stringResource(R.string.event_details),
+                navController = navController,
+            )
+        },
+        modifier = modifier,
+    ) { innerPadding ->
         Column(
             verticalArrangement = Arrangement.Top,
             horizontalAlignment = Alignment.CenterHorizontally,

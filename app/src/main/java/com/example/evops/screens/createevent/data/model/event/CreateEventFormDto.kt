@@ -1,4 +1,4 @@
-package com.example.evops.screens.createevent.data.model
+package com.example.evops.screens.createevent.data.model.event
 
 import com.google.gson.annotations.SerializedName
 import kotlinx.serialization.Serializable

@@ -1,9 +1,9 @@
 package com.example.evops.screens.createevent.data.mappers
 
-import com.example.evops.screens.createevent.data.model.CreateAuthorFormDto
-import com.example.evops.screens.createevent.data.model.CreateAuthorFormWrapperDto
-import com.example.evops.screens.createevent.data.model.CreateEventFormDto
-import com.example.evops.screens.createevent.data.model.CreateEventFormWrapperDto
+import com.example.evops.screens.createevent.data.model.author.CreateAuthorFormDto
+import com.example.evops.screens.createevent.data.model.author.CreateAuthorFormWrapperDto
+import com.example.evops.screens.createevent.data.model.event.CreateEventFormDto
+import com.example.evops.screens.createevent.data.model.event.CreateEventFormWrapperDto
 import com.example.evops.screens.createevent.domain.model.CreateAuthorForm
 import com.example.evops.screens.createevent.domain.model.CreateEventForm
 

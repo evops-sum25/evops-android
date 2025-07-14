@@ -1,4 +1,4 @@
-package com.example.evops.screens.createevent.data.model
+package com.example.evops.screens.createevent.data.model.author
 
 import kotlinx.serialization.Serializable
 

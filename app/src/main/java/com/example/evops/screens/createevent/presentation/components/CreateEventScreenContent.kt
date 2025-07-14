@@ -15,6 +15,10 @@ import com.example.evops.screens.createevent.presentation.CreateEventEvent
 import com.example.evops.screens.createevent.presentation.CreateEventState
 import com.example.evops.screens.createevent.presentation.components.buttons.WithAttendanceSwitch
 import com.example.evops.screens.createevent.presentation.components.images.SelectImagesField
+import com.example.evops.screens.createevent.presentation.components.tags.CreateTagButton
+import com.example.evops.screens.createevent.presentation.components.tags.SearchTagTextField
+import com.example.evops.screens.createevent.presentation.components.tags.SelectedTags
+import com.example.evops.screens.createevent.presentation.components.tags.SuggestedTags
 import com.example.evops.screens.createevent.presentation.components.text.DescriptionTextField
 import com.example.evops.screens.createevent.presentation.components.text.TitleTextField
 
@@ -25,7 +29,7 @@ fun CreateEventScreenContent(
     modifier: Modifier = Modifier,
 ) {
     Column(
-        verticalArrangement = Arrangement.Top,
+        verticalArrangement = Arrangement.spacedBy(8.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier =
             modifier
@@ -37,22 +41,14 @@ fun CreateEventScreenContent(
             selectedUris = formState.selectedUris,
             canAddMoreImages = formState.canAddMoreImages,
             onEvent = onEvent,
-            modifier = Modifier.fillMaxWidth().padding(vertical = 4.dp),
+            modifier = Modifier.fillMaxWidth(),
         )
-        TitleTextField(
-            title = formState.title,
-            onEvent = onEvent,
-            modifier = Modifier.padding(vertical = 4.dp),
-        )
-        DescriptionTextField(
-            description = formState.description,
-            onEvent = onEvent,
-            modifier = Modifier.padding(vertical = 4.dp),
-        )
-        WithAttendanceSwitch(
-            withAttendance = formState.withAttendance,
-            onEvent = onEvent,
-            modifier = Modifier.padding(vertical = 4.dp),
-        )
+        TitleTextField(title = formState.title, onEvent = onEvent)
+        DescriptionTextField(description = formState.description, onEvent = onEvent)
+        SearchTagTextField(tagName = formState.searchingTagName, onEvent = onEvent)
+        CreateTagButton(onEvent = onEvent)
+        SuggestedTags(tags = formState.suggestedTags, onEvent = onEvent)
+        SelectedTags(tags = formState.selectedTags, onEvent = onEvent)
+        WithAttendanceSwitch(withAttendance = formState.withAttendance, onEvent = onEvent)
     }
 }

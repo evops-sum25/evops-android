@@ -24,6 +24,7 @@ import com.example.evops.R
 import com.example.evops.core.presentation.components.topbar.TitledTopBar
 import com.example.evops.screens.createevent.presentation.components.CreateEventScreenContent
 import com.example.evops.screens.createevent.presentation.components.buttons.SubmitButton
+import com.example.evops.screens.createevent.presentation.components.tags.CreateTagDialog
 import kotlinx.coroutines.launch
 
 @Composable
@@ -33,6 +34,7 @@ fun CreateEventScreen(
 ) {
     val coroutineScope = rememberCoroutineScope()
     val formState by viewModel.formState.collectAsState()
+    val tagFormState by viewModel.tagFormState.collectAsState()
     val snackbarHostState = remember { SnackbarHostState() }
 
     val mediaPickerLauncher =
@@ -78,5 +80,8 @@ fun CreateEventScreen(
             onEvent = viewModel::onEvent,
             modifier = Modifier.padding(innerPaddings).fillMaxSize(),
         )
+    }
+    if (formState.isAddTagFormOpen) {
+        CreateTagDialog(tagFormState = tagFormState, onEvent = viewModel::onEvent)
     }
 }

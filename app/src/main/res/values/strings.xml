@@ -14,4 +14,7 @@
     <string name="event_successfully_posted">Event successfully posted</string>
     <string name="with_attendance">With Attendance:</string>
     <string name="no_tags_found">No tags found</string>
+    <string name="tag_name">Tag Name</string>
+    <string name="create_tag">Create Tag</string>
+    <string name="submit_tag">Submit Tag</string>
 </resources>

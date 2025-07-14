@@ -20,7 +20,6 @@ object CreateEventMapper {
                 CreateEventFormDto(
                     authorId = authorId,
                     description = this.description,
-                    imageUrls = this.imageUrls,
                     tagIds = this.tagIds,
                     title = this.title,
                     withAttendance = this.withAttendance,

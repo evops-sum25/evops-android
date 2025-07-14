@@ -23,7 +23,7 @@ sealed interface CreateEventEvent {
 
     data class OpenHideAddTagForm(val shouldOpen: Boolean) : CreateEventEvent
 
-    data class GetTags(val tagName: String) : CreateEventEvent
+    data object GetTags : CreateEventEvent
 
     data class UpdateTagName(val name: String) : CreateEventEvent
 
@@ -38,4 +38,6 @@ sealed interface CreateEventEvent {
     data class SelectTag(val tag: UiTag) : CreateEventEvent
 
     data class UnselectTag(val tag: UiTag) : CreateEventEvent
+
+    data object DropAddTagForm : CreateEventEvent
 }

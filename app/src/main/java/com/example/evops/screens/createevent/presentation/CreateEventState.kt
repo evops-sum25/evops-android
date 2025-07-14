@@ -3,7 +3,6 @@ package com.example.evops.screens.createevent.presentation
 import android.net.Uri
 import android.os.Parcelable
 import com.example.evops.screens.createevent.domain.model.CreateEventTag
-import com.example.evops.screens.createevent.domain.model.CreateTagForm
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
@@ -24,12 +23,6 @@ data class CreateEventState(
 
     val canAddMoreImages
         get() = maxSelectableItems > 0
-}
-
-@Parcelize
-data class CreateTagState(val name: String = "", val aliases: List<String> = emptyList()) :
-    Parcelable {
-    fun toDomain() = CreateTagForm(name = name, aliases = aliases)
 }
 
 @Parcelize data class UiTag(val id: String, val name: String = "") : Parcelable

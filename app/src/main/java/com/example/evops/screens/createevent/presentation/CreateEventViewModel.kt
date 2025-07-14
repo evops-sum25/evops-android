@@ -15,6 +15,7 @@ import com.example.evops.screens.createevent.domain.usecases.GetTagsUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import java.io.File
@@ -113,7 +114,7 @@ constructor(
             }
             is CreateEventEvent.GetTags -> {
                 viewModelScope.launch {
-                    getTagsUseCase(event.tagName).collect { result ->
+                    getTagsUseCase(_formState.value.searchingTagName).collect { result ->
                         if (result.data?.isEmpty() ?: false) {
                             val shackbarMessage = context.getString(R.string.no_tags_found)
                             _formState.value = CreateEventState(snackbarMessage = shackbarMessage)
@@ -127,26 +128,13 @@ constructor(
             }
             is CreateEventEvent.SubmitTag -> {
                 viewModelScope.launch {
-                    createTagUseCase(tagForm = _tagFormState.value.toDomain()).collect { result ->
-                        _formState.update { currentState ->
-                            currentState.copy(isAddTagFormOpen = false)
-                        }
-                        _tagFormState.value = CreateTagState()
-                        val tagId = result.data
-                        tagId?.let {
-                            getTagUseCase(tagId = tagId).collect { result ->
-                                result.data?.let {
-                                    _formState.update { currentState ->
-                                        currentState.copy(
-                                            selectedTags = currentState.selectedTags + it.toUi()
-                                        )
-                                    }
-                                }
-                            }
-                        }
-                    }
+                    createTagUseCase(tagForm = _tagFormState.value.toDomain()).collect()
+                    onEvent(CreateEventEvent.GetTags)
                 }
+                _formState.update { currentState -> currentState.copy(isAddTagFormOpen = false) }
+                _tagFormState.value = CreateTagState()
             }
+
             is CreateEventEvent.UpdateTagAlias -> {
                 _tagFormState.update { currentState ->
                     val tagAliases = currentState.aliases.updated(event.id, event.alias)
@@ -166,14 +154,17 @@ constructor(
                     currentState.copy(selectedTags = currentState.selectedTags - event.tag)
                 }
             }
+            is CreateEventEvent.DropAddTagForm -> {
+                _formState.update { currentState -> currentState.copy(isAddTagFormOpen = false) }
+                _tagFormState.value = CreateTagState()
+            }
         }
     }
 
     private fun CreateEventState.toDomain() =
         CreateEventForm(
             description = this.description,
-            imageUrls = emptyList(),
-            tagIds = emptyList(),
+            tagIds = this.selectedTags.map { it.id },
             title = this.title,
             withAttendance = this.withAttendance,
         )

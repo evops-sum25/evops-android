@@ -1,30 +1,29 @@
-package com.example.evops.screens.evendetails.presentation.components
+package com.example.evops.screens.createevent.presentation.components.tags
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.evops.core.presentation.components.tag.EventTag
-import com.example.evops.screens.PreviewData
-import com.example.evops.screens.evendetails.domain.model.EventDetailsTag
+import com.example.evops.screens.createevent.presentation.CreateEventEvent
+import com.example.evops.screens.createevent.presentation.UiTag
 
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
-fun EventDetailsTags(tagsData: List<EventDetailsTag>, modifier: Modifier = Modifier) {
+fun SelectedTags(
+    tags: List<UiTag>,
+    onEvent: (CreateEventEvent) -> Unit,
+    modifier: Modifier = Modifier,
+) {
     FlowRow(
         horizontalArrangement = Arrangement.spacedBy(12.dp),
         verticalArrangement = Arrangement.spacedBy(12.dp),
         modifier = modifier,
     ) {
-        tagsData.forEach { tagData -> EventTag(name = tagData.name, onClick = {}) }
+        tags.forEach { tag ->
+            EventTag(name = tag.name, onClick = { onEvent(CreateEventEvent.UnselectTag(tag)) })
+        }
     }
-}
-
-@Preview
-@Composable
-private fun EventDetailsTagsPreview() {
-    EventDetailsTags(tagsData = PreviewData.eventDetails.tagsData)
 }

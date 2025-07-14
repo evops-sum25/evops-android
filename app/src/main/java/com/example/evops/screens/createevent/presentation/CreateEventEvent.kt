@@ -15,11 +15,7 @@ sealed interface CreateEventEvent {
 
     data class AddImages(val uris: List<Uri>) : CreateEventEvent
 
-    data class DeleteImages(val uris: List<Uri>) : CreateEventEvent
-
-    data class AddDeletingImage(val uri: Uri) : CreateEventEvent
-
-    data class RemoveDeletingImage(val uri: Uri) : CreateEventEvent
+    data class DeleteImage(val imageId: Int) : CreateEventEvent
 
     data object HideShackbar : CreateEventEvent
 }

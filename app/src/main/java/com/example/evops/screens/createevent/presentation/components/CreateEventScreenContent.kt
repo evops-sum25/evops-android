@@ -35,7 +35,6 @@ fun CreateEventScreenContent(
     ) {
         SelectImagesField(
             selectedUris = formState.selectedUris,
-            deletingUris = formState.deletingUris,
             canAddMoreImages = formState.canAddMoreImages,
             onEvent = onEvent,
             modifier = Modifier.fillMaxWidth().padding(vertical = 4.dp),

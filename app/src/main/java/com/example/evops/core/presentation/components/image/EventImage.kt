@@ -1,4 +1,4 @@
-package com.example.evops.screens.eventlist.presentation.components.eventlist.eventcard.components
+package com.example.evops.core.presentation.components.image
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box

@@ -9,7 +9,7 @@
     <string name="title">Title</string>
     <string name="submit">Submit</string>
     <string name="add_images">Add Images</string>
-    <string name="remove_images">Remove Images</string>
+    <string name="remove_images">Remove Image</string>
     <string name="try_adding_some_images_to_the_event">Try adding some images to the event</string>
     <string name="event_successfully_posted">Event successfully posted</string>
     <string name="with_attendance">With Attendance:</string>

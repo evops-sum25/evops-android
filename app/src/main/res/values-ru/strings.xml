@@ -9,7 +9,7 @@
     <string name="title">Название</string>
     <string name="submit">Создать</string>
     <string name="add_images">Добавить изображения</string>
-    <string name="remove_images">Убрать изображения</string>
+    <string name="remove_images">Убрать изображение</string>
     <string name="try_adding_some_images_to_the_event">Попробуйте добавить изображения к событию</string>
     <string name="event_successfully_posted">Событие успешно создано</string>
     <string name="with_attendance">Отмечать посещаемость:</string>

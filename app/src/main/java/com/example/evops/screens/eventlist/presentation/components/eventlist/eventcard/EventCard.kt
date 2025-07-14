@@ -11,7 +11,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.evops.screens.PreviewData.eventItem
 import com.example.evops.screens.eventlist.domain.model.EventItem
-import com.example.evops.screens.eventlist.presentation.components.eventlist.eventcard.components.EventImage
+import com.example.evops.core.presentation.components.image.EventImage
 import com.example.evops.screens.eventlist.presentation.components.eventlist.eventcard.components.EventTitleAndAuthor
 
 @Composable

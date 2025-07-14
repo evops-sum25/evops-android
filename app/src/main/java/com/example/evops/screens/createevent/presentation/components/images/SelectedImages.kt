@@ -2,8 +2,6 @@ package com.example.evops.screens.createevent.presentation.components.images
 
 import android.net.Uri
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
-import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
@@ -11,39 +9,24 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.PagerState
-import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.blur
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import coil.compose.SubcomposeAsyncImage
 import com.example.evops.R
-import com.example.evops.screens.createevent.presentation.CreateEventEvent
 
 @Composable
-fun SelectedImages(
-    imageUris: List<Uri>,
-    deletingUris: List<Uri>,
-    onEvent: (CreateEventEvent) -> Unit,
-    modifier: Modifier = Modifier,
-) {
-    val pagerState = rememberPagerState(initialPage = 0, pageCount = { imageUris.size })
+fun SelectedImages(imageUris: List<Uri>, pagerState: PagerState, modifier: Modifier = Modifier) {
 
     if (imageUris.isNotEmpty()) {
-        SelectedImagesPager(
-            pagerState = pagerState,
-            imageUris = imageUris,
-            deletingUris = deletingUris,
-            onEvent = onEvent,
-            modifier = modifier,
-        )
+        SelectedImagesPager(pagerState = pagerState, imageUris = imageUris, modifier = modifier)
     } else {
         NoImagesStub(modifier = modifier)
     }
@@ -53,54 +36,35 @@ fun SelectedImages(
 private fun SelectedImagesPager(
     pagerState: PagerState,
     imageUris: List<Uri>,
-    deletingUris: List<Uri>,
-    onEvent: (CreateEventEvent) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     HorizontalPager(state = pagerState, modifier = modifier) { page ->
         val imageUri = imageUris[page]
-        SelectedImage(
-            imageUri = imageUri,
-            isDeletingImage = deletingUris.contains(imageUri),
-            onEvent = onEvent,
-            modifier = Modifier.fillMaxWidth(),
-        )
+        SelectedImage(imageUri = imageUri, modifier = Modifier.fillMaxWidth())
     }
 }
 
 @Composable
-private fun SelectedImage(
-    imageUri: Uri,
-    isDeletingImage: Boolean,
-    onEvent: (CreateEventEvent) -> Unit,
-    modifier: Modifier = Modifier,
-) {
-    val event =
-        if (isDeletingImage) CreateEventEvent.RemoveDeletingImage(imageUri)
-        else CreateEventEvent.AddDeletingImage(imageUri)
-    Box(
-        modifier =
-            modifier
-                .aspectRatio(1f)
-                .clickable(
-                    interactionSource = remember { MutableInteractionSource() },
-                    indication = null,
-                    onClick = { onEvent(event) },
-                )
-    ) {
+private fun SelectedImage(imageUri: Uri, modifier: Modifier = Modifier) {
+    Box(modifier = modifier.aspectRatio(1f)) {
+        // Background layer - blurred with proper scaling
         SubcomposeAsyncImage(
             model = imageUri,
             loading = { LoadingImagePlaceholder() },
             error = { LoadingImagePlaceholder() },
             contentScale = ContentScale.Crop,
             contentDescription = null,
-            modifier = Modifier.matchParentSize(),
+            modifier = Modifier.matchParentSize().blur(12.dp),
         )
 
-        RadioButton(
-            selected = isDeletingImage,
-            onClick = { onEvent(event) },
-            modifier = Modifier.align(Alignment.TopEnd),
+        // Foreground layer - properly fitted image
+        SubcomposeAsyncImage(
+            model = imageUri,
+            loading = { LoadingImagePlaceholder() },
+            error = { LoadingImagePlaceholder() },
+            contentScale = ContentScale.Fit,
+            contentDescription = stringResource(R.string.description_event_image_preview),
+            modifier = Modifier.matchParentSize(),
         )
     }
 }

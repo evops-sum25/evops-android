@@ -11,7 +11,6 @@ data class CreateEventState(
     val withAttendance: Boolean = false,
     val isImagePickerOpened: Boolean = false,
     val selectedUris: List<Uri> = emptyList(),
-    val deletingUris: List<Uri> = emptyList(),
     val isSnackbarShown: Boolean = false,
 ) : Parcelable {
     val maxSelectableItems

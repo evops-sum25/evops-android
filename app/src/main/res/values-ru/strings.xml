@@ -13,4 +13,5 @@
     <string name="try_adding_some_images_to_the_event">Попробуйте добавить изображения к событию</string>
     <string name="event_successfully_posted">Событие успешно создано</string>
     <string name="with_attendance">Отмечать посещаемость:</string>
+    <string name="no_tags_found">No tags found</string>
 </resources>

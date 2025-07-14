@@ -13,4 +13,5 @@
     <string name="try_adding_some_images_to_the_event">Try adding some images to the event</string>
     <string name="event_successfully_posted">Event successfully posted</string>
     <string name="with_attendance">With Attendance:</string>
+    <string name="no_tags_found">No tags found</string>
 </resources>

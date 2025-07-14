@@ -9,6 +9,7 @@ import com.example.evops.screens.createevent.data.model.image.PostImageResponse
 import com.example.evops.screens.createevent.data.model.tag.CreateTagFormWrapperDto
 import com.example.evops.screens.createevent.data.model.tag.CreateTagResponse
 import com.example.evops.screens.createevent.data.model.tag.TagListDto
+import com.example.evops.screens.createevent.data.model.tag.TagWrapperDto
 import okhttp3.MultipartBody
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -16,6 +17,7 @@ import retrofit2.http.Multipart
 import retrofit2.http.POST
 import retrofit2.http.Part
 import retrofit2.http.Path
+import retrofit2.http.Query
 
 interface CreateEventApi {
     @POST("/v1/events")
@@ -34,6 +36,8 @@ interface CreateEventApi {
     ): PostImageResponse
 
     @GET("/v1/tags") suspend fun getTags(): TagListDto
+
+    @GET("/v1/tags/{id}") suspend fun getTag(@Query("id") tagId: String): TagWrapperDto
 
     @POST("/v1/tags")
     suspend fun createTag(@Body formDto: CreateTagFormWrapperDto): CreateTagResponse

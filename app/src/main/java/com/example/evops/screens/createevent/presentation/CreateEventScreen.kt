@@ -55,9 +55,8 @@ fun CreateEventScreen(
         }
     }
 
-    val message = stringResource(R.string.event_successfully_posted)
-    LaunchedEffect(formState.isSnackbarShown) {
-        if (formState.isSnackbarShown) {
+    LaunchedEffect(formState.snackbarMessage) {
+        formState.snackbarMessage?.let { message ->
             coroutineScope.launch { snackbarHostState.showSnackbar(message) }
             viewModel.onEvent(CreateEventEvent.HideShackbar)
         }

@@ -18,4 +18,24 @@ sealed interface CreateEventEvent {
     data class DeleteImage(val imageId: Int) : CreateEventEvent
 
     data object HideShackbar : CreateEventEvent
+
+    data class UpdateSearchingTagName(val name: String) : CreateEventEvent
+
+    data class OpenHideAddTagForm(val shouldOpen: Boolean) : CreateEventEvent
+
+    data class GetTags(val tagName: String) : CreateEventEvent
+
+    data class UpdateTagName(val name: String) : CreateEventEvent
+
+    data object AddTagAlias : CreateEventEvent
+
+    data class RemoveTagAlias(val tagId: Int) : CreateEventEvent
+
+    data class UpdateTagAlias(val alias: String, val id: Int) : CreateEventEvent
+
+    data object SubmitTag : CreateEventEvent
+
+    data class SelectTag(val tag: UiTag) : CreateEventEvent
+
+    data class UnselectTag(val tag: UiTag) : CreateEventEvent
 }

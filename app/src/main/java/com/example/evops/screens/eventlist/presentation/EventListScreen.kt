@@ -27,7 +27,7 @@ fun EventListScreen(
         Box(modifier = modifier.padding(innerPadding).fillMaxSize()) {
             EventList(
                 events = listState.events,
-                onRefresh = viewModel::loadEvents,
+                onEvent = viewModel::onEvent,
                 navController = navController,
                 modifier = Modifier.fillMaxSize(),
             )

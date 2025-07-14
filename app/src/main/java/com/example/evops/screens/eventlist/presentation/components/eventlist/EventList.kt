@@ -5,17 +5,22 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavController
 import com.example.evops.screens.eventlist.domain.model.EventItem
+import com.example.evops.screens.eventlist.presentation.EventListEvent
 
 @Composable
 fun EventList(
     events: List<EventItem>,
-    onRefresh: () -> Unit,
+    onEvent: (EventListEvent) -> Unit,
     navController: NavController,
     modifier: Modifier = Modifier,
 ) {
-    SwipeRefreshWrapper(onRefresh = onRefresh, modifier = modifier.fillMaxSize()) {
+    SwipeRefreshWrapper(
+        onRefresh = { onEvent(EventListEvent.LoadFirstEvents) },
+        modifier = modifier.fillMaxSize(),
+    ) {
         EventListContent(
             events = events,
+            onEvent = onEvent,
             navController = navController,
             modifier = Modifier.fillMaxSize(),
         )

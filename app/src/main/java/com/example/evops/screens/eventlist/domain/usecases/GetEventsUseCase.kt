@@ -12,10 +12,10 @@ import javax.inject.Inject
 class GetEventsUseCase
 @Inject
 constructor(private val eventListNetworkRepository: EventListNetworkRepository) {
-    operator fun invoke(): Flow<Resource<List<EventItem>>> = flow {
+    operator fun invoke(lastEventId: String? = null): Flow<Resource<List<EventItem>>> = flow {
         try {
             emit(Resource.Loading())
-            val events = eventListNetworkRepository.getEvents()
+            val events = eventListNetworkRepository.getEvents(lastEventId = lastEventId)
             emit(Resource.Success(events))
         } catch (e: HttpException) {
             emit(Resource.Error(e.localizedMessage ?: "An unexpected Http error occurred"))

@@ -18,18 +18,37 @@ class EventListViewModel @Inject constructor(private val getEventsUseCase: GetEv
     private val _listState = MutableStateFlow(EventListState())
     val listState =
         _listState
-            .onStart { loadEvents() }
+            .onStart { processLoadFirstEvents() }
             .stateIn(
                 scope = viewModelScope,
                 started = SharingStarted.WhileSubscribed(5000L),
                 initialValue = EventListState(),
             )
 
-    fun loadEvents() {
+    fun onEvent(event: EventListEvent) {
+        when (event) {
+            is EventListEvent.LoadFirstEvents -> processLoadFirstEvents()
+            is EventListEvent.LoadEvents -> processLoadEvents()
+        }
+    }
+
+    private fun processLoadFirstEvents() {
         viewModelScope.launch {
             getEventsUseCase().collect { result ->
                 _listState.update { currentState ->
                     currentState.copy(events = result.data ?: emptyList())
+                }
+            }
+        }
+    }
+
+    private fun processLoadEvents() {
+        val lastEventId = _listState.value.events.lastOrNull()?.id
+        viewModelScope.launch {
+            getEventsUseCase(lastEventId).collect { result ->
+                _listState.update { currentState ->
+                    val newEvents = result.data ?: emptyList()
+                    currentState.copy(events = currentState.events + newEvents)
                 }
             }
         }

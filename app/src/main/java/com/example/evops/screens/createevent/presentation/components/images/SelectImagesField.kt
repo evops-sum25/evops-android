@@ -8,7 +8,10 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.material3.Button
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.AttachFile
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
@@ -47,11 +50,11 @@ fun SelectImagesField(
                 Text(stringResource(R.string.remove_images))
             }
             Spacer(modifier = Modifier.size(8.dp))
-            Button(
+            IconButton(
                 onClick = { onEvent(CreateEventEvent.OpenHideImagePicker(true)) },
                 enabled = canAddMoreImages,
             ) {
-                Text(stringResource(R.string.add_images))
+                Icon(imageVector = Icons.Filled.AttachFile, contentDescription = null)
             }
         }
     }

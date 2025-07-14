@@ -70,7 +70,7 @@ fun CreateEventScreen(
         floatingActionButton = {
             SubmitButton(isActive = isSubmitButtonActive, onEvent = viewModel::onEvent)
         },
-        floatingActionButtonPosition = FabPosition.EndOverlay,
+        floatingActionButtonPosition = FabPosition.End,
         contentWindowInsets = WindowInsets(0.dp),
         modifier = modifier,
     ) { innerPaddings ->

@@ -21,8 +21,6 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        //                val langChanger = LanguageChanger()
-        //                langChanger.changeLanguage(applicationContext, "ru")
         setContent {
             EvOpsTheme {
                 val navController = rememberNavController()

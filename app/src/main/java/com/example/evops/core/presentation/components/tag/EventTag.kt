@@ -10,15 +10,21 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun EventTag(name: String, onClick: (() -> Unit)?, modifier: Modifier = Modifier) {
+fun EventTag(
+    name: String,
+    onClick: (() -> Unit)?,
+    color: Color = MaterialTheme.colorScheme.primaryContainer,
+    modifier: Modifier = Modifier,
+) {
     Row(
         modifier =
             modifier
                 .clip(RoundedCornerShape(8.dp))
-                .background(MaterialTheme.colorScheme.secondaryContainer)
+                .background(color)
                 .clickable(enabled = onClick != null) { onClick?.invoke() }
                 .padding(horizontal = 8.dp, vertical = 4.dp)
     ) {

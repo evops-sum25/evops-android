@@ -45,8 +45,13 @@ fun CreateEventScreenContent(
         TitleTextField(title = formState.title, onEvent = onEvent)
         DescriptionTextField(description = formState.description, onEvent = onEvent)
         SearchTagTextField(tagName = formState.searchingTagName, onEvent = onEvent)
-        SuggestedTags(tags = formState.suggestedTags, onEvent = onEvent)
-        SelectedTags(tags = formState.selectedTags, onEvent = onEvent)
+        SuggestedTags(
+            suggestedTags = formState.suggestedTags,
+            selectedTags = formState.selectedTags,
+            onEvent = onEvent,
+            modifier = Modifier.padding(vertical = 4.dp),
+        )
+        SelectedTags(selectedTags = formState.selectedTags, onEvent = onEvent)
         WithAttendanceSwitch(withAttendance = formState.withAttendance, onEvent = onEvent)
     }
 }

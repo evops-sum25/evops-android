@@ -57,7 +57,7 @@ private fun SearchTagLabel(modifier: Modifier = Modifier) {
 
 @Composable
 private fun SearchButton(onEvent: (CreateEventEvent) -> Unit, modifier: Modifier = Modifier) {
-    IconButton(onClick = { onEvent(CreateEventEvent.GetTags) }, modifier = modifier) {
+    IconButton(onClick = { onEvent(CreateEventEvent.SuggestTags) }, modifier = modifier) {
         Icon(imageVector = Icons.Rounded.Search, contentDescription = null)
     }
 }

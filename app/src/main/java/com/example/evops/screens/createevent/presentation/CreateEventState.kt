@@ -12,7 +12,6 @@ data class CreateEventState(
     val withAttendance: Boolean = false,
     val isImagePickerOpened: Boolean = false,
     val selectedUris: List<Uri> = emptyList(),
-    val snackbarMessage: String? = null,
     val searchingTagName: String = "",
     val isAddTagFormOpen: Boolean = false,
     val suggestedTags: List<UiTag> = emptyList(),

@@ -12,6 +12,7 @@ import com.example.evops.screens.createevent.domain.usecases.CreateEventUseCase
 import com.example.evops.screens.createevent.domain.usecases.CreateTagUseCase
 import com.example.evops.screens.createevent.domain.usecases.GetTagUseCase
 import com.example.evops.screens.createevent.domain.usecases.GetTagsUseCase
+import com.example.evops.screens.createevent.presentation.components.CreateEventSnackbarState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -39,6 +40,9 @@ constructor(
 
     private val _tagFormState = MutableStateFlow(CreateTagState())
     val tagFormState = _tagFormState
+
+    private val _snackbarState = MutableStateFlow(CreateEventSnackbarState())
+    val snackbarState = _snackbarState
 
     init {
         viewModelScope.launch {
@@ -68,8 +72,11 @@ constructor(
                         images = _formState.value.selectedUris.map { uri -> uri.toFile(context) },
                     )
                 }
-                val shackbarMessage = context.getString(R.string.event_successfully_posted)
-                _formState.value = CreateEventState(snackbarMessage = shackbarMessage)
+                val snackbarMessage = context.getString(R.string.event_successfully_posted)
+                _formState.value = CreateEventState()
+                _snackbarState.update { currentState ->
+                    currentState.copy(message = snackbarMessage)
+                }
             }
             is CreateEventEvent.OpenHideImagePicker -> {
                 _formState.update { currentState ->
@@ -89,7 +96,7 @@ constructor(
                 }
             }
             is CreateEventEvent.HideShackbar -> {
-                _formState.update { currentState -> currentState.copy(snackbarMessage = null) }
+                _snackbarState.value = CreateEventSnackbarState()
             }
             is CreateEventEvent.UpdateSearchingTagName -> {
                 _formState.update { currentState ->
@@ -112,12 +119,18 @@ constructor(
                     currentState.copy(aliases = aliases)
                 }
             }
-            is CreateEventEvent.GetTags -> {
+            is CreateEventEvent.SuggestTags -> {
                 viewModelScope.launch {
                     getTagsUseCase(_formState.value.searchingTagName).collect { result ->
                         if (result.data?.isEmpty() ?: false) {
-                            val shackbarMessage = context.getString(R.string.no_tags_found)
-                            _formState.value = CreateEventState(snackbarMessage = shackbarMessage)
+                        }
+                        val snackbarMessage = context.getString(R.string.no_tags_found)
+                        val snackbarActionLabel = context.getString(R.string.create_tag)
+                        _snackbarState.update { currentState ->
+                            currentState.copy(
+                                message = snackbarMessage,
+                                actionLabel = snackbarActionLabel,
+                            )
                         }
                         _formState.update { currentState ->
                             val tags = (result.data ?: emptyList()).map { it.toUi() }
@@ -129,7 +142,7 @@ constructor(
             is CreateEventEvent.SubmitTag -> {
                 viewModelScope.launch {
                     createTagUseCase(tagForm = _tagFormState.value.toDomain()).collect()
-                    onEvent(CreateEventEvent.GetTags)
+                    onEvent(CreateEventEvent.SuggestTags)
                 }
                 _formState.update { currentState -> currentState.copy(isAddTagFormOpen = false) }
                 _tagFormState.value = CreateTagState()

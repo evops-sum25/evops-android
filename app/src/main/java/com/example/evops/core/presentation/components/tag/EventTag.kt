@@ -13,13 +13,13 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun EventTag(name: String, onClick: () -> Unit, modifier: Modifier = Modifier) {
+fun EventTag(name: String, onClick: (() -> Unit)?, modifier: Modifier = Modifier) {
     Row(
         modifier =
             modifier
                 .clip(RoundedCornerShape(8.dp))
                 .background(MaterialTheme.colorScheme.secondaryContainer)
-                .clickable { onClick() }
+                .clickable(enabled = onClick != null) { onClick?.invoke() }
                 .padding(horizontal = 8.dp, vertical = 4.dp)
     ) {
         Text(text = name, style = MaterialTheme.typography.bodyLarge)

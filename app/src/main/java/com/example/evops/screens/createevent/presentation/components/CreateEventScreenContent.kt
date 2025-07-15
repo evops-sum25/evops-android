@@ -15,7 +15,6 @@ import com.example.evops.screens.createevent.presentation.CreateEventEvent
 import com.example.evops.screens.createevent.presentation.CreateEventState
 import com.example.evops.screens.createevent.presentation.components.buttons.WithAttendanceSwitch
 import com.example.evops.screens.createevent.presentation.components.images.SelectImagesField
-import com.example.evops.screens.createevent.presentation.components.tags.CreateTagButton
 import com.example.evops.screens.createevent.presentation.components.tags.SearchTagTextField
 import com.example.evops.screens.createevent.presentation.components.tags.SelectedTags
 import com.example.evops.screens.createevent.presentation.components.tags.SuggestedTags
@@ -46,7 +45,6 @@ fun CreateEventScreenContent(
         TitleTextField(title = formState.title, onEvent = onEvent)
         DescriptionTextField(description = formState.description, onEvent = onEvent)
         SearchTagTextField(tagName = formState.searchingTagName, onEvent = onEvent)
-        CreateTagButton(onEvent = onEvent)
         SuggestedTags(tags = formState.suggestedTags, onEvent = onEvent)
         SelectedTags(tags = formState.selectedTags, onEvent = onEvent)
         WithAttendanceSwitch(withAttendance = formState.withAttendance, onEvent = onEvent)

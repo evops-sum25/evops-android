@@ -23,7 +23,7 @@ sealed interface CreateEventEvent {
 
     data class OpenHideAddTagForm(val shouldOpen: Boolean) : CreateEventEvent
 
-    data object GetTags : CreateEventEvent
+    data object SuggestTags : CreateEventEvent
 
     data class UpdateTagName(val name: String) : CreateEventEvent
 

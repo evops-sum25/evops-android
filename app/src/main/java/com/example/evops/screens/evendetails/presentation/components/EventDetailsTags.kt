@@ -19,7 +19,7 @@ fun EventDetailsTags(tagsData: List<EventDetailsTag>, modifier: Modifier = Modif
         verticalArrangement = Arrangement.spacedBy(12.dp),
         modifier = modifier,
     ) {
-        tagsData.forEach { tagData -> EventTag(name = tagData.name, onClick = {}) }
+        tagsData.forEach { tagData -> EventTag(name = tagData.name, onClick = null) }
     }
 }
 

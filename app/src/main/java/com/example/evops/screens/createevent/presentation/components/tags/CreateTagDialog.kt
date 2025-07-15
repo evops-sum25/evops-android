@@ -1,11 +1,20 @@
 package com.example.evops.screens.createevent.presentation.components.tags
 
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Button
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -13,10 +22,12 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextRange
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.TextFieldValue
+import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 import com.example.evops.R
 import com.example.evops.screens.createevent.presentation.CreateEventEvent
@@ -29,17 +40,28 @@ fun CreateTagDialog(
     modifier: Modifier = Modifier,
 ) {
     Dialog(onDismissRequest = { onEvent(CreateEventEvent.DropAddTagForm) }) {
-        Column(modifier = modifier) {
+        Column(
+            verticalArrangement = Arrangement.spacedBy(12.dp),
+            modifier =
+                modifier
+                    .clip(RoundedCornerShape(8.dp))
+                    .background(MaterialTheme.colorScheme.surface)
+                    .padding(18.dp),
+        ) {
             CreateTagTitle()
             TagNameTextField(tagName = tagFormState.name, onEvent = onEvent)
-            SubmitTagButton(onEvent = onEvent)
+            DialogButtons(onEvent = onEvent, modifier = Modifier.fillMaxWidth())
         }
     }
 }
 
 @Composable
 private fun CreateTagTitle(modifier: Modifier = Modifier) {
-    Text(stringResource(R.string.create_tag), modifier = modifier)
+    Text(
+        stringResource(R.string.create_tag),
+        style = MaterialTheme.typography.titleMedium,
+        modifier = modifier,
+    )
 }
 
 @Composable
@@ -70,9 +92,15 @@ private fun TagNameTextField(
 }
 
 @Composable
-private fun SubmitTagButton(onEvent: (CreateEventEvent) -> Unit, modifier: Modifier = Modifier) {
-    Button(onClick = { onEvent(CreateEventEvent.SubmitTag) }, modifier = modifier) {
-        Text(stringResource(R.string.submit_tag))
+fun DialogButtons(onEvent: (CreateEventEvent) -> Unit, modifier: Modifier = Modifier) {
+    Row(horizontalArrangement = Arrangement.End, modifier = modifier) {
+        TextButton(onClick = { onEvent(CreateEventEvent.DropAddTagForm) }) {
+            Text(stringResource(R.string.cancel))
+        }
+        Spacer(modifier = Modifier.size(8.dp))
+        Button(onClick = { onEvent(CreateEventEvent.SubmitTag) }) {
+            Text(stringResource(R.string.submit_tag))
+        }
     }
 }
 

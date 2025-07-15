@@ -2,8 +2,11 @@ package com.example.evops.screens.createevent.data.repositories
 
 import com.example.evops.screens.createevent.data.api.CreateEventApi
 import com.example.evops.screens.createevent.data.mappers.CreateEventMapper.toData
+import com.example.evops.screens.createevent.data.mappers.CreateEventMapper.toDomain
 import com.example.evops.screens.createevent.domain.model.CreateAuthorForm
 import com.example.evops.screens.createevent.domain.model.CreateEventForm
+import com.example.evops.screens.createevent.domain.model.CreateEventTag
+import com.example.evops.screens.createevent.domain.model.CreateTagForm
 import com.example.evops.screens.createevent.domain.repositories.CreateEventNetworkRepository
 import okhttp3.MultipartBody
 import okhttp3.RequestBody.Companion.asRequestBody
@@ -31,5 +34,17 @@ class CreateEventNetworkRepositoryImpl(private val createEventApi: CreateEventAp
                 body = image.asRequestBody(),
             )
         return createEventApi.postImage(eventId = eventId, image = imageMultipart).imageId
+    }
+
+    override suspend fun getTags(name: String): List<CreateEventTag> {
+        return createEventApi.getTags().toDomain()
+    }
+
+    override suspend fun getTag(tagId: String): CreateEventTag {
+        return createEventApi.getTag(tagId).tag.toDomain()
+    }
+
+    override suspend fun createTag(tagForm: CreateTagForm): String {
+        return createEventApi.createTag(formDto = tagForm.toData()).tagId
     }
 }

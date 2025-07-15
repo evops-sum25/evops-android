@@ -8,8 +8,10 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.FabPosition
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.SnackbarDuration
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
+import androidx.compose.material3.SnackbarResult
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
@@ -24,6 +26,8 @@ import com.example.evops.R
 import com.example.evops.core.presentation.components.topbar.TitledTopBar
 import com.example.evops.screens.createevent.presentation.components.CreateEventScreenContent
 import com.example.evops.screens.createevent.presentation.components.buttons.SubmitButton
+import com.example.evops.screens.createevent.presentation.components.tags.CreateTagDialog
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
 @Composable
@@ -33,6 +37,8 @@ fun CreateEventScreen(
 ) {
     val coroutineScope = rememberCoroutineScope()
     val formState by viewModel.formState.collectAsState()
+    val tagFormState by viewModel.tagFormState.collectAsState()
+    val snackbarState by viewModel.snackbarState.collectAsState()
     val snackbarHostState = remember { SnackbarHostState() }
 
     val mediaPickerLauncher =
@@ -55,10 +61,15 @@ fun CreateEventScreen(
         }
     }
 
-    val message = stringResource(R.string.event_successfully_posted)
-    LaunchedEffect(formState.isSnackbarShown) {
-        if (formState.isSnackbarShown) {
-            coroutineScope.launch { snackbarHostState.showSnackbar(message) }
+    LaunchedEffect(snackbarState) {
+        snackbarState.message?.let { message ->
+            showSnackbar(
+                coroutineScope = coroutineScope,
+                snackbarHostState = snackbarHostState,
+                snackbarMessage = message,
+                snackbarActionLabel = snackbarState.actionLabel,
+                onEvent = viewModel::onEvent,
+            )
             viewModel.onEvent(CreateEventEvent.HideShackbar)
         }
     }
@@ -79,5 +90,32 @@ fun CreateEventScreen(
             onEvent = viewModel::onEvent,
             modifier = Modifier.padding(innerPaddings).fillMaxSize(),
         )
+    }
+    if (formState.isAddTagFormOpen) {
+        CreateTagDialog(tagFormState = tagFormState, onEvent = viewModel::onEvent)
+    }
+}
+
+private fun showSnackbar(
+    coroutineScope: CoroutineScope,
+    snackbarHostState: SnackbarHostState,
+    snackbarMessage: String,
+    snackbarActionLabel: String?,
+    onEvent: (CreateEventEvent) -> Unit,
+) {
+    coroutineScope.launch {
+        snackbarHostState
+            .showSnackbar(
+                message = snackbarMessage,
+                actionLabel = snackbarActionLabel,
+                duration = SnackbarDuration.Short,
+            )
+            .run {
+                when (this) {
+                    SnackbarResult.Dismissed -> onEvent(CreateEventEvent.HideShackbar)
+                    SnackbarResult.ActionPerformed ->
+                        onEvent(CreateEventEvent.OpenHideAddTagForm(true))
+                }
+            }
     }
 }

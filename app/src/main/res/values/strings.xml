@@ -13,4 +13,12 @@
     <string name="try_adding_some_images_to_the_event">Try adding some images to the event</string>
     <string name="event_successfully_posted">Event successfully posted</string>
     <string name="with_attendance">With Attendance:</string>
+    <string name="no_tags_found">No tags found</string>
+    <string name="tag_name">Tag Name</string>
+    <string name="create_tag">Create Tag</string>
+    <string name="submit_tag">Submit Tag</string>
+    <string name="suggested_tags">Suggested Tags</string>
+    <string name="tags_are_not_found_try_to_search">Tags are not found, try to search</string>
+    <string name="try_to_add_some_tags">Try to add some tags</string>
+    <string name="cancel">Cancel</string>
 </resources>

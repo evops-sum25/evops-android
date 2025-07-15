@@ -108,9 +108,7 @@ private fun showSnackbar(
             .showSnackbar(
                 message = snackbarMessage,
                 actionLabel = snackbarActionLabel,
-                duration =
-                    if (snackbarActionLabel == null) SnackbarDuration.Short
-                    else SnackbarDuration.Long,
+                duration = SnackbarDuration.Short,
             )
             .run {
                 when (this) {

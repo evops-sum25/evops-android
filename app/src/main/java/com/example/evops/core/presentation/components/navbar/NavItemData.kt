@@ -3,6 +3,7 @@ package com.example.evops.core.presentation.components.navbar
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.AddCircleOutline
 import androidx.compose.material.icons.outlined.Home
+import androidx.compose.material.icons.outlined.Settings
 import androidx.compose.ui.graphics.vector.ImageVector
 import com.example.evops.core.navigation.Destination
 import com.example.evops.core.navigation.SubGraph
@@ -27,6 +28,12 @@ data class NavItemData(
                     icon = Icons.Outlined.AddCircleOutline,
                     label = "Add event",
                     startDestination = Destination.CreateEvent,
+                ),
+                NavItemData(
+                    subGraph = SubGraph.Settings,
+                    icon = Icons.Outlined.Settings,
+                    label = "Settings",
+                    startDestination = Destination.Settings,
                 ),
             )
     }

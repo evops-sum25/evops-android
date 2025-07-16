@@ -14,4 +14,13 @@
     <string name="event_successfully_posted">Событие успешно создано</string>
     <string name="with_attendance">Отмечать посещаемость:</string>
     <string name="no_tags_found">No tags found</string>
+    <string name="tag_name">Название тэга</string>
+    <string name="create_tag">Создание тэга</string>
+    <string name="submit_tag">Создать тэг</string>
+    <string name="suggested_tags">Найденные тэги</string>
+    <string name="tags_are_not_found_try_to_search">Тэги не найдены, воспользуйтесь поиском</string>
+    <string name="try_to_add_some_tags">Добавьте тэги</string>
+    <string name="cancel">Отменить</string>
+    <string name="settings">Настройки</string>
+    <string name="change_language">Сменить язык</string>
 </resources>

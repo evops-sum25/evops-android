@@ -21,6 +21,6 @@ fun EventDetailsImagePager(imageIds: List<String>, modifier: Modifier = Modifier
 @Composable
 private fun EventDetailsImagePagerPreview() {
     EventDetailsImagePager(
-        imageIds = listOf(PreviewData.eventItem.imageUrl, PreviewData.eventItem.imageUrl)
+        imageIds = listOf(PreviewData.eventItem.imageUrl!!, PreviewData.eventItem.imageUrl)
     )
 }

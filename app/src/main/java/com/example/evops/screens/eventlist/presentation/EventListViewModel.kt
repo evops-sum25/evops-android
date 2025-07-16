@@ -44,11 +44,13 @@ class EventListViewModel @Inject constructor(private val getEventsUseCase: GetEv
 
     private fun processLoadEvents() {
         val lastEventId = _listState.value.events.lastOrNull()?.id
-        viewModelScope.launch {
-            getEventsUseCase(lastEventId).collect { result ->
-                _listState.update { currentState ->
-                    val newEvents = result.data ?: emptyList()
-                    currentState.copy(events = currentState.events + newEvents)
+        lastEventId?.let {
+            viewModelScope.launch {
+                getEventsUseCase(lastEventId).collect { result ->
+                    _listState.update { currentState ->
+                        val newEvents = result.data ?: emptyList()
+                        currentState.copy(events = currentState.events + newEvents)
+                    }
                 }
             }
         }

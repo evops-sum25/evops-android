@@ -66,5 +66,5 @@ private fun LoadingImagePlaceholder(modifier: Modifier = Modifier) {
 @Preview
 @Composable
 private fun EventImagePreview() {
-    EventImage(imageId = PreviewData.eventItem.imageUrl)
+    EventImage(imageId = PreviewData.eventItem.imageUrl!!)
 }

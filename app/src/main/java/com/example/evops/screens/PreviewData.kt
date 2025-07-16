@@ -15,6 +15,7 @@ object PreviewData {
             title = "Probstat Final Preparation",
             author = eventItemAuthor,
             imageUrl = "https://meowle.fintech-qa.ru/photos/image-1745661496544.jpg",
+            description = "",
             attendeesCount = 16u,
             place = "IU 108",
             date = LocalDate.now(),

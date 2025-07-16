@@ -83,4 +83,7 @@ dependencies {
     testImplementation(kotlin("test"))
 
     implementation(libs.androidx.appcompat)
+
+    // DataStore
+    implementation(libs.datastore.preferences)
 }

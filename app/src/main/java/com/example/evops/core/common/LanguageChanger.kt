@@ -7,8 +7,10 @@ import android.os.LocaleList
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.os.LocaleListCompat
 
-class LanguageChanger {
-    fun changeLanguage(context: Context, languageCode: String) {
+class LanguageChanger(
+    private val context: Context
+) {
+    fun changeLanguage(languageCode: String) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             context.getSystemService(LocaleManager::class.java).applicationLocales =
                 LocaleList.forLanguageTags(languageCode)
@@ -17,7 +19,7 @@ class LanguageChanger {
         }
     }
 
-    fun getLanguageCode(context: Context): String {
+    fun getLanguageCode(): String {
         return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             context
                 .getSystemService(LocaleManager::class.java)

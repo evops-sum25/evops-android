@@ -23,21 +23,22 @@ fun EventCard(eventData: EventItem, modifier: Modifier = Modifier) {
         horizontalAlignment = Alignment.Start,
         modifier = modifier,
     ) {
+        EventTitleAndAuthor(
+            title = eventData.title,
+            author = eventData.author,
+            modifier = Modifier.padding(horizontal = 18.dp, vertical = 12.dp),
+        )
         eventData.imageUrl?.let {
-            EventImage(imageId = eventData.imageUrl, modifier = Modifier.padding(top = 12.dp).fillMaxWidth())
-        }
-        Column(
-            verticalArrangement = Arrangement.spacedBy(12.dp),
-            modifier =
-                Modifier.padding(start = 18.dp, end = 18.dp, top = 12.dp, bottom = 18.dp)
-                    .fillMaxWidth(),
-        ) {
-            EventTitleAndAuthor(title = eventData.title, author = eventData.author)
-            EventDescription(
-                description = eventData.description,
-                isExpanded = eventData.imageUrl == null,
+            EventImage(
+                imageId = eventData.imageUrl,
+                modifier = Modifier.padding(bottom = 12.dp).fillMaxWidth(),
             )
         }
+        EventDescription(
+            description = eventData.description,
+            isExpanded = eventData.imageUrl == null,
+            modifier = Modifier.padding(start = 18.dp, end = 18.dp, bottom = 18.dp).fillMaxWidth(),
+        )
         HorizontalDivider()
     }
 }

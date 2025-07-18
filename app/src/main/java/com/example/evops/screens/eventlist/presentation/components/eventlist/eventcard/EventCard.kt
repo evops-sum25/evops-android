@@ -39,7 +39,7 @@ fun EventCard(eventData: EventItem, modifier: Modifier = Modifier) {
             isExpanded = eventData.imageUrl == null,
             modifier = Modifier.padding(start = 18.dp, end = 18.dp, bottom = 18.dp).fillMaxWidth(),
         )
-        HorizontalDivider()
+        HorizontalDivider(thickness = 2.dp)
     }
 }
 

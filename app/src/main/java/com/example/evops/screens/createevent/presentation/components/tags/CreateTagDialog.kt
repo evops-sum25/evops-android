@@ -58,7 +58,7 @@ fun CreateTagDialog(
 @Composable
 private fun CreateTagTitle(modifier: Modifier = Modifier) {
     Text(
-        stringResource(R.string.create_tag),
+        stringResource(R.string.create_tag_title),
         style = MaterialTheme.typography.titleMedium,
         modifier = modifier,
     )
@@ -99,7 +99,7 @@ fun DialogButtons(onEvent: (CreateEventEvent) -> Unit, modifier: Modifier = Modi
         }
         Spacer(modifier = Modifier.size(8.dp))
         Button(onClick = { onEvent(CreateEventEvent.SubmitTag) }) {
-            Text(stringResource(R.string.submit_tag))
+            Text(stringResource(R.string.submit))
         }
     }
 }

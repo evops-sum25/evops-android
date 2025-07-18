@@ -5,6 +5,6 @@ import retrofit2.http.GET
 import retrofit2.http.Path
 
 interface EventDetailsApi {
-    @GET("/v1/events/{id}")
-    suspend fun getEventDetails(@Path("id") eventId: String): EventWrapperDto
+    @GET("/v1/events/{event-id}")
+    suspend fun getEventDetails(@Path("event-id") eventId: String): EventWrapperDto
 }

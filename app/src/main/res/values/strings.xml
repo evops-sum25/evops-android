@@ -21,4 +21,11 @@
     <string name="tags_are_not_found_try_to_search">Tags are not found, try to search</string>
     <string name="try_to_add_some_tags">Try to add some tags</string>
     <string name="cancel">Cancel</string>
+    <string name="settings">Settings</string>
+    <string name="change_language">Change Language</string>
+    <string name="ru_lang_code">ru</string>
+    <string name="en_lang_code">en</string>
+    <string name="current_language">Current language: English</string>
+    <string name="selected_tags">Selected Tags</string>
+    <string name="create_tag_title">Create Tag</string>
 </resources>

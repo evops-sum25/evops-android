@@ -11,6 +11,7 @@ import com.example.evops.core.navigation.NavAnimationUtils.slideOutToRight
 import com.example.evops.screens.createevent.presentation.CreateEventScreen
 import com.example.evops.screens.evendetails.presentation.EventDetailsScreen
 import com.example.evops.screens.eventlist.presentation.EventListScreen
+import com.example.evops.screens.settings.presentation.SettingsScreen
 
 @Composable
 fun EvopsNavGraph(navController: NavHostController, modifier: Modifier = Modifier) {
@@ -26,6 +27,9 @@ fun EvopsNavGraph(navController: NavHostController, modifier: Modifier = Modifie
         }
         navigation<SubGraph.CreateEvent>(startDestination = Destination.CreateEvent) {
             composable<Destination.CreateEvent> { CreateEventScreen() }
+        }
+        navigation<SubGraph.Settings>(startDestination = Destination.Settings) {
+            composable<Destination.Settings> { SettingsScreen() }
         }
     }
 }

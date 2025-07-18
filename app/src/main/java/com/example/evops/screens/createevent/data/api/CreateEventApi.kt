@@ -29,15 +29,15 @@ interface CreateEventApi {
     suspend fun createUser(@Body formDto: CreateAuthorFormWrapperDto): AuthorWrapperDto
 
     @Multipart
-    @POST("/v1/events/{id}/images")
+    @POST("/v1/events/{event-id}/images")
     suspend fun postImage(
-        @Path("id") eventId: String,
+        @Path("event-id") eventId: String,
         @Part image: MultipartBody.Part,
     ): PostImageResponse
 
     @GET("/v1/tags") suspend fun getTags(): TagListDto
 
-    @GET("/v1/tags/{id}") suspend fun getTag(@Query("id") tagId: String): TagWrapperDto
+    @GET("/v1/tags/{tag-id}") suspend fun getTag(@Query("tag-id") tagId: String): TagWrapperDto
 
     @POST("/v1/tags")
     suspend fun createTag(@Body formDto: CreateTagFormWrapperDto): CreateTagResponse

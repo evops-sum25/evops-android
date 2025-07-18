@@ -10,6 +10,6 @@ interface EventListApi {
     @GET("/v1/events")
     suspend fun getEvents(
         @Query("limit") limit: Int,
-        @Query("last_id") lastEventId: String,
+        @Query("last-id") lastEventId: String,
     ): EventListDto
 }

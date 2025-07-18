@@ -41,7 +41,7 @@ fun DescriptionTextField(
         },
         label = { DescriptionLabel() },
         minLines = 3,
-        keyboardOptions = KeyboardOptions(imeAction = ImeAction.Done),
+        keyboardOptions = KeyboardOptions(imeAction = ImeAction.Next),
         modifier = modifier.fillMaxWidth(),
     )
 }

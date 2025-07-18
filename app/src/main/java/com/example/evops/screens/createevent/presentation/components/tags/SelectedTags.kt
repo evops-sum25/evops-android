@@ -28,7 +28,7 @@ fun SelectedTags(
     modifier: Modifier = Modifier,
 ) {
     Column(modifier = modifier) {
-        Text("Selected Tags", modifier = Modifier.fillMaxWidth())
+        Text(stringResource(R.string.selected_tags), modifier = Modifier.fillMaxWidth())
         Spacer(modifier = Modifier.size(12.dp))
         if (selectedTags.isNotEmpty()) {
             SelectedTagsFlowRow(

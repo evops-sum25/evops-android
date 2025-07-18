@@ -23,4 +23,9 @@
     <string name="cancel">Cancel</string>
     <string name="settings">Settings</string>
     <string name="change_language">Change Language</string>
+    <string name="ru_lang_code">ru</string>
+    <string name="en_lang_code">en</string>
+    <string name="current_language">Current language: English</string>
+    <string name="selected_tags">Selected Tags</string>
+    <string name="create_tag_title">Create Tag</string>
 </resources>

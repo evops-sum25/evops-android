@@ -22,18 +22,18 @@ import com.example.evops.screens.createevent.presentation.states.UiTag
 
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
-fun SuggestedTags(
-    suggestedTags: List<UiTag>,
+fun FoundTags(
+    foundTags: List<UiTag>,
     selectedTags: List<UiTag>,
     onEvent: (CreateEventEvent) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     Column(modifier = modifier) {
-        Text(stringResource(R.string.suggested_tags), modifier = Modifier.fillMaxWidth())
+        Text(stringResource(R.string.found_tags), modifier = Modifier.fillMaxWidth())
         Spacer(modifier = Modifier.size(12.dp))
-        if (suggestedTags.isNotEmpty()) {
-            SuggestedTagsFlowRow(
-                suggestedTags = suggestedTags,
+        if (foundTags.isNotEmpty()) {
+            FoundTagsFlowRow(
+                foundTags = foundTags,
                 selectedTags = selectedTags,
                 onEvent = onEvent,
             )
@@ -49,8 +49,8 @@ fun SuggestedTags(
 
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
-private fun SuggestedTagsFlowRow(
-    suggestedTags: List<UiTag>,
+private fun FoundTagsFlowRow(
+    foundTags: List<UiTag>,
     selectedTags: List<UiTag>,
     onEvent: (CreateEventEvent) -> Unit,
     modifier: Modifier = Modifier,
@@ -60,7 +60,7 @@ private fun SuggestedTagsFlowRow(
         verticalArrangement = Arrangement.spacedBy(12.dp),
         modifier = modifier,
     ) {
-        suggestedTags.forEach { tag ->
+        foundTags.forEach { tag ->
             val (onClick, color) =
                 if (selectedTags.contains(tag)) {
                     Pair(null, MaterialTheme.colorScheme.secondaryContainer)

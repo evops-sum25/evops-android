@@ -28,4 +28,7 @@
     <string name="current_language">Текущий язык: Русский</string>
     <string name="selected_tags">Выбранные теги</string>
     <string name="create_tag_title">Создание тега</string>
+    <string name="no_tags_suggested">Теги по описанию не найдены</string>
+    <string name="add">Добавить</string>
+    <string name="found_tags">Найденные теги</string>
 </resources>

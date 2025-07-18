@@ -14,7 +14,7 @@ data class CreateEventState(
     val selectedUris: List<Uri> = emptyList(),
     val searchingTagName: String = "",
     val isAddTagFormOpen: Boolean = false,
-    val suggestedTags: List<UiTag> = emptyList(),
+    val foundTags: List<UiTag> = emptyList(),
     val selectedTags: List<UiTag> = emptyList(),
     val isSuggestedTagsFormOpen: Boolean = false,
 ) : Parcelable {

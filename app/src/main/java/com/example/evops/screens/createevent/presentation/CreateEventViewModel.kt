@@ -132,7 +132,7 @@ constructor(
                         }
                         _formState.update { currentState ->
                             val tags = (result.data ?: emptyList()).map { it.toUi() }
-                            currentState.copy(suggestedTags = tags)
+                            currentState.copy(foundTags = tags)
                         }
                     }
                 }

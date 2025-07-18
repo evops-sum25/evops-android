@@ -17,7 +17,7 @@ import com.example.evops.screens.createevent.presentation.components.buttons.Wit
 import com.example.evops.screens.createevent.presentation.components.images.SelectImagesField
 import com.example.evops.screens.createevent.presentation.components.tags.SearchTagTextField
 import com.example.evops.screens.createevent.presentation.components.tags.SelectedTags
-import com.example.evops.screens.createevent.presentation.components.tags.SuggestedTags
+import com.example.evops.screens.createevent.presentation.components.tags.FoundTags
 import com.example.evops.screens.createevent.presentation.components.text.DescriptionTextField
 import com.example.evops.screens.createevent.presentation.components.text.TitleTextField
 
@@ -45,8 +45,8 @@ fun CreateEventScreenContent(
         TitleTextField(title = formState.title, onEvent = onEvent)
         DescriptionTextField(description = formState.description, onEvent = onEvent)
         SearchTagTextField(tagName = formState.searchingTagName, onEvent = onEvent)
-        SuggestedTags(
-            suggestedTags = formState.suggestedTags,
+        FoundTags(
+            foundTags = formState.foundTags,
             selectedTags = formState.selectedTags,
             onEvent = onEvent,
             modifier = Modifier.padding(vertical = 4.dp),

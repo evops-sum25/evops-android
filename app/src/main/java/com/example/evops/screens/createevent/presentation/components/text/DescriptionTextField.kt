@@ -2,6 +2,8 @@ package com.example.evops.screens.createevent.presentation.components.text
 
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -11,6 +13,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextRange
 import androidx.compose.ui.text.input.ImeAction
@@ -40,10 +43,21 @@ fun DescriptionTextField(
             onEvent(CreateEventEvent.UpdateDescription(it.text))
         },
         label = { DescriptionLabel() },
+        suffix = { SuggestTagsButton(onEvent = onEvent) },
         minLines = 3,
         keyboardOptions = KeyboardOptions(imeAction = ImeAction.Next),
         modifier = modifier.fillMaxWidth(),
     )
+}
+
+@Composable
+private fun SuggestTagsButton(onEvent: (CreateEventEvent) -> Unit, modifier: Modifier = Modifier) {
+    IconButton(
+        onClick = { onEvent(CreateEventEvent.SuggestTagsByDescription) },
+        modifier = modifier,
+    ) {
+        Icon(painter = painterResource(R.drawable.wand_stars), contentDescription = null)
+    }
 }
 
 @Composable

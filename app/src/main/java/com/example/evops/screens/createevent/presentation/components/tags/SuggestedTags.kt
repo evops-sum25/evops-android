@@ -18,7 +18,7 @@ import androidx.compose.ui.unit.dp
 import com.example.evops.R
 import com.example.evops.core.presentation.components.tag.EventTag
 import com.example.evops.screens.createevent.presentation.CreateEventEvent
-import com.example.evops.screens.createevent.presentation.UiTag
+import com.example.evops.screens.createevent.presentation.states.UiTag
 
 @OptIn(ExperimentalLayoutApi::class)
 @Composable

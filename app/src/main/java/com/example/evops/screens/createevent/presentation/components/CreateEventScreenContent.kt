@@ -12,7 +12,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.example.evops.screens.createevent.presentation.CreateEventEvent
-import com.example.evops.screens.createevent.presentation.CreateEventState
+import com.example.evops.screens.createevent.presentation.states.CreateEventState
 import com.example.evops.screens.createevent.presentation.components.buttons.WithAttendanceSwitch
 import com.example.evops.screens.createevent.presentation.components.images.SelectImagesField
 import com.example.evops.screens.createevent.presentation.components.tags.SearchTagTextField

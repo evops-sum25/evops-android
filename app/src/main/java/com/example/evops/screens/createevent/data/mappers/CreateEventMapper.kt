@@ -7,6 +7,7 @@ import com.example.evops.screens.createevent.data.model.event.CreateEventFormDto
 import com.example.evops.screens.createevent.data.model.event.CreateEventFormWrapperDto
 import com.example.evops.screens.createevent.data.model.tag.CreateTagFormDto
 import com.example.evops.screens.createevent.data.model.tag.CreateTagFormWrapperDto
+import com.example.evops.screens.createevent.data.model.tag.DescriptionWrapperDto
 import com.example.evops.screens.createevent.data.model.tag.TagListDto
 import com.example.evops.screens.createevent.domain.model.CreateAuthorForm
 import com.example.evops.screens.createevent.domain.model.CreateEventForm
@@ -35,4 +36,6 @@ object CreateEventMapper {
     fun TagListDto.toDomain() = this.tags.map { it.toDomain() }
 
     fun TagDto.toDomain() = CreateEventTag(id = this.id, name = this.name)
+
+    fun String.suggestTagsByDescription() = DescriptionWrapperDto(description = this)
 }

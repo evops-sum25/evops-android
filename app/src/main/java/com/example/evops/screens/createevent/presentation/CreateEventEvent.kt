@@ -1,6 +1,7 @@
 package com.example.evops.screens.createevent.presentation
 
 import android.net.Uri
+import com.example.evops.screens.createevent.presentation.states.UiTag
 
 sealed interface CreateEventEvent {
     data class UpdateTitle(val title: String) : CreateEventEvent
@@ -23,15 +24,9 @@ sealed interface CreateEventEvent {
 
     data class OpenHideAddTagForm(val shouldOpen: Boolean) : CreateEventEvent
 
-    data object SuggestTags : CreateEventEvent
+    data object SearchTags : CreateEventEvent
 
     data class UpdateTagName(val name: String) : CreateEventEvent
-
-    data object AddTagAlias : CreateEventEvent
-
-    data class RemoveTagAlias(val tagId: Int) : CreateEventEvent
-
-    data class UpdateTagAlias(val alias: String, val id: Int) : CreateEventEvent
 
     data object SubmitTag : CreateEventEvent
 
@@ -40,4 +35,10 @@ sealed interface CreateEventEvent {
     data class UnselectTag(val tag: UiTag) : CreateEventEvent
 
     data object DropAddTagForm : CreateEventEvent
+
+    data object SuggestTagsByDescription : CreateEventEvent
+
+    data object AddSuggestedTags : CreateEventEvent
+
+    data object DropSuggestedTagsForm : CreateEventEvent
 }

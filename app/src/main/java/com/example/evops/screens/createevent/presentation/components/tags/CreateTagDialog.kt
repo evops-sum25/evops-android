@@ -31,7 +31,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 import com.example.evops.R
 import com.example.evops.screens.createevent.presentation.CreateEventEvent
-import com.example.evops.screens.createevent.presentation.CreateTagState
+import com.example.evops.screens.createevent.presentation.states.CreateTagState
 
 @Composable
 fun CreateTagDialog(
@@ -48,7 +48,7 @@ fun CreateTagDialog(
                     .background(MaterialTheme.colorScheme.surface)
                     .padding(18.dp),
         ) {
-            CreateTagTitle()
+            SuggestedTagsTitle()
             TagNameTextField(tagName = tagFormState.name, onEvent = onEvent)
             DialogButtons(onEvent = onEvent, modifier = Modifier.fillMaxWidth())
         }
@@ -56,7 +56,7 @@ fun CreateTagDialog(
 }
 
 @Composable
-private fun CreateTagTitle(modifier: Modifier = Modifier) {
+private fun SuggestedTagsTitle(modifier: Modifier = Modifier) {
     Text(
         stringResource(R.string.create_tag_title),
         style = MaterialTheme.typography.titleMedium,
@@ -92,7 +92,7 @@ private fun TagNameTextField(
 }
 
 @Composable
-fun DialogButtons(onEvent: (CreateEventEvent) -> Unit, modifier: Modifier = Modifier) {
+private fun DialogButtons(onEvent: (CreateEventEvent) -> Unit, modifier: Modifier = Modifier) {
     Row(horizontalArrangement = Arrangement.End, modifier = modifier) {
         TextButton(onClick = { onEvent(CreateEventEvent.DropAddTagForm) }) {
             Text(stringResource(R.string.cancel))

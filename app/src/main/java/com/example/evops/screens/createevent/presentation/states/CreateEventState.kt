@@ -1,4 +1,4 @@
-package com.example.evops.screens.createevent.presentation
+package com.example.evops.screens.createevent.presentation.states
 
 import android.net.Uri
 import android.os.Parcelable
@@ -16,6 +16,7 @@ data class CreateEventState(
     val isAddTagFormOpen: Boolean = false,
     val suggestedTags: List<UiTag> = emptyList(),
     val selectedTags: List<UiTag> = emptyList(),
+    val isSuggestedTagsFormOpen: Boolean = false,
 ) : Parcelable {
     val maxSelectableItems
         get() = (10 - selectedUris.size).takeIf { it >= 0 } ?: 0

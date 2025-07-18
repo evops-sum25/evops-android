@@ -8,6 +8,8 @@ import com.example.evops.screens.createevent.data.model.event.CreateEventRespons
 import com.example.evops.screens.createevent.data.model.image.PostImageResponse
 import com.example.evops.screens.createevent.data.model.tag.CreateTagFormWrapperDto
 import com.example.evops.screens.createevent.data.model.tag.CreateTagResponse
+import com.example.evops.screens.createevent.data.model.tag.DescriptionWrapperDto
+import com.example.evops.screens.createevent.data.model.tag.TagIdListDto
 import com.example.evops.screens.createevent.data.model.tag.TagListDto
 import com.example.evops.screens.createevent.data.model.tag.TagWrapperDto
 import okhttp3.MultipartBody
@@ -41,4 +43,7 @@ interface CreateEventApi {
 
     @POST("/v1/tags")
     suspend fun createTag(@Body formDto: CreateTagFormWrapperDto): CreateTagResponse
+
+    @POST("/v1/tags/suggestions")
+    suspend fun suggestTagsByDescription(@Body description: DescriptionWrapperDto): TagIdListDto
 }

@@ -1,4 +1,4 @@
-package com.example.evops.screens.createevent.presentation
+package com.example.evops.screens.createevent.presentation.states
 
 import com.example.evops.screens.createevent.domain.model.CreateTagForm
 

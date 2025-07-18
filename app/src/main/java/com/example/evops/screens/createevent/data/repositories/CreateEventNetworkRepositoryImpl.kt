@@ -1,6 +1,7 @@
 package com.example.evops.screens.createevent.data.repositories
 
 import com.example.evops.screens.createevent.data.api.CreateEventApi
+import com.example.evops.screens.createevent.data.mappers.CreateEventMapper.suggestTagsByDescription
 import com.example.evops.screens.createevent.data.mappers.CreateEventMapper.toData
 import com.example.evops.screens.createevent.data.mappers.CreateEventMapper.toDomain
 import com.example.evops.screens.createevent.domain.model.CreateAuthorForm
@@ -46,5 +47,12 @@ class CreateEventNetworkRepositoryImpl(private val createEventApi: CreateEventAp
 
     override suspend fun createTag(tagForm: CreateTagForm): String {
         return createEventApi.createTag(formDto = tagForm.toData()).tagId
+    }
+
+    override suspend fun suggestTagsByDescription(description: String): List<CreateEventTag> {
+        val tagIdsDto =
+            createEventApi.suggestTagsByDescription(description.suggestTagsByDescription())
+        val tags = tagIdsDto.tagIds.map { id -> getTag(id) }
+        return tags
     }
 }

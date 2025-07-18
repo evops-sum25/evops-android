@@ -43,7 +43,7 @@ fun SearchTagTextField(
             onEvent(CreateEventEvent.UpdateSearchingTagName(tagName))
         },
         label = { SearchTagLabel() },
-        suffix = {SearchButton(onEvent = onEvent)},
+        suffix = { SearchButton(onEvent = onEvent) },
         singleLine = true,
         keyboardOptions = KeyboardOptions(imeAction = ImeAction.Done),
         modifier = modifier.fillMaxWidth(),
@@ -57,7 +57,7 @@ private fun SearchTagLabel(modifier: Modifier = Modifier) {
 
 @Composable
 private fun SearchButton(onEvent: (CreateEventEvent) -> Unit, modifier: Modifier = Modifier) {
-    IconButton(onClick = { onEvent(CreateEventEvent.SuggestTags) }, modifier = modifier) {
+    IconButton(onClick = { onEvent(CreateEventEvent.SearchTags) }, modifier = modifier) {
         Icon(imageVector = Icons.Rounded.Search, contentDescription = null)
     }
 }

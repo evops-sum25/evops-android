@@ -20,4 +20,6 @@ interface CreateEventNetworkRepository {
     suspend fun getTag(tagId: String): CreateEventTag
 
     suspend fun createTag(tagForm: CreateTagForm): String
+
+    suspend fun suggestTagsByDescription(description: String): List<CreateEventTag>
 }

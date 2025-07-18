@@ -7,12 +7,18 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.evops.R
+import com.example.evops.core.common.Resource
 import com.example.evops.screens.createevent.domain.model.CreateEventForm
 import com.example.evops.screens.createevent.domain.usecases.CreateEventUseCase
 import com.example.evops.screens.createevent.domain.usecases.CreateTagUseCase
 import com.example.evops.screens.createevent.domain.usecases.GetTagUseCase
 import com.example.evops.screens.createevent.domain.usecases.GetTagsUseCase
-import com.example.evops.screens.createevent.presentation.components.CreateEventSnackbarState
+import com.example.evops.screens.createevent.domain.usecases.SuggestTagsByDescriptionUseCase
+import com.example.evops.screens.createevent.presentation.states.CreateEventSnackbarState
+import com.example.evops.screens.createevent.presentation.states.CreateEventState
+import com.example.evops.screens.createevent.presentation.states.CreateTagState
+import com.example.evops.screens.createevent.presentation.states.SuggestedTagsFormState
+import com.example.evops.screens.createevent.presentation.states.toUi
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -31,6 +37,7 @@ constructor(
     private val getTagsUseCase: GetTagsUseCase,
     private val createTagUseCase: CreateTagUseCase,
     private val getTagUseCase: GetTagUseCase,
+    private val suggestTagsByDescriptionUseCase: SuggestTagsByDescriptionUseCase,
     @ApplicationContext private val context: Context,
     private val savedStateHandle: SavedStateHandle,
 ) : ViewModel() {
@@ -43,6 +50,9 @@ constructor(
 
     private val _snackbarState = MutableStateFlow(CreateEventSnackbarState())
     val snackbarState = _snackbarState
+
+    private val _suggestedTagsFormState = MutableStateFlow(SuggestedTagsFormState())
+    val suggestedTagsFormState = _suggestedTagsFormState
 
     init {
         viewModelScope.launch {
@@ -108,22 +118,10 @@ constructor(
                     currentState.copy(isAddTagFormOpen = event.shouldOpen)
                 }
             }
-            is CreateEventEvent.AddTagAlias -> {
-                _tagFormState.update { currentState ->
-                    currentState.copy(aliases = currentState.aliases + "")
-                }
-            }
-            is CreateEventEvent.RemoveTagAlias -> {
-                _tagFormState.update { currentState ->
-                    val aliases = currentState.aliases.removedAt(event.tagId)
-                    currentState.copy(aliases = aliases)
-                }
-            }
-            is CreateEventEvent.SuggestTags -> {
+            is CreateEventEvent.SearchTags -> {
                 viewModelScope.launch {
                     getTagsUseCase(_formState.value.searchingTagName).collect { result ->
-                        if (result.data?.isEmpty() ?: false) {
-                        }
+                        if (result.data?.isEmpty() ?: false) {}
                         val snackbarMessage = context.getString(R.string.no_tags_found)
                         val snackbarActionLabel = context.getString(R.string.create_tag)
                         _snackbarState.update { currentState ->
@@ -142,17 +140,10 @@ constructor(
             is CreateEventEvent.SubmitTag -> {
                 viewModelScope.launch {
                     createTagUseCase(tagForm = _tagFormState.value.toDomain()).collect()
-                    onEvent(CreateEventEvent.SuggestTags)
+                    onEvent(CreateEventEvent.SearchTags)
                 }
                 _formState.update { currentState -> currentState.copy(isAddTagFormOpen = false) }
                 _tagFormState.value = CreateTagState()
-            }
-
-            is CreateEventEvent.UpdateTagAlias -> {
-                _tagFormState.update { currentState ->
-                    val tagAliases = currentState.aliases.updated(event.id, event.alias)
-                    currentState.copy(aliases = tagAliases)
-                }
             }
             is CreateEventEvent.UpdateTagName -> {
                 _tagFormState.update { currentState -> currentState.copy(name = event.name) }
@@ -170,6 +161,64 @@ constructor(
             is CreateEventEvent.DropAddTagForm -> {
                 _formState.update { currentState -> currentState.copy(isAddTagFormOpen = false) }
                 _tagFormState.value = CreateTagState()
+            }
+            is CreateEventEvent.SuggestTagsByDescription -> {
+                _suggestedTagsFormState.update { currentState ->
+                    currentState.copy(isLoading = true)
+                }
+                _formState.update { currentState ->
+                    currentState.copy(isSuggestedTagsFormOpen = true)
+                }
+                viewModelScope.launch {
+                    suggestTagsByDescriptionUseCase(_formState.value.description).collect { result
+                        ->
+                        when (result) {
+                            is Resource.Loading -> {
+                                _suggestedTagsFormState.update { currentState ->
+                                    currentState.copy(isLoading = true)
+                                }
+                            }
+                            is Resource.Error -> {
+                                val noTagsMessage = context.getString(R.string.no_tags_suggested)
+                                _suggestedTagsFormState.update { currentState ->
+                                    currentState.copy(isLoading = false, message = noTagsMessage)
+                                }
+                            }
+                            is Resource.Success -> {
+                                if (result.data.isEmpty()) {
+                                    val noTagsMessage =
+                                        context.getString(R.string.no_tags_suggested)
+                                    _suggestedTagsFormState.update { currentState ->
+                                        currentState.copy(
+                                            isLoading = false,
+                                            message = noTagsMessage,
+                                        )
+                                    }
+                                } else {
+                                    _suggestedTagsFormState.value =
+                                        SuggestedTagsFormState(
+                                            suggestedTags = result.data.map { it.toUi() }
+                                        )
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            CreateEventEvent.AddSuggestedTags -> {
+                _formState.update { currentState ->
+                    currentState.copy(
+                        selectedTags = _suggestedTagsFormState.value.suggestedTags,
+                        isAddTagFormOpen = false,
+                    )
+                }
+                _suggestedTagsFormState.value = SuggestedTagsFormState()
+            }
+            CreateEventEvent.DropSuggestedTagsForm -> {
+                _formState.update { currentState ->
+                    currentState.copy(isSuggestedTagsFormOpen = false)
+                }
+                _suggestedTagsFormState.value = SuggestedTagsFormState()
             }
         }
     }

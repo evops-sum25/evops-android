@@ -25,7 +25,8 @@ class MainActivity : ComponentActivity() {
             EvOpsTheme {
                 val navController = rememberNavController()
                 Scaffold(
-                    bottomBar = { EvopsNavigationBar(navController = navController) },
+                    bottomBar = {
+                        EvopsNavigationBar(navController = navController) },
                     modifier = Modifier.fillMaxSize(),
                     contentWindowInsets = WindowInsets(0.dp),
                 ) { innerPadding ->

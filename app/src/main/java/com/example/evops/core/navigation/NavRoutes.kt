@@ -8,7 +8,10 @@ sealed class Destination {
     @Serializable data class EventDetails(val eventId: String) : Destination()
 
     @Serializable data object CreateEvent : Destination()
+
     @Serializable data object Settings : Destination()
+
+    @Serializable data object Auth : Destination()
 }
 
 sealed class SubGraph {
@@ -17,4 +20,6 @@ sealed class SubGraph {
     @Serializable data object CreateEvent : SubGraph()
 
     @Serializable data object Settings : SubGraph()
+
+    @Serializable data object Auth : SubGraph()
 }

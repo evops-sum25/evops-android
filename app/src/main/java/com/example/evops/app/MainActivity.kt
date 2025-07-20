@@ -26,7 +26,10 @@ class MainActivity : ComponentActivity() {
                 val navController = rememberNavController()
                 Scaffold(
                     bottomBar = {
-                        EvopsNavigationBar(navController = navController) },
+                        if (navController.currentDestination != null) {
+                            EvopsNavigationBar(navController = navController)
+                        }
+                    },
                     modifier = Modifier.fillMaxSize(),
                     contentWindowInsets = WindowInsets(0.dp),
                 ) { innerPadding ->

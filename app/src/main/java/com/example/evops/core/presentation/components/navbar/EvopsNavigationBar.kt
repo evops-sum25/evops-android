@@ -9,31 +9,34 @@ import androidx.navigation.NavDestination
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
+import com.example.evops.core.navigation.SubGraph
 
 @Composable
 fun EvopsNavigationBar(navController: NavHostController, modifier: Modifier = Modifier) {
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     val currentDestination = navBackStackEntry?.destination
 
-    NavigationBar(modifier = modifier.fillMaxWidth()) {
-        NavItemData.navItems.forEach { navItem ->
-            val isSelected = navItem.isSelected(currentDestination)
-            NavItem(
-                navItemData = navItem,
-                onClick = { onNavItemClick(navController = navController, navItem = navItem) },
-                isSelected = isSelected,
-                modifier = Modifier,
-            )
+    if (!SubGraph.Auth.isSelected(currentDestination)) {
+        NavigationBar(modifier = modifier.fillMaxWidth()) {
+            NavItemData.navItems.forEach { navItem ->
+                val isSelected = navItem.subGraph.isSelected(currentDestination)
+                NavItem(
+                    navItemData = navItem,
+                    onClick = { onNavItemClick(navController = navController, navItem = navItem) },
+                    isSelected = isSelected,
+                    modifier = Modifier,
+                )
+            }
         }
     }
 }
 
-private fun NavItemData.isSelected(currentDestination: NavDestination?): Boolean {
+private fun SubGraph.isSelected(currentDestination: NavDestination?): Boolean {
     if (currentDestination == null) {
         return false
     }
     val currentDestinationSubGraph = currentDestination.parent?.route?.shortRoute()
-    val navItemSubGraph = this.subGraph.toString()
+    val navItemSubGraph = this.toString()
     return currentDestinationSubGraph == navItemSubGraph
 }
 

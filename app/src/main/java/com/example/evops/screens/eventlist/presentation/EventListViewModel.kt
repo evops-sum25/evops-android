@@ -29,6 +29,12 @@ class EventListViewModel @Inject constructor(private val getEventsUseCase: GetEv
         when (event) {
             is EventListEvent.LoadFirstEvents -> processLoadFirstEvents()
             is EventListEvent.LoadEvents -> processLoadEvents()
+            is EventListEvent.SearchEvents -> {}
+            is EventListEvent.UpdateSearchString -> {
+                _listState.update { currentState ->
+                    currentState.copy(searchString = event.searchString)
+                }
+            }
         }
     }
 

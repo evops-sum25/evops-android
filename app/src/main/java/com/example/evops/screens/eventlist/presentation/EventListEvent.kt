@@ -4,4 +4,8 @@ sealed interface EventListEvent {
     data object LoadFirstEvents : EventListEvent
 
     data object LoadEvents : EventListEvent
+
+    data class UpdateSearchString(val searchString: String) : EventListEvent
+
+    data object SearchEvents : EventListEvent
 }

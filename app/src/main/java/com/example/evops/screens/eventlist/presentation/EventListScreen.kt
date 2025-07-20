@@ -31,7 +31,11 @@ fun EventListScreen(
                 navController = navController,
                 modifier = Modifier.fillMaxSize(),
             )
-            SearchField(modifier = Modifier.padding(horizontal = 18.dp, vertical = 4.dp))
+            SearchField(
+                searchString = listState.searchString,
+                onEvent = viewModel::onEvent,
+                modifier = Modifier.padding(horizontal = 18.dp, vertical = 4.dp),
+            )
         }
     }
 }

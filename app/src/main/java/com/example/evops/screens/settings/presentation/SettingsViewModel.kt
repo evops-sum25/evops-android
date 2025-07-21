@@ -3,6 +3,7 @@ package com.example.evops.screens.settings.presentation
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.evops.screens.settings.domain.usecases.GetLanguageCodeUseCase
+import com.example.evops.screens.settings.domain.usecases.LogoutUseCase
 import com.example.evops.screens.settings.domain.usecases.UpdateLanguageUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -16,6 +17,7 @@ class SettingsViewModel
 constructor(
     private val updateLanguageUseCase: UpdateLanguageUseCase,
     private val getLanguageCodeUseCase: GetLanguageCodeUseCase,
+    private val logoutUseCase: LogoutUseCase,
 ) : ViewModel() {
     private val _settingsState = MutableStateFlow(SettingsState())
     val settingsState = _settingsState
@@ -40,6 +42,9 @@ constructor(
                         }
                     }
                 }
+            }
+            is SettingsEvent.Logout -> {
+                viewModelScope.launch { logoutUseCase() }
             }
         }
     }

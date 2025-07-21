@@ -9,7 +9,6 @@ import kotlinx.parcelize.Parcelize
 data class CreateEventState(
     val title: String = "",
     val description: String = "",
-    val withAttendance: Boolean = false,
     val isImagePickerOpened: Boolean = false,
     val selectedUris: List<Uri> = emptyList(),
     val searchingTagName: String = "",

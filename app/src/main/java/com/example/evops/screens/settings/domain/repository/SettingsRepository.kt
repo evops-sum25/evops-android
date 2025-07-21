@@ -6,4 +6,6 @@ interface SettingsRepository {
     suspend fun updateLanguage(languageCode: String): Flow<String>
 
     suspend fun getLanguageCode(): Flow<String>
+
+    suspend fun logout()
 }

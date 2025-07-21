@@ -15,15 +15,13 @@ import com.example.evops.screens.createevent.domain.model.CreateEventTag
 import com.example.evops.screens.createevent.domain.model.CreateTagForm
 
 object CreateEventMapper {
-    fun CreateEventForm.toData(authorId: String) =
+    fun CreateEventForm.toData() =
         CreateEventFormWrapperDto(
             eventForm =
                 CreateEventFormDto(
-                    authorId = authorId,
                     description = this.description,
                     tagIds = this.tagIds,
                     title = this.title,
-                    withAttendance = this.withAttendance,
                 )
         )
 

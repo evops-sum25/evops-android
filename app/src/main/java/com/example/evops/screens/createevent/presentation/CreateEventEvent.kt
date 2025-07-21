@@ -8,8 +8,6 @@ sealed interface CreateEventEvent {
 
     data class UpdateDescription(val description: String) : CreateEventEvent
 
-    data class UpdateWithAttendance(val withAttendance: Boolean) : CreateEventEvent
-
     data object SubmitEvent : CreateEventEvent
 
     data class OpenHideImagePicker(val shouldOpen: Boolean) : CreateEventEvent

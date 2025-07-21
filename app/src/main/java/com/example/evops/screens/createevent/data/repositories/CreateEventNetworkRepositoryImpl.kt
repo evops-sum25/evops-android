@@ -1,30 +1,37 @@
 package com.example.evops.screens.createevent.data.repositories
 
+import com.example.evops.core.common.Config
+import com.example.evops.core.common.exceptions.AccessTokenExpiredException
+import com.example.evops.core.data.datastore.AuthDataStore
+import com.example.evops.core.domain.repository.AuthRepository
 import com.example.evops.screens.createevent.data.api.CreateEventApi
 import com.example.evops.screens.createevent.data.mappers.CreateEventMapper.suggestTagsByDescription
 import com.example.evops.screens.createevent.data.mappers.CreateEventMapper.toData
 import com.example.evops.screens.createevent.data.mappers.CreateEventMapper.toDomain
-import com.example.evops.screens.createevent.domain.model.CreateAuthorForm
 import com.example.evops.screens.createevent.domain.model.CreateEventForm
 import com.example.evops.screens.createevent.domain.model.CreateEventTag
 import com.example.evops.screens.createevent.domain.model.CreateTagForm
 import com.example.evops.screens.createevent.domain.repositories.CreateEventNetworkRepository
+import kotlinx.coroutines.flow.first
 import okhttp3.MultipartBody
 import okhttp3.RequestBody.Companion.asRequestBody
+import retrofit2.Response
 import java.io.File
 
-class CreateEventNetworkRepositoryImpl(private val createEventApi: CreateEventApi) :
-    CreateEventNetworkRepository {
-    override suspend fun getAuthorIds(): List<String> {
-        return createEventApi.getUsers().users.map { it.id }
-    }
+class CreateEventNetworkRepositoryImpl(
+    private val createEventApi: CreateEventApi,
+    private val authDataStore: AuthDataStore,
+    private val authRepository: AuthRepository,
+) : CreateEventNetworkRepository {
 
-    override suspend fun createAuthor(userForm: CreateAuthorForm) {
-        createEventApi.createUser(userForm.toData())
-    }
-
-    override suspend fun createEvent(eventForm: CreateEventForm, userId: String): String {
-        return createEventApi.createEvent(eventForm.toData(userId)).eventId
+    override suspend fun createEvent(eventForm: CreateEventForm): String {
+        return intercept { token ->
+                createEventApi.createEvent(
+                    formDto = eventForm.toData(),
+                    accessToken = Config.constructAccessToken(token),
+                )
+            }
+            .eventId
     }
 
     override suspend fun postImage(eventId: String, image: File): String {
@@ -34,7 +41,14 @@ class CreateEventNetworkRepositoryImpl(private val createEventApi: CreateEventAp
                 filename = image.name,
                 body = image.asRequestBody(),
             )
-        return createEventApi.postImage(eventId = eventId, image = imageMultipart).imageId
+        return intercept { token ->
+                createEventApi.postImage(
+                    eventId = eventId,
+                    image = imageMultipart,
+                    accessToken = Config.constructAccessToken(token),
+                )
+            }
+            .imageId
     }
 
     override suspend fun getTags(name: String): List<CreateEventTag> {
@@ -46,13 +60,36 @@ class CreateEventNetworkRepositoryImpl(private val createEventApi: CreateEventAp
     }
 
     override suspend fun createTag(tagForm: CreateTagForm): String {
-        return createEventApi.createTag(formDto = tagForm.toData()).tagId
+        return intercept { token ->
+                createEventApi.createTag(
+                    formDto = tagForm.toData(),
+                    accessToken = Config.constructAccessToken(token),
+                )
+            }
+            .tagId
     }
 
     override suspend fun suggestTagsByDescription(description: String): List<CreateEventTag> {
-        val tagIdsDto =
-            createEventApi.suggestTagsByDescription(description.suggestTagsByDescription())
+        val tagIdsDto = intercept { token ->
+            createEventApi.suggestTagsByDescription(
+                description = description.suggestTagsByDescription(),
+                accessToken = Config.constructAccessToken(token),
+            )
+        }
         val tags = tagIdsDto.tagIds.map { id -> getTag(id) }
         return tags
+    }
+
+    private suspend fun <T> intercept(base: suspend (String) -> Response<T>): T {
+        val token = authDataStore.accessToken.first()
+        return token?.let {
+            val response = base(it)
+            if (response.code() == 401) {
+                authRepository.refresh()
+                base(it).body()
+            } else {
+                response.body()
+            }
+        } ?: throw AccessTokenExpiredException()
     }
 }

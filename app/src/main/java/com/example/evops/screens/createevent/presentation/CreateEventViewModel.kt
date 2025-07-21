@@ -70,11 +70,6 @@ constructor(
                     currentState.copy(description = event.description)
                 }
             }
-            is CreateEventEvent.UpdateWithAttendance -> {
-                _formState.update { currentState ->
-                    currentState.copy(withAttendance = event.withAttendance)
-                }
-            }
             is CreateEventEvent.SubmitEvent -> {
                 viewModelScope.launch {
                     createEventUseCase(
@@ -228,7 +223,6 @@ constructor(
             description = this.description,
             tagIds = this.selectedTags.map { it.id },
             title = this.title,
-            withAttendance = this.withAttendance,
         )
 
     private fun getFileName(context: Context, uri: Uri): String? {

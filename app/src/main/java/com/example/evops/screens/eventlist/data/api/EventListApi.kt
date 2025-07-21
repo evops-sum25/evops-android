@@ -12,4 +12,17 @@ interface EventListApi {
         @Query("limit") limit: Int,
         @Query("last-id") lastEventId: String,
     ): EventListDto
+
+    @GET("/v1/events")
+    suspend fun getFirstEventsWithSearchString(
+        @Query("limit") limit: Int,
+        @Query("search") searchString: String,
+    ): EventListDto
+
+    @GET("/v1/events")
+    suspend fun getEventsWithSearchString(
+        @Query("limit") limit: Int,
+        @Query("last-id") lastEventId: String,
+        @Query("search") searchString: String,
+    ): EventListDto
 }

@@ -3,15 +3,20 @@ package com.example.evops.app
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.compose.rememberNavController
+import com.example.evops.core.data.datastore.AuthState
 import com.example.evops.core.navigation.EvopsNavGraph
+import com.example.evops.core.navigation.SubGraph
 import com.example.evops.core.presentation.components.navbar.EvopsNavigationBar
 import com.example.evops.core.presentation.style.EvOpsTheme
 import dagger.hilt.android.AndroidEntryPoint
@@ -20,10 +25,18 @@ import dagger.hilt.android.AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
         setContent {
+            val viewModel: MainViewModel = hiltViewModel()
+            val authState by viewModel.authState.collectAsState()
+            val navController = rememberNavController()
+
+            LaunchedEffect(authState) {
+                if (authState == AuthState.NEED_LOGIN.string) {
+                    navController.navigate(SubGraph.Auth) { popUpTo(0) { inclusive = true } }
+                }
+            }
+
             EvOpsTheme {
-                val navController = rememberNavController()
                 Scaffold(
                     bottomBar = { EvopsNavigationBar(navController = navController) },
                     modifier = Modifier.fillMaxSize(),

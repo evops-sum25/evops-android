@@ -15,7 +15,10 @@ fun EventList(
     modifier: Modifier = Modifier,
 ) {
     SwipeRefreshWrapper(
-        onRefresh = { onEvent(EventListEvent.LoadFirstEvents) },
+        onRefresh = {
+            onEvent(EventListEvent.LoadFirstEvents())
+            onEvent(EventListEvent.UpdateSearchString(""))
+        },
         modifier = modifier.fillMaxSize(),
     ) {
         EventListContent(

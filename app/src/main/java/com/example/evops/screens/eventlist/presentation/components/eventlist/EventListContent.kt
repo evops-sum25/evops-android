@@ -41,7 +41,7 @@ fun EventListContent(
     }
     LaunchedEffect(shouldLoadMore) {
         if (shouldLoadMore) {
-            onEvent(EventListEvent.LoadEvents)
+            onEvent(EventListEvent.LoadEvents())
         }
     }
 

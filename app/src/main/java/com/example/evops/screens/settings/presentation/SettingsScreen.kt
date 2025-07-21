@@ -35,6 +35,11 @@ fun SettingsScreen(modifier: Modifier = Modifier, viewModel: SettingsViewModel =
                 onEvent = viewModel::onEvent,
                 modifier = Modifier.padding(horizontal = 12.dp).fillMaxWidth(),
             )
+            AccountSection(
+                accountName = "Aleksandr Isupov",
+                onEvent = viewModel::onEvent,
+                modifier = Modifier.padding(horizontal = 12.dp).fillMaxWidth(),
+            )
         }
     }
 }
@@ -65,6 +70,31 @@ private fun LanguageSection(
                     stringResource(R.string.change_language),
                     style = MaterialTheme.typography.bodyLarge,
                 )
+            }
+        }
+        HorizontalDivider(thickness = 2.dp)
+    }
+}
+
+@Composable
+fun AccountSection(
+    accountName: String,
+    onEvent: (SettingsEvent) -> Unit,
+    modifier: Modifier = Modifier,
+) {
+    Column {
+        Row(
+            horizontalArrangement = Arrangement.spacedBy(8.dp),
+            verticalAlignment = Alignment.CenterVertically,
+            modifier = modifier,
+        ) {
+            Text(
+                "${stringResource(R.string.current_user)}: $accountName",
+                style = MaterialTheme.typography.bodyLarge,
+            )
+
+            TextButton(onClick = { onEvent(SettingsEvent.Logout) }) {
+                Text(stringResource(R.string.logout), style = MaterialTheme.typography.bodyLarge)
             }
         }
         HorizontalDivider(thickness = 2.dp)

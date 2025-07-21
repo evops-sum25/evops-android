@@ -31,4 +31,14 @@
     <string name="no_tags_suggested">Теги по описанию не найдены</string>
     <string name="add">Добавить</string>
     <string name="found_tags">Найденные теги</string>
+    <string name="login">Логин</string>
+    <string name="password">Пароль</string>
+    <string name="sign_up">Зарегистрироваться</string>
+    <string name="log_in">Войти</string>
+    <string name="authorization">Авторизация</string>
+    <string name="display_name">Имя</string>
+    <string name="switch_to_sign_up">Перейти к регистрации</string>
+    <string name="switch_to_log_in">Перейти ко входу</string>
+    <string name="logout">Выйти</string>
+    <string name="current_user">Текущий пользователь</string>
 </resources>

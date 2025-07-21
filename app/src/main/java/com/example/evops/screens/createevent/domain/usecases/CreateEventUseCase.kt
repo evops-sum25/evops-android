@@ -10,14 +10,8 @@ class CreateEventUseCase
 @Inject
 constructor(private val createEventNetworkRepository: CreateEventNetworkRepository) {
     suspend operator fun invoke(eventForm: CreateEventForm, images: List<File>): Boolean {
-        val userId = createEventNetworkRepository.getAuthorIds().lastOrNull()
-        userId?.let {
-            val eventId = createEventNetworkRepository.createEvent(eventForm, userId)
-            images.forEach { image -> createEventNetworkRepository.postImage(eventId, image) }
-            return true
-        }
-        createEventNetworkRepository.createAuthor(CreateAuthorForm(name = "Asqar Arslanov"))
-        this.invoke(eventForm, images)
-        return false
+        val eventId = createEventNetworkRepository.createEvent(eventForm)
+        images.forEach { image -> createEventNetworkRepository.postImage(eventId, image) }
+        return true
     }
 }

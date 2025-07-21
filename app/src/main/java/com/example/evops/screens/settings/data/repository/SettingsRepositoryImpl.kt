@@ -1,10 +1,10 @@
 package com.example.evops.screens.settings.data.repository
 
-import android.content.Context
 import com.example.evops.core.common.LanguageChanger
+import com.example.evops.core.data.datastore.AuthDataStore
+import com.example.evops.core.data.datastore.AuthState
 import com.example.evops.screens.settings.data.datastore.SettingsDataStore
 import com.example.evops.screens.settings.domain.repository.SettingsRepository
-import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
@@ -12,9 +12,9 @@ import javax.inject.Inject
 class SettingsRepositoryImpl
 @Inject
 constructor(
-    @ApplicationContext private val context: Context,
     private val dataStore: SettingsDataStore,
     private val languageChanger: LanguageChanger,
+    private val authDataStore: AuthDataStore,
 ) : SettingsRepository {
     override suspend fun updateLanguage(languageCode: String): Flow<String> {
         dataStore.updateLanguageCode(languageCode)
@@ -30,5 +30,9 @@ constructor(
                 emit(languageCode)
             }
         }
+    }
+
+    override suspend fun logout() {
+        authDataStore.updateAuthState(AuthState.NEED_LOGIN)
     }
 }

@@ -41,4 +41,7 @@
     <string name="switch_to_log_in">Перейти ко входу</string>
     <string name="logout">Выйти</string>
     <string name="current_user">Текущий пользователь</string>
+    <string name="login_min_len_error">The login should be at least %1$s characters long</string>
+    <string name="login_max_len_error">The login cannot be more than %1$s characters</string>
+    <string name="invalid_login_format_error">Invalid login format</string>
 </resources>

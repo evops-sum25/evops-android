@@ -29,12 +29,8 @@ class MainActivity : ComponentActivity() {
             val viewModel: MainViewModel = hiltViewModel()
             val authState by viewModel.authState.collectAsState()
             val navController = rememberNavController()
-
-            LaunchedEffect(authState) {
-                if (authState == AuthState.NEED_LOGIN.string) {
-                    navController.navigate(SubGraph.Auth) { popUpTo(0) { inclusive = true } }
-                }
-            }
+            val startDestination =
+                if (authState == AuthState.NEED_LOGIN.string) SubGraph.Auth else SubGraph.Home
 
             EvOpsTheme {
                 Scaffold(
@@ -43,9 +39,17 @@ class MainActivity : ComponentActivity() {
                     contentWindowInsets = WindowInsets(0.dp),
                 ) { innerPadding ->
                     EvopsNavGraph(
+                        startDestination = startDestination,
                         navController = navController,
                         modifier = Modifier.padding(innerPadding),
                     )
+                }
+            }
+            LaunchedEffect(authState) {
+                if (authState == AuthState.NEED_LOGIN.string) {
+                    try {
+                        navController.navigate(SubGraph.Auth) { popUpTo(0) { inclusive = true } }
+                    } catch (_: IllegalStateException) {}
                 }
             }
         }

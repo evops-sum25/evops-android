@@ -1,4 +1,4 @@
-package com.example.evops.screens.auth.presentation.components
+package com.example.evops.screens.auth.presentation.components.buttons
 
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
@@ -9,8 +9,8 @@ import com.example.evops.R
 import com.example.evops.screens.auth.presentation.AuthEvent
 
 @Composable
-fun LoginButton(onEvent: (AuthEvent) -> Unit, modifier: Modifier = Modifier) {
-    Button(onClick = { onEvent(AuthEvent.Login) }, modifier = modifier) {
-        Text(stringResource(R.string.log_in))
+fun SignUpButton(onEvent: (AuthEvent) -> Unit, modifier: Modifier = Modifier) {
+    Button(onClick = { onEvent(AuthEvent.SignUp) }, modifier = modifier) {
+        Text(stringResource(R.string.sign_up))
     }
 }

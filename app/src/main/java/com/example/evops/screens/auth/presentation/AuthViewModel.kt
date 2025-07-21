@@ -1,6 +1,8 @@
 package com.example.evops.screens.auth.presentation
 
 import androidx.lifecycle.ViewModel
+import com.example.evops.screens.auth.presentation.state.AuthScreen
+import com.example.evops.screens.auth.presentation.state.AuthState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.update
@@ -21,6 +23,17 @@ class AuthViewModel @Inject constructor() : ViewModel() {
             }
             is AuthEvent.SignUp -> {}
             is AuthEvent.Login -> {}
+            is AuthEvent.SwitchToLogin -> {
+                _authState.value = AuthState(currentScreen = AuthScreen.LOGIN)
+            }
+            is AuthEvent.SwitchToSignUp -> {
+                _authState.value = AuthState(currentScreen = AuthScreen.SIGN_UP)
+            }
+            is AuthEvent.UpdateDisplayName -> {
+                _authState.update { currentState ->
+                    currentState.copy(displayName = event.displayName)
+                }
+            }
         }
     }
 }

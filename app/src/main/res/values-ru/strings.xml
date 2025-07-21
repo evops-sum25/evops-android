@@ -36,4 +36,6 @@
     <string name="sign_up">Зарегистрироваться</string>
     <string name="log_in">Войти</string>
     <string name="authorization">Авторизация</string>
+    <string name="display_name">Display Name</string>
+    <string name="switch_to_sign_up">Switch to Sign Up</string>
 </resources>

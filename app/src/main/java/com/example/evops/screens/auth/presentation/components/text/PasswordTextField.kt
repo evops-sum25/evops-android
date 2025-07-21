@@ -1,4 +1,4 @@
-package com.example.evops.screens.auth.presentation.components
+package com.example.evops.screens.auth.presentation.components.text
 
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.text.KeyboardOptions

@@ -1,4 +1,4 @@
-package com.example.evops.screens.auth.presentation.components
+package com.example.evops.screens.auth.presentation.components.text
 
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.text.KeyboardOptions
@@ -19,17 +19,17 @@ import com.example.evops.R
 import com.example.evops.screens.auth.presentation.AuthEvent
 
 @Composable
-fun LoginTextField(
-    login: String,
+fun DisplayNameTextField(
+    displayName: String,
     onEvent: (AuthEvent) -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    var textFieldValue by remember { mutableStateOf(TextFieldValue(login)) }
+    var textFieldValue by remember { mutableStateOf(TextFieldValue(displayName)) }
 
-    LaunchedEffect(login) {
-        if (login != textFieldValue.text) {
+    LaunchedEffect(displayName) {
+        if (displayName != textFieldValue.text) {
             textFieldValue =
-                TextFieldValue(text = login, selection = TextRange(login.length))
+                TextFieldValue(text = displayName, selection = TextRange(displayName.length))
         }
     }
 
@@ -39,7 +39,7 @@ fun LoginTextField(
             textFieldValue = it
             onEvent(AuthEvent.UpdateLogin(it.text))
         },
-        label = { LoginLabel() },
+        label = { DisplayNameLabel() },
         singleLine = true,
         keyboardOptions = KeyboardOptions(imeAction = ImeAction.Next),
         modifier = modifier.fillMaxWidth(),
@@ -47,6 +47,6 @@ fun LoginTextField(
 }
 
 @Composable
-private fun LoginLabel(modifier: Modifier = Modifier) {
-    Text(text = stringResource(R.string.login), modifier = modifier)
+private fun DisplayNameLabel(modifier: Modifier = Modifier) {
+    Text(text = stringResource(R.string.display_name), modifier = modifier)
 }

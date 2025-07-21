@@ -2,6 +2,7 @@ package com.example.evops.screens.eventlist.presentation
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.imePadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
@@ -24,7 +25,7 @@ fun EventListScreen(
     val listState by viewModel.listState.collectAsStateWithLifecycle()
 
     Scaffold { innerPadding ->
-        Box(modifier = modifier.padding(innerPadding).fillMaxSize()) {
+        Box(modifier = modifier.padding(innerPadding).fillMaxSize().imePadding()) {
             EventList(
                 events = listState.events,
                 onEvent = viewModel::onEvent,

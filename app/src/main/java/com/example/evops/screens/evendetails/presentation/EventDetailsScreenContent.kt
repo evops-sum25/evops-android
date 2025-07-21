@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.imePadding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -17,7 +18,7 @@ import com.example.evops.screens.evendetails.presentation.components.EventDetail
 
 @Composable
 fun EventDetailsScreenContent(eventDetails: EventDetails, modifier: Modifier = Modifier) {
-    Column(verticalArrangement = Arrangement.spacedBy(12.dp), modifier = modifier) {
+    Column(verticalArrangement = Arrangement.spacedBy(12.dp), modifier = modifier.imePadding()) {
         EventDetailsTitleAndAuthor(title = eventDetails.title, author = eventDetails.author)
 
         EventDetailsDescription(description = eventDetails.description)

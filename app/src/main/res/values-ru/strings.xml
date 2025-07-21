@@ -49,4 +49,6 @@
     <string name="password_min_len_error">Password should be at least %1$s characters long</string>
     <string name="display_name_min_len_error">Display name cannot be more than %1$s characters</string>
     <string name="display_name_max_len_error">Display name be at least %1$s characters long</string>
+    <string name="description_min_len_error">Display name be at least %1$s characters long</string>
+    <string name="description_max_len_error">Display name cannot be more than %1$s characters</string>
 </resources>

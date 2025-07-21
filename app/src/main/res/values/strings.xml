@@ -41,7 +41,10 @@
     <string name="switch_to_log_in">Switch to Log In</string>
     <string name="logout">Logout</string>
     <string name="current_user">Current User</string>
-    <string name="login_min_len_error">The login should be at least %1$s characters long</string>
-    <string name="login_max_len_error">The login cannot be more than %1$s characters</string>
+    <string name="login_min_len_error">Login should be at least %1$s characters long</string>
+    <string name="login_max_len_error">Login cannot be more than %1$s characters</string>
     <string name="invalid_login_format_error">Invalid login format</string>
+    <string name="invalid_password_format_error">Invalid password format</string>
+    <string name="password_max_len_error">Login cannot be more than %1$s characters</string>
+    <string name="password_min_len_error">Password should be at least %1$s characters long</string>
 </resources>

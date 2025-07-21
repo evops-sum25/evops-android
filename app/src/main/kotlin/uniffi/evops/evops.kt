@@ -1117,7 +1117,7 @@ private fun uniffiCheckApiChecksums(lib: IntegrityCheckingUniffiLib) {
     if (lib.uniffi_evops_checksum_func_validate_tag_name() != 35041.toShort()) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
-    if (lib.uniffi_evops_checksum_func_validate_user_display_name() != 57700.toShort()) {
+    if (lib.uniffi_evops_checksum_func_validate_user_display_name() != 4137.toShort()) {
         throw RuntimeException("UniFFI API checksum mismatch: try cleaning and rebuilding your project")
     }
     if (lib.uniffi_evops_checksum_func_validate_user_login() != 45070.toShort()) {
@@ -1436,6 +1436,37 @@ public object FfiConverterTypeValidateTagNameResult: FfiConverterRustBuffer<Vali
 
 
 
+enum class ValidateUserDisplayNameResult {
+    
+    OK,
+    LEN_CHAR_MIN_VIOLATED,
+    LEN_CHAR_MAX_VIOLATED;
+    companion object
+}
+
+
+/**
+ * @suppress
+ */
+public object FfiConverterTypeValidateUserDisplayNameResult: FfiConverterRustBuffer<ValidateUserDisplayNameResult> {
+    override fun read(buf: ByteBuffer) = try {
+        ValidateUserDisplayNameResult.values()[buf.getInt() - 1]
+    } catch (e: IndexOutOfBoundsException) {
+        throw RuntimeException("invalid enum value, something is very wrong!!", e)
+    }
+
+    override fun allocationSize(value: ValidateUserDisplayNameResult) = 4UL
+
+    override fun write(value: ValidateUserDisplayNameResult, buf: ByteBuffer) {
+        buf.putInt(value.ordinal + 1)
+    }
+}
+
+
+
+
+
+
 enum class ValidateUserLoginResult {
     
     OK,
@@ -1459,37 +1490,6 @@ public object FfiConverterTypeValidateUserLoginResult: FfiConverterRustBuffer<Va
     override fun allocationSize(value: ValidateUserLoginResult) = 4UL
 
     override fun write(value: ValidateUserLoginResult, buf: ByteBuffer) {
-        buf.putInt(value.ordinal + 1)
-    }
-}
-
-
-
-
-
-
-enum class ValidateUserNameResult {
-    
-    OK,
-    LEN_CHAR_MIN_VIOLATED,
-    LEN_CHAR_MAX_VIOLATED;
-    companion object
-}
-
-
-/**
- * @suppress
- */
-public object FfiConverterTypeValidateUserNameResult: FfiConverterRustBuffer<ValidateUserNameResult> {
-    override fun read(buf: ByteBuffer) = try {
-        ValidateUserNameResult.values()[buf.getInt() - 1]
-    } catch (e: IndexOutOfBoundsException) {
-        throw RuntimeException("invalid enum value, something is very wrong!!", e)
-    }
-
-    override fun allocationSize(value: ValidateUserNameResult) = 4UL
-
-    override fun write(value: ValidateUserNameResult, buf: ByteBuffer) {
         buf.putInt(value.ordinal + 1)
     }
 }
@@ -1726,8 +1726,8 @@ public object FfiConverterTypeValidateUserPasswordResult: FfiConverterRustBuffer
     )
     }
     
- fun `validateUserDisplayName`(`userName`: kotlin.String): ValidateUserNameResult {
-            return FfiConverterTypeValidateUserNameResult.lift(
+ fun `validateUserDisplayName`(`userName`: kotlin.String): ValidateUserDisplayNameResult {
+            return FfiConverterTypeValidateUserDisplayNameResult.lift(
     uniffiRustCall() { _status ->
     UniffiLib.INSTANCE.uniffi_evops_fn_func_validate_user_display_name(
         FfiConverterString.lower(`userName`),_status)

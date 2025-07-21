@@ -40,7 +40,7 @@ fun SearchTagTextField(
         value = textFieldValue,
         onValueChange = {
             textFieldValue = it
-            onEvent(CreateEventEvent.UpdateSearchingTagName(tagName))
+            onEvent(CreateEventEvent.UpdateSearchingTagName(it.text))
         },
         label = { SearchTagLabel() },
         suffix = { SearchButton(onEvent = onEvent) },

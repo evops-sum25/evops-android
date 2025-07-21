@@ -3,6 +3,7 @@ package com.example.evops.screens.createevent.presentation
 import android.content.Context
 import android.net.Uri
 import android.provider.OpenableColumns
+import android.util.Log
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -115,15 +116,17 @@ constructor(
             }
             is CreateEventEvent.SearchTags -> {
                 viewModelScope.launch {
+                    Log.d("DEBB", _formState.value.searchingTagName)
                     getTagsUseCase(_formState.value.searchingTagName).collect { result ->
-                        if (result.data?.isEmpty() ?: false) {}
-                        val snackbarMessage = context.getString(R.string.no_tags_found)
-                        val snackbarActionLabel = context.getString(R.string.create_tag)
-                        _snackbarState.update { currentState ->
-                            currentState.copy(
-                                message = snackbarMessage,
-                                actionLabel = snackbarActionLabel,
-                            )
+                        if (result.data?.isEmpty() ?: false) {
+                            val snackbarMessage = context.getString(R.string.no_tags_found)
+                            val snackbarActionLabel = context.getString(R.string.create_tag)
+                            _snackbarState.update { currentState ->
+                                currentState.copy(
+                                    message = snackbarMessage,
+                                    actionLabel = snackbarActionLabel,
+                                )
+                            }
                         }
                         _formState.update { currentState ->
                             val tags = (result.data ?: emptyList()).map { it.toUi() }
@@ -243,10 +246,6 @@ constructor(
             FileOutputStream(tempFile).use { outputStream -> inputStream.copyTo(outputStream) }
         }
         return tempFile
-    }
-
-    private fun <T> List<T>.updated(index: Int, value: T): List<T> {
-        return toMutableList().apply { this[index] = value }
     }
 
     private fun <T> List<T>.removedAt(index: Int): List<T> {

@@ -1,7 +1,7 @@
 package com.example.evops.screens.createevent.data.repositories
 
+import android.util.Log
 import com.example.evops.core.common.Config
-import com.example.evops.core.common.exceptions.AccessTokenExpiredException
 import com.example.evops.core.data.datastore.AuthDataStore
 import com.example.evops.core.domain.repository.AuthRepository
 import com.example.evops.screens.createevent.data.api.CreateEventApi
@@ -12,6 +12,7 @@ import com.example.evops.screens.createevent.domain.model.CreateEventForm
 import com.example.evops.screens.createevent.domain.model.CreateEventTag
 import com.example.evops.screens.createevent.domain.model.CreateTagForm
 import com.example.evops.screens.createevent.domain.repositories.CreateEventNetworkRepository
+import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.flow.first
 import okhttp3.MultipartBody
 import okhttp3.RequestBody.Companion.asRequestBody
@@ -24,17 +25,17 @@ class CreateEventNetworkRepositoryImpl(
     private val authRepository: AuthRepository,
 ) : CreateEventNetworkRepository {
 
-    override suspend fun createEvent(eventForm: CreateEventForm): String {
+    override suspend fun createEvent(eventForm: CreateEventForm): String? {
         return intercept { token ->
                 createEventApi.createEvent(
                     formDto = eventForm.toData(),
                     accessToken = Config.constructAccessToken(token),
                 )
             }
-            .eventId
+            ?.eventId
     }
 
-    override suspend fun postImage(eventId: String, image: File): String {
+    override suspend fun postImage(eventId: String, image: File): String? {
         val imageMultipart =
             MultipartBody.Part.createFormData(
                 name = "image",
@@ -48,25 +49,26 @@ class CreateEventNetworkRepositoryImpl(
                     accessToken = Config.constructAccessToken(token),
                 )
             }
-            .imageId
+            ?.imageId
     }
 
     override suspend fun getTags(name: String): List<CreateEventTag> {
-        return createEventApi.getTags().toDomain()
+        Log.d("DEB", name)
+        return createEventApi.getTags().toDomain().filter { it.name.contains(name) }
     }
 
     override suspend fun getTag(tagId: String): CreateEventTag {
         return createEventApi.getTag(tagId).tag.toDomain()
     }
 
-    override suspend fun createTag(tagForm: CreateTagForm): String {
+    override suspend fun createTag(tagForm: CreateTagForm): String? {
         return intercept { token ->
                 createEventApi.createTag(
                     formDto = tagForm.toData(),
                     accessToken = Config.constructAccessToken(token),
                 )
             }
-            .tagId
+            ?.tagId
     }
 
     override suspend fun suggestTagsByDescription(description: String): List<CreateEventTag> {
@@ -76,20 +78,22 @@ class CreateEventNetworkRepositoryImpl(
                 accessToken = Config.constructAccessToken(token),
             )
         }
-        val tags = tagIdsDto.tagIds.map { id -> getTag(id) }
-        return tags
+        val tags = tagIdsDto?.tagIds?.map { id -> getTag(id) }
+        return tags ?: emptyList()
     }
 
-    private suspend fun <T> intercept(base: suspend (String) -> Response<T>): T {
-        val token = authDataStore.accessToken.first()
-        return token?.let {
+    private suspend fun <T> intercept(base: suspend (String) -> Response<T>): T? {
+        val token = authDataStore.accessToken.filterNotNull().first()
+
+        return token.let {
             val response = base(it)
             if (response.code() == 401) {
                 authRepository.refresh()
-                base(it).body()
+                val refreshedToken = authDataStore.accessToken.filterNotNull().first()
+                base(refreshedToken).body()
             } else {
                 response.body()
             }
-        } ?: throw AccessTokenExpiredException()
+        }
     }
 }

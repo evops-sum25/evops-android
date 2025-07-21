@@ -86,4 +86,7 @@ dependencies {
 
     // DataStore
     implementation(libs.datastore.preferences)
+
+    // JNA
+    implementation("net.java.dev.jna:jna:5.17.0@aar")
 }

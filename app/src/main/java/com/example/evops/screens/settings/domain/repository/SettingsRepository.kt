@@ -8,4 +8,6 @@ interface SettingsRepository {
     suspend fun getLanguageCode(): Flow<String>
 
     suspend fun logout()
+
+    suspend fun getUserName(): String?
 }

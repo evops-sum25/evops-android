@@ -72,19 +72,18 @@ class CreateEventNetworkRepositoryImpl(
     }
 
     override suspend fun suggestTagsByDescription(description: String): List<CreateEventTag> {
-        val tagIdsDto = intercept { token ->
+        val tagsDto = intercept { token ->
             createEventApi.suggestTagsByDescription(
                 description = description.suggestTagsByDescription(),
                 accessToken = Config.constructAccessToken(token),
             )
         }
-        val tags = tagIdsDto?.tagIds?.map { id -> getTag(id) }
+        val tags = tagsDto?.tags?.map { it.toDomain() }
         return tags ?: emptyList()
     }
 
     private suspend fun <T> intercept(base: suspend (String) -> Response<T>): T? {
         val token = authDataStore.accessToken.filterNotNull().first()
-
         return token.let {
             val response = base(it)
             if (response.code() == 401) {

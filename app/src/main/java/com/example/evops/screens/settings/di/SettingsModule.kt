@@ -3,6 +3,8 @@ package com.example.evops.screens.settings.di
 import android.content.Context
 import com.example.evops.core.common.LanguageChanger
 import com.example.evops.core.data.datastore.AuthDataStore
+import com.example.evops.core.domain.repository.AuthRepository
+import com.example.evops.screens.settings.data.SettingsApi
 import com.example.evops.screens.settings.data.datastore.SettingsDataStore
 import com.example.evops.screens.settings.data.repository.SettingsRepositoryImpl
 import com.example.evops.screens.settings.domain.repository.SettingsRepository
@@ -12,6 +14,7 @@ import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
+import retrofit2.Retrofit
 
 @Module
 @InstallIn(SingletonComponent::class)
@@ -30,11 +33,25 @@ object SettingsModule {
 
     @Provides
     @Singleton
+    fun provideSettingsApi(retrofit: Retrofit): SettingsApi {
+        return retrofit.create(SettingsApi::class.java)
+    }
+
+    @Provides
+    @Singleton
     fun provideSettingsRepository(
-        dataStore: SettingsDataStore,
+        settingsApi: SettingsApi,
+        settingsDataStore: SettingsDataStore,
         languageChanger: LanguageChanger,
         authDataStore: AuthDataStore,
+        authRepository: AuthRepository,
     ): SettingsRepository {
-        return SettingsRepositoryImpl(dataStore, languageChanger, authDataStore)
+        return SettingsRepositoryImpl(
+            settingsApi,
+            settingsDataStore,
+            languageChanger,
+            authDataStore,
+            authRepository,
+        )
     }
 }

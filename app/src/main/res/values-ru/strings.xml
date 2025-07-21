@@ -40,7 +40,6 @@
     <string name="switch_to_sign_up">Перейти к регистрации</string>
     <string name="switch_to_log_in">Перейти ко входу</string>
     <string name="logout">Выйти</string>
-    <string name="current_user">Текущий пользователь</string>
     <string name="login_min_len_error">Логин должен содерждать как минимум %1$s символов</string>
     <string name="login_max_len_error">Логин не может содержать более %1$s символов</string>
     <string name="invalid_login_format_error">Неверный формат логина</string>
@@ -56,4 +55,6 @@
     <string name="tag_name_min_len_error">Тег должен содерждать как минимум %1$s символов</string>
     <string name="tag_name_max_len_error">Тег не может содержать более %1$s символов</string>
     <string name="invalid_tag_name_format_error">Неверный формат тега</string>
+    <string name="unknown_user">Неизвестный</string>
+    <string name="current_user">Текущий пользователь: %1$s</string>
 </resources>

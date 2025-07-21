@@ -16,4 +16,23 @@ class EventListNetworkRepositoryImpl @Inject constructor(private val api: EventL
         }
         return api.getFirstEvents(limit = Config.EVENT_PAGE_LIMIT).toDomain()
     }
+
+    override suspend fun getSearchedEvents(
+        searchString: String,
+        lastEventId: String?,
+    ): List<EventItem> {
+        lastEventId?.let {
+            return api.getEventsWithSearchString(
+                    limit = Config.EVENT_PAGE_LIMIT,
+                    lastEventId = lastEventId,
+                    searchString = searchString,
+                )
+                .toDomain()
+        }
+        return api.getFirstEventsWithSearchString(
+                limit = Config.EVENT_PAGE_LIMIT,
+                searchString = searchString,
+            )
+            .toDomain()
+    }
 }

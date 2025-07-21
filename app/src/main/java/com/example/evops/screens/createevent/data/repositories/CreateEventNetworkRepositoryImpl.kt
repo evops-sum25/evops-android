@@ -1,5 +1,6 @@
 package com.example.evops.screens.createevent.data.repositories
 
+import android.util.Log
 import com.example.evops.core.common.Config
 import com.example.evops.core.common.exceptions.AccessTokenExpiredException
 import com.example.evops.core.data.datastore.AuthDataStore
@@ -45,7 +46,7 @@ class CreateEventNetworkRepositoryImpl(
                 createEventApi.postImage(
                     eventId = eventId,
                     image = imageMultipart,
-                    accessToken = token,
+                    accessToken = Config.constructAccessToken(token),
                 )
             }
             .imageId
@@ -61,7 +62,10 @@ class CreateEventNetworkRepositoryImpl(
 
     override suspend fun createTag(tagForm: CreateTagForm): String {
         return intercept { token ->
-                createEventApi.createTag(formDto = tagForm.toData(), accessToken = token)
+                createEventApi.createTag(
+                    formDto = tagForm.toData(),
+                    accessToken = Config.constructAccessToken(token),
+                )
             }
             .tagId
     }
@@ -70,7 +74,7 @@ class CreateEventNetworkRepositoryImpl(
         val tagIdsDto = intercept { token ->
             createEventApi.suggestTagsByDescription(
                 description = description.suggestTagsByDescription(),
-                accessToken = token,
+                accessToken = Config.constructAccessToken(token),
             )
         }
         val tags = tagIdsDto.tagIds.map { id -> getTag(id) }
@@ -79,6 +83,9 @@ class CreateEventNetworkRepositoryImpl(
 
     private suspend fun <T> intercept(base: suspend (String) -> Response<T>): T {
         val token = authDataStore.accessToken.first()
+        val refresh = authDataStore.refreshToken.first()
+        Log.d("DEB", token.toString())
+        Log.d("DEB", refresh.toString())
         return token?.let {
             val response = base(it)
             if (response.code() == 401) {

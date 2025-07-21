@@ -10,6 +10,7 @@ import com.example.evops.core.domain.repository.AuthRepository
 import com.example.evops.screens.auth.data.mappers.AuthMapper.toData
 import com.example.evops.screens.auth.domain.model.LoginCredentials
 import com.example.evops.screens.auth.domain.model.SignupForm
+import kotlinx.coroutines.flow.first
 import javax.inject.Inject
 
 class AuthRepositoryImpl
@@ -31,15 +32,13 @@ constructor(private val authApi: AuthApi, private val authDataStore: AuthDataSto
     }
 
     override suspend fun refresh() {
-        authDataStore.refreshToken.collect { token ->
-            token?.let { refreshToken ->
-                authApi.refresh(RefreshTokenWrapperDto(refreshToken)).body()?.tokens?.let { tokens
-                    ->
-                    updateTokens(tokens)
-                    authDataStore.updateAuthState(AuthState.AUTHORIZED)
-                } ?: authDataStore.updateAuthState(AuthState.NEED_LOGIN)
-            } ?: throw RefreshTokenExpiredException()
-        }
+        val token = authDataStore.refreshToken.first()
+        token?.let { refreshToken ->
+            authApi.refresh(RefreshTokenWrapperDto(refreshToken)).body()?.tokens?.let { tokens ->
+                updateTokens(tokens)
+                authDataStore.updateAuthState(AuthState.AUTHORIZED)
+            } ?: authDataStore.updateAuthState(AuthState.NEED_LOGIN)
+        } ?: throw RefreshTokenExpiredException()
     }
 
     private suspend fun updateTokens(tokens: TokensDto) {

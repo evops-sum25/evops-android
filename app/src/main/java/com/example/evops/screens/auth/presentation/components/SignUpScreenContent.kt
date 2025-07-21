@@ -31,24 +31,32 @@ fun SignUpScreenContent(
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = modifier.padding(horizontal = 48.dp).fillMaxSize(),
     ) {
-        DisplayNameTextField(
-            displayName = state.displayName,
-            onEvent = onEvent,
-            modifier = Modifier.fillMaxWidth(),
-        )
-        LoginTextField(login = state.login, onEvent = onEvent, modifier = Modifier.fillMaxWidth())
-        PasswordTextField(
-            password = state.password,
-            onEvent = onEvent,
-            modifier = Modifier.fillMaxWidth(),
-        )
-        Row(
-            horizontalArrangement = Arrangement.Center,
-            verticalAlignment = Alignment.CenterVertically,
-            modifier = Modifier.fillMaxWidth(),
+        Column(
+            verticalArrangement = Arrangement.spacedBy(8.dp),
+            horizontalAlignment = Alignment.End,
         ) {
-            SwitchToLoginButton(onEvent = onEvent)
-            SignUpButton(onEvent = onEvent, navController = navController)
+            DisplayNameTextField(
+                displayName = state.displayName,
+                onEvent = onEvent,
+                modifier = Modifier.fillMaxWidth(),
+            )
+            LoginTextField(
+                login = state.login,
+                onEvent = onEvent,
+                modifier = Modifier.fillMaxWidth(),
+            )
+            PasswordTextField(
+                password = state.password,
+                onEvent = onEvent,
+                modifier = Modifier.fillMaxWidth(),
+            )
+            Row(
+                horizontalArrangement = Arrangement.spacedBy(4.dp),
+                verticalAlignment = Alignment.CenterVertically,
+            ) {
+                SwitchToLoginButton(onEvent = onEvent)
+                SignUpButton(onEvent = onEvent, navController = navController)
+            }
         }
     }
 }

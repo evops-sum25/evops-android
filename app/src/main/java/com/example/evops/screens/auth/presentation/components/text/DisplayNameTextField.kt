@@ -37,7 +37,7 @@ fun DisplayNameTextField(
         value = textFieldValue,
         onValueChange = {
             textFieldValue = it
-            onEvent(AuthEvent.UpdateLogin(it.text))
+            onEvent(AuthEvent.UpdateDisplayName(it.text))
         },
         label = { DisplayNameLabel() },
         singleLine = true,

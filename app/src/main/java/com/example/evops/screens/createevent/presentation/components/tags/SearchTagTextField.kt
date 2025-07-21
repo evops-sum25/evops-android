@@ -10,6 +10,7 @@ import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -21,6 +22,8 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.TextFieldValue
 import com.example.evops.R
 import com.example.evops.screens.createevent.presentation.CreateEventEvent
+import uniffi.evops.ValidateTagNameResult
+import uniffi.evops.validateTagName
 
 @Composable
 fun SearchTagTextField(
@@ -29,6 +32,12 @@ fun SearchTagTextField(
     modifier: Modifier = Modifier,
 ) {
     var textFieldValue by remember { mutableStateOf(TextFieldValue(tagName)) }
+    val tagValidationResult by remember {
+        derivedStateOf {
+            if (textFieldValue.text.isEmpty()) ValidateTagNameResult.OK
+            else validateTagName(textFieldValue.text)
+        }
+    }
 
     LaunchedEffect(tagName) {
         if (tagName != textFieldValue.text) {
@@ -46,6 +55,8 @@ fun SearchTagTextField(
         suffix = { SearchButton(onEvent = onEvent) },
         singleLine = true,
         keyboardOptions = KeyboardOptions(imeAction = ImeAction.Done),
+        isError = tagValidationResult != ValidateTagNameResult.OK,
+        supportingText = { TagValidationMessage(tagValidationResult) },
         modifier = modifier.fillMaxWidth(),
     )
 }

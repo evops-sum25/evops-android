@@ -17,6 +17,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -32,6 +33,8 @@ import androidx.compose.ui.window.Dialog
 import com.example.evops.R
 import com.example.evops.screens.createevent.presentation.CreateEventEvent
 import com.example.evops.screens.createevent.presentation.states.CreateTagState
+import uniffi.evops.ValidateTagNameResult
+import uniffi.evops.validateTagName
 
 @Composable
 fun CreateTagDialog(
@@ -71,6 +74,12 @@ private fun TagNameTextField(
     modifier: Modifier = Modifier,
 ) {
     var textFieldValue by remember { mutableStateOf(TextFieldValue(tagName)) }
+    val tagValidationResult by remember {
+        derivedStateOf {
+            if (textFieldValue.text.isEmpty()) ValidateTagNameResult.OK
+            else validateTagName(textFieldValue.text)
+        }
+    }
 
     LaunchedEffect(tagName) {
         if (tagName != textFieldValue.text) {
@@ -87,6 +96,8 @@ private fun TagNameTextField(
         label = { SearchTagLabel() },
         singleLine = true,
         keyboardOptions = KeyboardOptions(imeAction = ImeAction.Done),
+        isError = tagValidationResult != ValidateTagNameResult.OK,
+        supportingText = { TagValidationMessage(tagValidationResult) },
         modifier = modifier.fillMaxWidth(),
     )
 }

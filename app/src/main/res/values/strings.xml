@@ -44,13 +44,16 @@
     <string name="login_min_len_error">Login should be at least %1$s characters long</string>
     <string name="login_max_len_error">Login cannot be more than %1$s characters</string>
     <string name="invalid_login_format_error">Invalid login format</string>
-    <string name="invalid_password_format_error">Invalid password format</string>
     <string name="password_min_len_error">Password should be at least %1$s characters long</string>
     <string name="password_max_len_error">Password cannot be more than %1$s characters</string>
-    <string name="display_name_min_len_error">Display name be at least %1$s characters long</string>
+    <string name="invalid_password_format_error">Invalid password format</string>
+    <string name="display_name_min_len_error">Display name should be at least %1$s characters long</string>
     <string name="display_name_max_len_error">Display name cannot be more than %1$s characters</string>
-    <string name="description_min_len_error">Description be at least %1$s characters long</string>
+    <string name="description_min_len_error">Description should be at least %1$s characters long</string>
     <string name="description_max_len_error">Description cannot be more than %1$s characters</string>
-    <string name="title_min_len_error">Title be at least %1$s characters long</string>
+    <string name="title_min_len_error">Title should be at least %1$s characters long</string>
     <string name="title_max_len_error">Title cannot be more than %1$s characters</string>
+    <string name="tag_name_min_len_error">Tag name should be at least %1$s characters long</string>
+    <string name="tag_name_max_len_error">Tag name cannot be more than %1$s characters</string>
+    <string name="invalid_tag_name_format_error">Invalid tag name format</string>
 </resources>

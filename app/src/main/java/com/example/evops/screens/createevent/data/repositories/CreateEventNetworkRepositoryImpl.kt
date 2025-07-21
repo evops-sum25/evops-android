@@ -1,6 +1,5 @@
 package com.example.evops.screens.createevent.data.repositories
 
-import android.util.Log
 import com.example.evops.core.common.Config
 import com.example.evops.core.common.exceptions.AccessTokenExpiredException
 import com.example.evops.core.data.datastore.AuthDataStore
@@ -83,9 +82,6 @@ class CreateEventNetworkRepositoryImpl(
 
     private suspend fun <T> intercept(base: suspend (String) -> Response<T>): T {
         val token = authDataStore.accessToken.first()
-        val refresh = authDataStore.refreshToken.first()
-        Log.d("DEB", token.toString())
-        Log.d("DEB", refresh.toString())
         return token?.let {
             val response = base(it)
             if (response.code() == 401) {

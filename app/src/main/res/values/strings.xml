@@ -39,4 +39,6 @@
     <string name="display_name">Display Name</string>
     <string name="switch_to_sign_up">Switch to Sign Up</string>
     <string name="switch_to_log_in">Switch to Log In</string>
+    <string name="logout">Logout</string>
+    <string name="current_user">Current User</string>
 </resources>

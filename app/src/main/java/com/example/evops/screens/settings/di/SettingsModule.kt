@@ -2,6 +2,7 @@ package com.example.evops.screens.settings.di
 
 import android.content.Context
 import com.example.evops.core.common.LanguageChanger
+import com.example.evops.core.data.datastore.AuthDataStore
 import com.example.evops.screens.settings.data.datastore.SettingsDataStore
 import com.example.evops.screens.settings.data.repository.SettingsRepositoryImpl
 import com.example.evops.screens.settings.domain.repository.SettingsRepository
@@ -30,10 +31,10 @@ object SettingsModule {
     @Provides
     @Singleton
     fun provideSettingsRepository(
-        @ApplicationContext context: Context,
         dataStore: SettingsDataStore,
         languageChanger: LanguageChanger,
+        authDataStore: AuthDataStore,
     ): SettingsRepository {
-        return SettingsRepositoryImpl(context, dataStore, languageChanger)
+        return SettingsRepositoryImpl(dataStore, languageChanger, authDataStore)
     }
 }

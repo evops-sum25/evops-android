@@ -10,7 +10,7 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
 import kotlinx.coroutines.flow.map
 
-class AuthTokensDataStore @Inject constructor(@ApplicationContext private val context: Context) {
+class AuthorizedStateDataStore @Inject constructor(@ApplicationContext private val context: Context) {
     val Context.datastore: DataStore<Preferences> by preferencesDataStore(PREFERENCES_NAME)
 
     val accessToken = context.datastore.data.map { preferences -> preferences[ACCESS_TOKEN_KEY] }
@@ -25,7 +25,7 @@ class AuthTokensDataStore @Inject constructor(@ApplicationContext private val co
     }
 
     private companion object {
-        const val PREFERENCES_NAME = "Auth"
+        const val PREFERENCES_NAME = "AuthState"
         val ACCESS_TOKEN_KEY = stringPreferencesKey("access_token")
         val REFRESH_TOKEN_KEY = stringPreferencesKey("refresh_token")
     }

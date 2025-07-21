@@ -12,14 +12,13 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.example.evops.screens.createevent.presentation.CreateEventEvent
-import com.example.evops.screens.createevent.presentation.states.CreateEventState
-import com.example.evops.screens.createevent.presentation.components.buttons.WithAttendanceSwitch
 import com.example.evops.screens.createevent.presentation.components.images.SelectImagesField
+import com.example.evops.screens.createevent.presentation.components.tags.FoundTags
 import com.example.evops.screens.createevent.presentation.components.tags.SearchTagTextField
 import com.example.evops.screens.createevent.presentation.components.tags.SelectedTags
-import com.example.evops.screens.createevent.presentation.components.tags.FoundTags
 import com.example.evops.screens.createevent.presentation.components.text.DescriptionTextField
 import com.example.evops.screens.createevent.presentation.components.text.TitleTextField
+import com.example.evops.screens.createevent.presentation.states.CreateEventState
 
 @Composable
 fun CreateEventScreenContent(
@@ -52,6 +51,5 @@ fun CreateEventScreenContent(
             modifier = Modifier.padding(vertical = 4.dp),
         )
         SelectedTags(selectedTags = formState.selectedTags, onEvent = onEvent)
-        WithAttendanceSwitch(withAttendance = formState.withAttendance, onEvent = onEvent)
     }
 }

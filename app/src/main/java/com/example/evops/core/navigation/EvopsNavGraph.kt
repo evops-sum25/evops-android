@@ -16,9 +16,9 @@ import com.example.evops.screens.settings.presentation.SettingsScreen
 
 @Composable
 fun EvopsNavGraph(navController: NavHostController, modifier: Modifier = Modifier) {
-    NavHost(navController = navController, startDestination = SubGraph.Auth, modifier = modifier) {
+    NavHost(navController = navController, startDestination = SubGraph.Home, modifier = modifier) {
         navigation<SubGraph.Auth>(startDestination = Destination.Auth) {
-            composable<Destination.Auth> { AuthScreen() }
+            composable<Destination.Auth> { AuthScreen(navController = navController) }
         }
         navigation<SubGraph.Home>(startDestination = Destination.EventList) {
             composable<Destination.EventList> { EventListScreen(navController = navController) }

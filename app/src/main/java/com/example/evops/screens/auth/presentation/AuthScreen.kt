@@ -8,6 +8,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavController
 import com.example.evops.R
 import com.example.evops.core.presentation.components.topbar.TitledTopBar
 import com.example.evops.screens.auth.presentation.components.LoginScreenContent
@@ -15,7 +16,11 @@ import com.example.evops.screens.auth.presentation.components.SignUpScreenConten
 import com.example.evops.screens.auth.presentation.state.AuthScreen
 
 @Composable
-fun AuthScreen(modifier: Modifier = Modifier, viewModel: AuthViewModel = hiltViewModel()) {
+fun AuthScreen(
+    navController: NavController,
+    modifier: Modifier = Modifier,
+    viewModel: AuthViewModel = hiltViewModel(),
+) {
     val state by viewModel.authState.collectAsState()
     Scaffold(
         topBar = { TitledTopBar(title = stringResource(R.string.authorization)) },
@@ -26,6 +31,7 @@ fun AuthScreen(modifier: Modifier = Modifier, viewModel: AuthViewModel = hiltVie
                 SignUpScreenContent(
                     state = state,
                     onEvent = viewModel::onEvent,
+                    navController = navController,
                     modifier = Modifier.padding(innerPadding),
                 )
             }
@@ -33,6 +39,7 @@ fun AuthScreen(modifier: Modifier = Modifier, viewModel: AuthViewModel = hiltVie
                 LoginScreenContent(
                     state = state,
                     onEvent = viewModel::onEvent,
+                    navController = navController,
                     modifier = Modifier.padding(innerPadding),
                 )
             }

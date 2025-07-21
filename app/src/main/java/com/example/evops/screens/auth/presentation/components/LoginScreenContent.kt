@@ -10,6 +10,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import com.example.evops.screens.auth.presentation.AuthEvent
 import com.example.evops.screens.auth.presentation.components.buttons.LoginButton
 import com.example.evops.screens.auth.presentation.components.buttons.SwitchToSignUpButton
@@ -21,6 +22,7 @@ import com.example.evops.screens.auth.presentation.state.AuthState
 fun LoginScreenContent(
     state: AuthState,
     onEvent: (AuthEvent) -> Unit,
+    navController: NavController,
     modifier: Modifier = Modifier,
 ) {
     Column(
@@ -40,7 +42,7 @@ fun LoginScreenContent(
             modifier = Modifier.fillMaxWidth(),
         ) {
             SwitchToSignUpButton(onEvent = onEvent)
-            LoginButton(onEvent = onEvent)
+            LoginButton(onEvent = onEvent, navController = navController)
         }
     }
 }

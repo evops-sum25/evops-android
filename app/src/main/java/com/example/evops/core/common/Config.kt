@@ -9,4 +9,8 @@ object Config {
     fun constructImageUrl(imageId: String): String {
         return "$BASE_URL/v1/events/images/$imageId"
     }
+
+    fun constructAccessToken(accessToken: String): String {
+        return "Bearer $accessToken"
+    }
 }

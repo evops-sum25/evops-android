@@ -21,7 +21,6 @@ import coil.compose.SubcomposeAsyncImage
 import coil.request.ImageRequest
 import com.example.evops.R
 import com.example.evops.core.common.Config
-import com.example.evops.screens.PreviewData
 
 @Composable
 fun EventImage(imageId: String, modifier: Modifier = Modifier) {
@@ -61,10 +60,4 @@ private fun LoadingImagePlaceholder(modifier: Modifier = Modifier) {
     ) {
         CircularProgressIndicator(strokeWidth = 6.dp, modifier = Modifier.fillMaxSize())
     }
-}
-
-@Preview
-@Composable
-private fun EventImagePreview() {
-    EventImage(imageId = PreviewData.eventItem.imageUrl!!)
 }

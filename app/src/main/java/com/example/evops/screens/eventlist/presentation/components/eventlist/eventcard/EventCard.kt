@@ -8,10 +8,8 @@ import androidx.compose.material3.HorizontalDivider
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.evops.core.presentation.components.image.EventImage
-import com.example.evops.screens.PreviewData.eventItem
 import com.example.evops.screens.eventlist.domain.model.EventItem
 import com.example.evops.screens.eventlist.presentation.components.eventlist.eventcard.components.EventDescription
 import com.example.evops.screens.eventlist.presentation.components.eventlist.eventcard.components.EventTitleAndAuthor
@@ -41,10 +39,4 @@ fun EventCard(eventData: EventItem, modifier: Modifier = Modifier) {
         )
         HorizontalDivider(thickness = 2.dp)
     }
-}
-
-@Preview
-@Composable
-private fun EventCardPreview() {
-    EventCard(eventData = eventItem)
 }

@@ -12,9 +12,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.tooling.preview.Preview
 import com.example.evops.R
-import com.example.evops.screens.PreviewData
 
 @Composable
 fun EventAttendeesButton(attendeesCount: UInt, modifier: Modifier = Modifier) {
@@ -43,10 +41,4 @@ private fun AttendIcon(isAttending: Boolean, modifier: Modifier = Modifier) {
         contentDescription = stringResource(R.string.description_disabled_attend_icon),
         modifier = modifier,
     )
-}
-
-@Preview
-@Composable
-private fun EventAttendeesPreview() {
-    EventAttendeesButton(attendeesCount = PreviewData.eventItem.attendeesCount)
 }

@@ -5,10 +5,8 @@ import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.evops.core.presentation.components.tag.EventTag
-import com.example.evops.screens.PreviewData
 import com.example.evops.screens.evendetails.domain.model.EventDetailsTag
 
 @OptIn(ExperimentalLayoutApi::class)
@@ -21,10 +19,4 @@ fun EventDetailsTags(tagsData: List<EventDetailsTag>, modifier: Modifier = Modif
     ) {
         tagsData.forEach { tagData -> EventTag(name = tagData.name, onClick = null) }
     }
-}
-
-@Preview
-@Composable
-private fun EventDetailsTagsPreview() {
-    EventDetailsTags(tagsData = PreviewData.eventDetails.tagsData)
 }

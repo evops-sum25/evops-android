@@ -6,7 +6,6 @@ import com.example.evops.core.data.model.tag.TagDto
 import com.example.evops.screens.evendetails.domain.model.EventDetails
 import com.example.evops.screens.evendetails.domain.model.EventDetailsAuthor
 import com.example.evops.screens.evendetails.domain.model.EventDetailsTag
-import java.time.LocalDate
 
 object EventDetailsMapper {
     fun EventWrapperDto.toDomain() =
@@ -15,9 +14,6 @@ object EventDetailsMapper {
             imageUrls = this.event.imageIds,
             title = this.event.title,
             description = this.event.description,
-            attendeesCount = 0u, // TODO("create default attendees count")
-            place = "UI", // TODO("create default place")
-            date = LocalDate.now(), // TODO("create default date")
             tagsData = this.event.tags.map { it.toDomain() },
         )
 

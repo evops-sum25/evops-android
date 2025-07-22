@@ -60,4 +60,5 @@
     <string name="cannot_sign_message">Cannot sign up with these credentials</string>
     <string name="cannot_login_message">Cannot login with these credentials</string>
     <string name="no_events_found">No events found</string>
+    <string name="no_suggested_tags">There are no suggested tags</string>
 </resources>

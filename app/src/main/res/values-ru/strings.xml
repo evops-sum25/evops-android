@@ -60,4 +60,5 @@
     <string name="cannot_sign_message">Не получается зарегистрироваться с текущими данными</string>
     <string name="cannot_login_message">Не получается войти с текущими данными</string>
     <string name="no_events_found">No events found</string>
+    <string name="no_suggested_tags">There are no suggested tags</string>
 </resources>

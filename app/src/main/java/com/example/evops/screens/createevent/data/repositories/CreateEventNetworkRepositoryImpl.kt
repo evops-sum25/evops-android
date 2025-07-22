@@ -5,7 +5,6 @@ import com.example.evops.core.common.Config
 import com.example.evops.core.data.datastore.AuthDataStore
 import com.example.evops.core.domain.repository.AuthRepository
 import com.example.evops.screens.createevent.data.api.CreateEventApi
-import com.example.evops.screens.createevent.data.mappers.CreateEventMapper.suggestTagsByDescription
 import com.example.evops.screens.createevent.data.mappers.CreateEventMapper.toData
 import com.example.evops.screens.createevent.data.mappers.CreateEventMapper.toDomain
 import com.example.evops.screens.createevent.domain.model.CreateEventForm
@@ -74,7 +73,7 @@ class CreateEventNetworkRepositoryImpl(
     override suspend fun suggestTagsByDescription(description: String): List<CreateEventTag> {
         val tagsDto = intercept { token ->
             createEventApi.suggestTagsByDescription(
-                description = description.suggestTagsByDescription(),
+                description = description,
                 accessToken = Config.constructAccessToken(token),
             )
         }

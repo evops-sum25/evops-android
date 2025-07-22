@@ -9,11 +9,14 @@ import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.aspectRatio
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
@@ -50,7 +53,7 @@ fun SuggestedTagsFormDialog(
             SuggestedTagsTitle()
             DialogContent(
                 suggestedTagsFormState = suggestedTagsFormState,
-                modifier = Modifier.aspectRatio(1f),
+                modifier = Modifier.aspectRatio(4 / 3f).padding(vertical = 12.dp),
             )
             DialogButtons(
                 onEvent = onEvent,
@@ -73,33 +76,29 @@ private fun SuggestedTagsTitle(modifier: Modifier = Modifier) {
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
 private fun SuggestedTagsFlowRow(suggestedTags: List<UiTag>, modifier: Modifier = Modifier) {
-    FlowRow(
-        horizontalArrangement = Arrangement.spacedBy(8.dp),
-        verticalArrangement = Arrangement.spacedBy(12.dp),
-        modifier = modifier,
-    ) {
-        suggestedTags.forEach { tag -> EventTag(name = tag.name, onClick = null) }
-    }
-}
-
-@Composable
-private fun LoadingImagePlaceholder(modifier: Modifier = Modifier) {
-    Box(
-        contentAlignment = Alignment.Center,
-        modifier =
-            modifier.background(MaterialTheme.colorScheme.surface).padding(48.dp).fillMaxSize(),
-    ) {
-        CircularProgressIndicator(strokeWidth = 6.dp, modifier = Modifier.fillMaxSize())
+    Column(modifier = modifier.verticalScroll(rememberScrollState())) {
+        FlowRow(
+            horizontalArrangement = Arrangement.spacedBy(8.dp),
+            verticalArrangement = Arrangement.spacedBy(12.dp),
+        ) {
+            suggestedTags.forEach { tag -> EventTag(name = tag.name, onClick = null) }
+        }
     }
 }
 
 @Composable
 fun DialogContent(suggestedTagsFormState: SuggestedTagsFormState, modifier: Modifier = Modifier) {
-    Box(modifier = modifier) {
+    Box(modifier = modifier.fillMaxSize()) {
         if (suggestedTagsFormState.isLoading) {
-            LoadingImagePlaceholder()
+            CircularProgressIndicator(
+                strokeWidth = 6.dp,
+                modifier =
+                    Modifier.fillMaxHeight()
+                        .aspectRatio(1f, matchHeightConstraintsFirst = true)
+                        .align(Alignment.Center),
+            )
         } else if (suggestedTagsFormState.suggestedTags.isEmpty()) {
-            Text("There are no suggested tags")
+            Text(stringResource(R.string.no_suggested_tags))
         } else {
             SuggestedTagsFlowRow(suggestedTags = suggestedTagsFormState.suggestedTags)
         }
@@ -118,7 +117,10 @@ private fun DialogButtons(
         }
         Spacer(modifier = Modifier.size(8.dp))
         Button(
-            onClick = { onEvent(CreateEventEvent.AddSuggestedTags) },
+            onClick = {
+                onEvent(CreateEventEvent.AddSuggestedTags)
+                onEvent(CreateEventEvent.DropSuggestedTagsForm)
+            },
             enabled = isAddButtonEnabled,
         ) {
             Text(stringResource(R.string.add))

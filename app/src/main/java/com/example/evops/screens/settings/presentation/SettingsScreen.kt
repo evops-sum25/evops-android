@@ -29,23 +29,17 @@ fun SettingsScreen(modifier: Modifier = Modifier, viewModel: SettingsViewModel =
         topBar = { TitledTopBar(title = stringResource(R.string.settings)) },
         modifier = modifier,
     ) { innerPadding ->
-        Column(modifier = Modifier
-            .padding(innerPadding)
-            .imePadding()) {
+        Column(modifier = Modifier.padding(innerPadding).imePadding()) {
             HorizontalDivider(thickness = 2.dp)
             LanguageSection(
                 languageCode = state.languageCode,
                 onEvent = viewModel::onEvent,
-                modifier = Modifier
-                    .padding(horizontal = 12.dp)
-                    .fillMaxWidth(),
+                modifier = Modifier.padding(horizontal = 12.dp).fillMaxWidth(),
             )
             AccountSection(
                 accountName = state.userName,
                 onEvent = viewModel::onEvent,
-                modifier = Modifier
-                    .padding(horizontal = 12.dp)
-                    .fillMaxWidth(),
+                modifier = Modifier.padding(horizontal = 12.dp).fillMaxWidth(),
             )
         }
     }

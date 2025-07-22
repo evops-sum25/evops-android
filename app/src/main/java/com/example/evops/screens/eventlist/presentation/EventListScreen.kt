@@ -1,6 +1,7 @@
 package com.example.evops.screens.eventlist.presentation
 
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.consumeWindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.imePadding
 import androidx.compose.foundation.layout.padding
@@ -27,7 +28,7 @@ fun EventListScreen(
     val listState by viewModel.listState.collectAsStateWithLifecycle()
 
     Scaffold { innerPadding ->
-        Column(modifier = modifier.padding(innerPadding).fillMaxSize().imePadding()) {
+        Column(modifier = modifier.consumeWindowInsets(innerPadding).fillMaxSize().imePadding()) {
             SearchField(
                 searchString = listState.searchString,
                 onEvent = viewModel::onEvent,

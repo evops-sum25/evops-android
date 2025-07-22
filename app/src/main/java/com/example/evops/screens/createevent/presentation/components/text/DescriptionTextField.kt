@@ -22,8 +22,8 @@ import androidx.compose.ui.text.input.TextFieldValue
 import com.example.evops.R
 import com.example.evops.screens.createevent.presentation.CreateEventEvent
 import uniffi.evops.ValidateEventDescriptionResult
+import uniffi.evops.getEventDescriptionLenCharMax
 import uniffi.evops.getEventDescriptionLenCharMin
-import uniffi.evops.getEventTitleLenCharMax
 import uniffi.evops.validateEventDescription
 
 @Composable
@@ -94,7 +94,7 @@ private fun ValidationMessage(result: ValidateEventDescriptionResult) {
             ValidateEventDescriptionResult.LEN_CHAR_MIN_VIOLATED ->
                 stringResource(R.string.description_min_len_error, getEventDescriptionLenCharMin())
             ValidateEventDescriptionResult.LEN_CHAR_MAX_VIOLATED ->
-                stringResource(R.string.description_max_len_error, getEventTitleLenCharMax())
+                stringResource(R.string.description_max_len_error, getEventDescriptionLenCharMax())
         }
     message?.let { Text(text = message) }
 }

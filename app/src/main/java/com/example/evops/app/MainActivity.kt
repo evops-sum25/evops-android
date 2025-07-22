@@ -10,6 +10,9 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -29,8 +32,7 @@ class MainActivity : ComponentActivity() {
             val viewModel: MainViewModel = hiltViewModel()
             val authState by viewModel.authState.collectAsState()
             val navController = rememberNavController()
-            val startDestination =
-                if (authState == AuthState.NEED_LOGIN.string) SubGraph.Auth else SubGraph.Home
+            var lastHandledAuthState by rememberSaveable { mutableStateOf<String?>(null) }
 
             EvOpsTheme {
                 Scaffold(
@@ -39,27 +41,34 @@ class MainActivity : ComponentActivity() {
                     contentWindowInsets = WindowInsets(0.dp),
                 ) { innerPadding ->
                     EvopsNavGraph(
-                        startDestination = startDestination,
+                        startDestination =
+                            if (authState == AuthState.NEED_LOGIN.string) SubGraph.Auth
+                            else SubGraph.Home,
                         navController = navController,
                         modifier = Modifier.padding(innerPadding),
                     )
                 }
             }
+
             LaunchedEffect(authState) {
-                when {
-                    (authState == AuthState.NEED_LOGIN.string) -> {
-                        try {
-                            navController.navigate(SubGraph.Auth) {
-                                popUpTo(0) { inclusive = true }
-                            }
-                        } catch (_: IllegalStateException) {}
-                    }
-                    (authState == AuthState.AUTHORIZED.string) -> {
-                        try {
-                            navController.navigate(SubGraph.Home) {
-                                popUpTo(0) { inclusive = true }
-                            }
-                        } catch (_: IllegalStateException) {}
+                if (authState != lastHandledAuthState) {
+                    when {
+                        (authState == AuthState.NEED_LOGIN.string) -> {
+                            try {
+                                navController.navigate(SubGraph.Auth) {
+                                    popUpTo(0) { inclusive = true }
+                                }
+                                lastHandledAuthState = authState
+                            } catch (_: IllegalStateException) {}
+                        }
+                        (authState == AuthState.AUTHORIZED.string) -> {
+                            try {
+                                navController.navigate(SubGraph.Home) {
+                                    popUpTo(0) { inclusive = true }
+                                }
+                                lastHandledAuthState = authState
+                            } catch (_: IllegalStateException) {}
+                        }
                     }
                 }
             }

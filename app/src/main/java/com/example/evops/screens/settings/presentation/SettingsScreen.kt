@@ -63,7 +63,7 @@ private fun LanguageSection(
         else stringResource(R.string.ru_lang_code)
     Column {
         Row(
-            horizontalArrangement = Arrangement.spacedBy(8.dp),
+            horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically,
             modifier = modifier,
         ) {
@@ -91,7 +91,7 @@ fun AccountSection(
 ) {
     Column {
         Row(
-            horizontalArrangement = Arrangement.spacedBy(8.dp),
+            horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically,
             modifier = modifier,
         ) {

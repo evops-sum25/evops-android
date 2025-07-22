@@ -56,7 +56,7 @@
     <string name="tag_name_max_len_error">Тег не может содержать более %1$s символов</string>
     <string name="invalid_tag_name_format_error">Неверный формат тега</string>
     <string name="unknown_user">Неизвестный</string>
-    <string name="current_user">Текущий пользователь: %1$s</string>
+    <string name="current_user">Пользователь: %1$s</string>
     <string name="cannot_sign_message">Не получается зарегистрироваться с текущими данными</string>
     <string name="cannot_login_message">Не получается войти с текущими данными</string>
     <string name="no_events_found">No events found</string>

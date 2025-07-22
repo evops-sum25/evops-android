@@ -44,12 +44,14 @@ fun EventCard(
             isExpanded = eventData.imageUrl == null,
             modifier = Modifier.padding(start = 18.dp, end = 18.dp, bottom = 12.dp).fillMaxWidth(),
         )
-        EventTags(
-            tagsData = eventData.tags,
-            searchTagIds = searchTagIds,
-            onEvent = onEvent,
-            modifier = Modifier.padding(start = 18.dp, end = 18.dp, bottom = 18.dp),
-        )
+        if (eventData.tags.isNotEmpty()) {
+            EventTags(
+                tagsData = eventData.tags,
+                searchTagIds = searchTagIds,
+                onEvent = onEvent,
+                modifier = Modifier.padding(start = 18.dp, end = 18.dp, bottom = 12.dp),
+            )
+        }
         HorizontalDivider(thickness = 2.dp)
     }
 }

@@ -25,7 +25,6 @@ import uniffi.evops.ValidateEventDescriptionResult
 import uniffi.evops.getEventDescriptionLenCharMin
 import uniffi.evops.getEventTitleLenCharMax
 import uniffi.evops.validateEventDescription
-import kotlin.math.max
 
 @Composable
 fun DescriptionTextField(
@@ -55,7 +54,14 @@ fun DescriptionTextField(
             onEvent(CreateEventEvent.UpdateDescription(it.text))
         },
         label = { DescriptionLabel() },
-        suffix = { SuggestTagsButton(onEvent = onEvent) },
+        suffix = {
+            SuggestTagsButton(
+                onEvent = onEvent,
+                enabled =
+                    descriptionValidationResult == ValidateEventDescriptionResult.OK &&
+                        textFieldValue.text.isNotBlank(),
+            )
+        },
         minLines = 3,
         maxLines = 3,
         keyboardOptions = KeyboardOptions(imeAction = ImeAction.Next),
@@ -66,9 +72,14 @@ fun DescriptionTextField(
 }
 
 @Composable
-private fun SuggestTagsButton(onEvent: (CreateEventEvent) -> Unit, modifier: Modifier = Modifier) {
+private fun SuggestTagsButton(
+    onEvent: (CreateEventEvent) -> Unit,
+    modifier: Modifier = Modifier,
+    enabled: Boolean = true,
+) {
     IconButton(
         onClick = { onEvent(CreateEventEvent.SuggestTagsByDescription) },
+        enabled = enabled,
         modifier = modifier,
     ) {
         Icon(painter = painterResource(R.drawable.wand_stars), contentDescription = null)

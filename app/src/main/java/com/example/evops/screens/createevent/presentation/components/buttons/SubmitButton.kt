@@ -11,13 +11,13 @@ import com.example.evops.screens.createevent.presentation.CreateEventEvent
 
 @Composable
 fun SubmitButton(
-    isActive: Boolean,
+    enabled: Boolean,
     onEvent: (CreateEventEvent) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     Button(
         onClick = { onEvent(CreateEventEvent.SubmitEvent) },
-        enabled = isActive,
+        enabled = enabled,
         modifier = modifier,
     ) {
         Text(text = stringResource(R.string.submit), style = MaterialTheme.typography.bodyLarge)

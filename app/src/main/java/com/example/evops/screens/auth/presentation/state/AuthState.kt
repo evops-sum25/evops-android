@@ -5,4 +5,5 @@ data class AuthState(
     val password: String = "",
     val displayName: String = "",
     val currentScreen: AuthScreen = AuthScreen.LOGIN,
+    val snackbarMessage: String? = null,
 )

@@ -15,6 +15,7 @@ import androidx.compose.material3.SnackbarResult
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
@@ -30,6 +31,10 @@ import com.example.evops.screens.createevent.presentation.components.tags.Create
 import com.example.evops.screens.createevent.presentation.components.tags.SuggestedTagsFormDialog
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
+import uniffi.evops.ValidateEventDescriptionResult
+import uniffi.evops.ValidateEventTitleResult
+import uniffi.evops.validateEventDescription
+import uniffi.evops.validateEventTitle
 
 @Composable
 fun CreateEventScreen(
@@ -42,6 +47,14 @@ fun CreateEventScreen(
     val snackbarState by viewModel.snackbarState.collectAsState()
     val suggestedTagsFormState by viewModel.suggestedTagsFormState.collectAsState()
     val snackbarHostState = remember { SnackbarHostState() }
+    val isSubmitButtonActive by
+        remember(formState) {
+            derivedStateOf {
+                validateEventTitle(formState.title) == ValidateEventTitleResult.OK &&
+                    validateEventDescription(formState.description) ==
+                        ValidateEventDescriptionResult.OK
+            }
+        }
 
     val mediaPickerLauncher =
         rememberLauncherForActivityResult(
@@ -76,12 +89,11 @@ fun CreateEventScreen(
         }
     }
 
-    val isSubmitButtonActive = formState.title.isNotBlank() && formState.description.isNotBlank()
     Scaffold(
         topBar = { TitledTopBar(title = stringResource(R.string.event_details)) },
         snackbarHost = { SnackbarHost(hostState = snackbarHostState) },
         floatingActionButton = {
-            SubmitButton(isActive = isSubmitButtonActive, onEvent = viewModel::onEvent)
+            SubmitButton(enabled = isSubmitButtonActive, onEvent = viewModel::onEvent)
         },
         floatingActionButtonPosition = FabPosition.End,
         contentWindowInsets = WindowInsets(0.dp),

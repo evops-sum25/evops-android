@@ -7,22 +7,15 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavController
 import com.example.evops.R
-import com.example.evops.core.navigation.SubGraph
 import com.example.evops.screens.auth.presentation.AuthEvent
 
 @Composable
 fun SignUpButton(
     onEvent: (AuthEvent) -> Unit,
-    navController: NavController,
+    enabled: Boolean,
     modifier: Modifier = Modifier,
 ) {
-    Button(
-        onClick = {
-            onEvent(AuthEvent.SignUp)
-            navController.navigate(SubGraph.Home)
-        },
-        modifier = modifier,
-    ) {
+    Button(onClick = { onEvent(AuthEvent.SignUp) }, enabled = enabled, modifier = modifier) {
         Text(stringResource(R.string.sign_up))
     }
 }

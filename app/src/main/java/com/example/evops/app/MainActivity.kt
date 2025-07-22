@@ -46,10 +46,21 @@ class MainActivity : ComponentActivity() {
                 }
             }
             LaunchedEffect(authState) {
-                if (authState == AuthState.NEED_LOGIN.string) {
-                    try {
-                        navController.navigate(SubGraph.Auth) { popUpTo(0) { inclusive = true } }
-                    } catch (_: IllegalStateException) {}
+                when {
+                    (authState == AuthState.NEED_LOGIN.string) -> {
+                        try {
+                            navController.navigate(SubGraph.Auth) {
+                                popUpTo(0) { inclusive = true }
+                            }
+                        } catch (_: IllegalStateException) {}
+                    }
+                    (authState == AuthState.AUTHORIZED.string) -> {
+                        try {
+                            navController.navigate(SubGraph.Home) {
+                                popUpTo(0) { inclusive = true }
+                            }
+                        } catch (_: IllegalStateException) {}
+                    }
                 }
             }
         }

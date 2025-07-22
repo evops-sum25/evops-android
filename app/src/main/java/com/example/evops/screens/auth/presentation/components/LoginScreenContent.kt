@@ -8,24 +8,36 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.imePadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.derivedStateOf
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import androidx.navigation.NavController
 import com.example.evops.screens.auth.presentation.AuthEvent
 import com.example.evops.screens.auth.presentation.components.buttons.LoginButton
 import com.example.evops.screens.auth.presentation.components.buttons.SwitchToSignUpButton
 import com.example.evops.screens.auth.presentation.components.text.LoginTextField
 import com.example.evops.screens.auth.presentation.components.text.PasswordTextField
 import com.example.evops.screens.auth.presentation.state.AuthState
+import uniffi.evops.ValidateUserLoginResult
+import uniffi.evops.ValidateUserPasswordResult
+import uniffi.evops.validateUserLogin
+import uniffi.evops.validateUserPassword
 
 @Composable
 fun LoginScreenContent(
     state: AuthState,
     onEvent: (AuthEvent) -> Unit,
-    navController: NavController,
     modifier: Modifier = Modifier,
 ) {
+    val canLogin by
+        remember(state) {
+            derivedStateOf {
+                validateUserLogin(state.login) == ValidateUserLoginResult.OK &&
+                    validateUserPassword(state.password) == ValidateUserPasswordResult.OK
+            }
+        }
     Column(
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -50,7 +62,7 @@ fun LoginScreenContent(
                 verticalAlignment = Alignment.CenterVertically,
             ) {
                 SwitchToSignUpButton(onEvent = onEvent)
-                LoginButton(onEvent = onEvent, navController = navController)
+                LoginButton(onEvent = onEvent, enabled = canLogin)
             }
         }
     }

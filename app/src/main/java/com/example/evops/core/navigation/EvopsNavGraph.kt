@@ -26,7 +26,7 @@ fun EvopsNavGraph(
         modifier = modifier,
     ) {
         navigation<SubGraph.Auth>(startDestination = Destination.Auth) {
-            composable<Destination.Auth> { AuthScreen(navController = navController) }
+            composable<Destination.Auth> { AuthScreen() }
         }
         navigation<SubGraph.Home>(startDestination = Destination.EventList) {
             composable<Destination.EventList> { EventListScreen(navController = navController) }

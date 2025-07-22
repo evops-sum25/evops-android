@@ -57,4 +57,6 @@
     <string name="invalid_tag_name_format_error">Неверный формат тега</string>
     <string name="unknown_user">Неизвестный</string>
     <string name="current_user">Текущий пользователь: %1$s</string>
+    <string name="cannot_sign_message">Не получается зарегистрироваться с текущими данными</string>
+    <string name="cannot_login_message">Не получается войти с текущими данными</string>
 </resources>

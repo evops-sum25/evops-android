@@ -17,18 +17,22 @@ class AuthRepositoryImpl
 @Inject
 constructor(private val authApi: AuthApi, private val authDataStore: AuthDataStore) :
     AuthRepository {
-    override suspend fun login(credentials: LoginCredentials) {
+    override suspend fun login(credentials: LoginCredentials): Boolean {
         authApi.login(credentials = credentials.toData()).body()?.tokens?.let { tokens ->
             updateTokens(tokens)
             authDataStore.updateAuthState(AuthState.AUTHORIZED)
+            return true
         }
+        return false
     }
 
-    override suspend fun signup(form: SignupForm) {
+    override suspend fun signup(form: SignupForm): Boolean {
         authApi.signup(form = form.toData()).body()?.tokens?.let { tokens ->
             updateTokens(tokens)
             authDataStore.updateAuthState(AuthState.AUTHORIZED)
+            return true
         }
+        return false
     }
 
     override suspend fun refresh() {

@@ -14,4 +14,8 @@ sealed interface AuthEvent {
     data object SwitchToSignUp : AuthEvent
 
     data object SwitchToLogin : AuthEvent
+
+    data class ShowSnackbar(val message: String) : AuthEvent
+
+    data object HideSnackbar : AuthEvent
 }

@@ -57,4 +57,6 @@
     <string name="invalid_tag_name_format_error">Invalid tag name format</string>
     <string name="unknown_user">Unknown User</string>
     <string name="current_user">Current User: %1$s</string>
+    <string name="cannot_sign_message">Cannot sign up with these credentials</string>
+    <string name="cannot_login_message">Cannot login with these credentials</string>
 </resources>

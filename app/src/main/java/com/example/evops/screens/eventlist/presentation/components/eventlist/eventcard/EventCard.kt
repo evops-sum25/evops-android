@@ -11,11 +11,18 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.example.evops.core.presentation.components.image.EventImage
 import com.example.evops.screens.eventlist.domain.model.EventItem
+import com.example.evops.screens.eventlist.presentation.EventListEvent
 import com.example.evops.screens.eventlist.presentation.components.eventlist.eventcard.components.EventDescription
+import com.example.evops.screens.eventlist.presentation.components.eventlist.eventcard.components.EventTags
 import com.example.evops.screens.eventlist.presentation.components.eventlist.eventcard.components.EventTitleAndAuthor
 
 @Composable
-fun EventCard(eventData: EventItem, modifier: Modifier = Modifier) {
+fun EventCard(
+    eventData: EventItem,
+    searchTagIds: List<String>,
+    onEvent: (EventListEvent) -> Unit,
+    modifier: Modifier = Modifier,
+) {
     Column(
         verticalArrangement = Arrangement.Top,
         horizontalAlignment = Alignment.Start,
@@ -35,7 +42,13 @@ fun EventCard(eventData: EventItem, modifier: Modifier = Modifier) {
         EventDescription(
             description = eventData.description,
             isExpanded = eventData.imageUrl == null,
-            modifier = Modifier.padding(start = 18.dp, end = 18.dp, bottom = 18.dp).fillMaxWidth(),
+            modifier = Modifier.padding(start = 18.dp, end = 18.dp, bottom = 12.dp).fillMaxWidth(),
+        )
+        EventTags(
+            tagsData = eventData.tags,
+            searchTagIds = searchTagIds,
+            onEvent = onEvent,
+            modifier = Modifier.padding(start = 18.dp, end = 18.dp, bottom = 18.dp),
         )
         HorizontalDivider(thickness = 2.dp)
     }

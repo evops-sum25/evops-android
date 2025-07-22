@@ -1,7 +1,9 @@
 package com.example.evops.screens.eventlist.presentation.components.searchfield
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.interaction.collectIsFocusedAsState
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
@@ -46,36 +48,37 @@ fun SearchField(
                 TextFieldValue(text = searchString, selection = TextRange(searchString.length))
         }
     }
-
-    TextField(
-        value = textFieldValue,
-        onValueChange = {
-            textFieldValue = it
-            onEvent(EventListEvent.UpdateSearchString(it.text))
-        },
-        interactionSource = interactionSource,
-        shape = RoundedCornerShape(16.dp),
-        colors =
-            TextFieldDefaults.colors(
-                focusedIndicatorColor = Color.Transparent,
-                unfocusedIndicatorColor = Color.Transparent,
-                disabledIndicatorColor = Color.Transparent,
-            ),
-        keyboardOptions = KeyboardOptions(imeAction = ImeAction.Search),
-        keyboardActions =
-            KeyboardActions(
-                onSearch = {
-                    onEvent(EventListEvent.LoadFirstEvents(searchString = textFieldValue.text))
-                    keyboardController?.hide()
-                    focusManager.clearFocus()
+    Column(modifier = Modifier.background(Color.Transparent)) {
+        TextField(
+            value = textFieldValue,
+            onValueChange = {
+                textFieldValue = it
+                onEvent(EventListEvent.UpdateSearchString(it.text))
+            },
+            interactionSource = interactionSource,
+            shape = RoundedCornerShape(16.dp),
+            colors =
+                TextFieldDefaults.colors(
+                    focusedIndicatorColor = Color.Transparent,
+                    unfocusedIndicatorColor = Color.Transparent,
+                    disabledIndicatorColor = Color.Transparent,
+                ),
+            keyboardOptions = KeyboardOptions(imeAction = ImeAction.Search),
+            keyboardActions =
+                KeyboardActions(
+                    onSearch = {
+                        onEvent(EventListEvent.LoadFirstEvents)
+                        keyboardController?.hide()
+                        focusManager.clearFocus()
+                    }
+                ),
+            prefix = {
+                if (!isFocused && searchString.isBlank()) {
+                    Icon(Icons.Rounded.Search, contentDescription = null)
                 }
-            ),
-        prefix = {
-            if (!isFocused && searchString.isBlank()) {
-                Icon(Icons.Rounded.Search, contentDescription = null)
-            }
-        },
-        singleLine = true,
-        modifier = modifier.fillMaxWidth(),
-    )
+            },
+            singleLine = true,
+            modifier = modifier.fillMaxWidth(),
+        )
+    }
 }

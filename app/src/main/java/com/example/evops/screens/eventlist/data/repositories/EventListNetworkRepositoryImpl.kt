@@ -9,29 +9,24 @@ import javax.inject.Inject
 
 class EventListNetworkRepositoryImpl @Inject constructor(private val api: EventListApi) :
     EventListNetworkRepository {
-    override suspend fun getEvents(lastEventId: String?): List<EventItem> {
-        lastEventId?.let {
-            return api.getEvents(limit = Config.EVENT_PAGE_LIMIT, lastEventId = lastEventId)
-                .toDomain()
-        }
-        return api.getFirstEvents(limit = Config.EVENT_PAGE_LIMIT).toDomain()
-    }
-
-    override suspend fun getSearchedEvents(
-        searchString: String,
+    override suspend fun getEvents(
         lastEventId: String?,
+        searchString: String?,
+        tagIds: List<String>,
     ): List<EventItem> {
         lastEventId?.let {
-            return api.getEventsWithSearchString(
+            return api.getEvents(
                     limit = Config.EVENT_PAGE_LIMIT,
                     lastEventId = lastEventId,
                     searchString = searchString,
+                    tagIds = tagIds,
                 )
                 .toDomain()
         }
-        return api.getFirstEventsWithSearchString(
+        return api.getFirstEvents(
                 limit = Config.EVENT_PAGE_LIMIT,
                 searchString = searchString,
+                tagIds = tagIds,
             )
             .toDomain()
     }

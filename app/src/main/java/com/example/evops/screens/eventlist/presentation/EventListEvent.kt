@@ -1,9 +1,13 @@
 package com.example.evops.screens.eventlist.presentation
 
 sealed interface EventListEvent {
-    data class LoadFirstEvents(val searchString: String? = null) : EventListEvent
+    data object LoadFirstEvents : EventListEvent
 
-    data class LoadEvents(val searchString: String? = null) : EventListEvent
+    data object LoadEvents : EventListEvent
 
     data class UpdateSearchString(val searchString: String) : EventListEvent
+
+    data class AddSearchTag(val tagId: String) : EventListEvent
+
+    data class RemoveSearchTag(val tagId: String) : EventListEvent
 }

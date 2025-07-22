@@ -59,4 +59,5 @@
     <string name="current_user">Текущий пользователь: %1$s</string>
     <string name="cannot_sign_message">Не получается зарегистрироваться с текущими данными</string>
     <string name="cannot_login_message">Не получается войти с текущими данными</string>
+    <string name="no_events_found">No events found</string>
 </resources>

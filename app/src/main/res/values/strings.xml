@@ -59,4 +59,5 @@
     <string name="current_user">Current User: %1$s</string>
     <string name="cannot_sign_message">Cannot sign up with these credentials</string>
     <string name="cannot_login_message">Cannot login with these credentials</string>
+    <string name="no_events_found">No events found</string>
 </resources>
